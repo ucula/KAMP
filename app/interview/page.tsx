@@ -1,8 +1,11 @@
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
 export default function InterviewPrepPage() {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
-      <h1 className="text-4xl font-bold text-[#070d22]">Interview Prep</h1>
-      <p className="mt-4 text-[#455671]">Interview preparation content is coming soon.</p>
-    </main>
+    <Box component="main" sx={{ maxWidth: 896, mx: "auto", px: 3, py: 8 }}>
+      <Typography component="h1" sx={{ color: "#070d22", fontSize: 36, fontWeight: 700 }}>Interview Prep</Typography>
+      <Typography component="p" sx={{ color: "#455671", mt: 2 }}>Interview preparation content is coming soon.</Typography>
+    </Box>
   );
 }

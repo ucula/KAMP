@@ -1,21 +1,25 @@
-import Link from "next/link";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import { ArrowRight } from "lucide-react";
 
 export function HeroActions() {
   return (
-    <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <Link
+    <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ alignItems: "center", justifyContent: "center", mt: 4.5 }}>
+      <Button
         href="/app-guide"
-        className="inline-flex min-h-[50px] min-w-[211px] items-center justify-center gap-2 rounded-xl bg-[#a11922] px-6 text-[15px] font-semibold text-white shadow-[0_8px_14px_rgb(125_28_34_/_0.18)] transition-colors hover:bg-[#85151d] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#a11922]"
+        variant="contained"
+        endIcon={<ArrowRight aria-hidden="true" size={18} />}
+        sx={{ bgcolor: "#a11922", borderRadius: "12px", boxShadow: "0 8px 14px rgb(125 28 34 / 18%)", fontSize: 15, fontWeight: 600, minHeight: 50, minWidth: 211, px: 3, textTransform: "none", "&:hover": { bgcolor: "#85151d" } }}
       >
-        Start Application <ArrowRight aria-hidden="true" size={18} />
-      </Link>
-      <Link
+        Start Application
+      </Button>
+      <Button
         href="/app-guide"
-        className="inline-flex min-h-[50px] min-w-[191px] items-center justify-center rounded-xl border border-[#e1e7f0] bg-white px-6 text-[15px] font-semibold text-[#34435c] shadow-[0_2px_3px_rgb(28_42_65_/_0.05)] transition-colors hover:bg-[#f8f9fc] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#34435c]"
+        variant="outlined"
+        sx={{ bgcolor: "white", borderColor: "#e1e7f0", borderRadius: "12px", boxShadow: "0 2px 3px rgb(28 42 65 / 5%)", color: "#34435c", fontSize: 15, fontWeight: 600, minHeight: 50, minWidth: 191, px: 3, textTransform: "none", "&:hover": { bgcolor: "#f8f9fc", borderColor: "#e1e7f0" } }}
       >
         Explore App Guide
-      </Link>
-    </div>
+      </Button>
+    </Stack>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "KAMP 5 Engineering | Where Wisdom Empowers Potential",
@@ -10,12 +9,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className="h-full antialiased"
-    >
-      <body className="min-h-full">
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+    <html lang="en">
+      <body>
+        <AppRouterCacheProvider>
           <CssBaseline />
           {children}
         </AppRouterCacheProvider>

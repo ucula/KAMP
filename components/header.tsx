@@ -1,4 +1,6 @@
-import Link from "next/link";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import Toolbar from "@mui/material/Toolbar";
 
 const links = [
   { href: "/home", label: "Home" },
@@ -8,22 +10,20 @@ const links = [
 
 export function Header({ activeHref }: { activeHref?: string }) {
   return (
-    <header className="flex h-[70px] items-center justify-center bg-white px-4">
-      <nav
-        aria-label="Main navigation"
-        className="flex items-center gap-7 sm:gap-10"
-      >
+    <AppBar component="header" position="static" elevation={0} sx={{ bgcolor: "white", color: "#34435c" }}>
+      <Toolbar component="nav" aria-label="Main navigation" sx={{ justifyContent: "center", gap: { xs: 1, sm: 3 }, minHeight: "120px !important", px: 2 }}>
         {links.map(({ href, label }) => (
-          <Link
+          <Button
             key={href}
             href={href}
+            color="inherit"
             aria-current={href === activeHref ? "page" : undefined}
-            className="text-sm font-medium text-[#34435c] transition-colors hover:text-[#991b24] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#991b24] aria-[current=page]:text-[#070d22]"
+            sx={{ color: href === activeHref ? "#070d22" : "#34435c", fontSize: 14, fontWeight: 500, minWidth: "auto", px: 1, textTransform: "none", "&:hover": { bgcolor: "transparent", color: "#991b24" } }}
           >
             {label}
-          </Link>
+          </Button>
         ))}
-      </nav>
-    </header>
+      </Toolbar>
+    </AppBar>
   );
 }
