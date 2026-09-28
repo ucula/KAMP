@@ -4,8 +4,8 @@ import Toolbar from "@mui/material/Toolbar";
 
 const links = [
   { href: "/home", label: "Home" },
-  { href: "/app-guide", label: "AppGuide" },
-  { href: "/interview", label: "InterviewPrep" },
+  { href: "/app-guide", label: "App Guide" },
+  { href: "/interview", label: "Interview Prep" },
 ];
 
 export function Header({ activeHref }: { activeHref?: string }) {
@@ -42,7 +42,11 @@ export function Header({ activeHref }: { activeHref?: string }) {
               textDecorationColor: "#981b23",
               textUnderlineOffset: "8px",
               textTransform: "none",
-              "&:hover": { bgcolor: "transparent", color: "#981b23", textDecoration: href === activeHref ? "underline" : "none" },
+              "&:hover": {
+                bgcolor: "transparent",
+                color: "#981b23",
+                textDecoration: href === activeHref ? "underline" : "none",
+              },
             }}
           >
             {label}
