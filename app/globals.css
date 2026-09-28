@@ -128,3 +128,8 @@
     @apply font-sans;
   }
 }
+
+.dot-grid {
+  background-image: radial-gradient(rgb(148 163 184 / 35%) 1px, transparent 1px);
+  background-size: 17px 17px;
+}
