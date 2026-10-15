@@ -1,96 +1,132 @@
-.page {
-  --red: #b51625;
-  --ink: #211a1b;
-  color: var(--ink);
-  background: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-}
+.page { --red: #ad1425; --ink: #211a1b; color: var(--ink); background: #fff; font-family: Arial, Helvetica, sans-serif; }
 .page * { box-sizing: border-box; }
 .page h1, .page h2, .page h3, .page p { margin: 0; }
 .page em { color: var(--red); font-style: normal; }
-.container { width: min(100% - 112px, 1360px); margin-inline: auto; }
-.hero { position: relative; min-height: 700px; overflow: hidden; background: #f9f6f4; }
-.heroGlow { position: absolute; width: 850px; height: 850px; right: -250px; top: 10px; border-radius: 50%; background: radial-gradient(circle, #e6a2a8 0, #f4d8d9 38%, transparent 70%); opacity: .65; }
-.hero .container { position: relative; padding-top: 100px; }
-.eyebrow, .sectionLabel, .footerEyebrow { color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .23em; }
-.eyebrow span { margin-inline: 12px; }
-.heroMark { margin: 60px 0 75px !important; font-size: clamp(110px, 18vw, 275px); font-weight: 900; line-height: .72; letter-spacing: -.115em; white-space: nowrap; }
-.heroMark span { color: var(--red); }
-.heroBottom { display: grid; grid-template-columns: 1.25fr .75fr; align-items: end; gap: 72px; }
-.heroBottom h2 { max-width: 760px; font-size: clamp(42px, 5.2vw, 76px); font-weight: 800; letter-spacing: -.07em; line-height: 1.04; }
-.heroAside { max-width: 420px; }
-.heroAside p { margin-bottom: 30px; color: #605557; font-size: 18px; line-height: 1.65; }
+.container { width: min(100% - 96px, 1360px); margin-inline: auto; }
+.sectionLabel { padding-bottom: 25px; border-bottom: 1px solid #ded5d5; color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .22em; }
+.sectionLabel span { margin-inline: 14px; color: #9a8a8c; }
 .primaryButton { display: inline-flex; align-items: center; justify-content: space-between; gap: 32px; min-width: 220px; padding: 18px 24px; border-radius: 100px; background: var(--red); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-decoration: none; transition: background .2s, transform .2s; }
 .primaryButton:hover { background: #8f101c; transform: translateY(-2px); }
 .primaryButton span { font-size: 19px; line-height: 0; }
-.heroIndex { display: flex; justify-content: space-between; margin-top: 90px; padding-bottom: 28px; color: #8b7779; font-size: 11px; font-weight: 700; letter-spacing: .17em; }
+.hero { position: relative; overflow: hidden; background: #f9f6f4; }
+.heroGlow { position: absolute; width: 850px; height: 850px; right: -250px; top: 10px; border-radius: 50%; background: radial-gradient(circle, #e6a2a8 0, #f4d8d9 38%, transparent 70%); opacity: .65; }
+.hero .container { position: relative; padding-top: 90px; }
+.eyebrow { color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .23em; }
+.eyebrow span { margin-inline: 12px; }
+.heroMark { margin: 62px 0 80px !important; font-size: clamp(110px, 18vw, 275px); font-weight: 900; line-height: .72; letter-spacing: -.115em; white-space: nowrap; }
+.heroMark span { color: var(--red); }
+.heroBottom { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 72px; margin-bottom: 80px; }
+.heroBottom h2 { max-width: 760px; font-size: clamp(42px, 5.2vw, 76px); font-weight: 800; letter-spacing: -.07em; line-height: 1.04; }
+.heroAside { max-width: 440px; }
+.heroAside p { margin-bottom: 30px; color: #605557; font-size: 18px; line-height: 1.65; }
+.carousel { position: relative; height: clamp(340px, 43vw, 640px); overflow: hidden; border-radius: 24px; background: #33292a; }
+.carouselSlide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; }
+.carouselSlide[data-active="true"] { opacity: 1; }
+.carouselSlide img { filter: saturate(.82); }
+.carousel::after { position: absolute; inset: 50% 0 0; content: ""; background: linear-gradient(transparent, #171112a8); pointer-events: none; }
+.carouselCaption { position: absolute; z-index: 1; right: 32px; bottom: 30px; left: 32px; display: flex; align-items: end; justify-content: space-between; gap: 20px; color: white; }
+.carouselCaption div:first-child { display: grid; gap: 10px; }
+.carouselCaption span { font-size: 12px; font-weight: 800; letter-spacing: .2em; }
+.carouselCaption strong { font-size: clamp(22px, 3vw, 36px); letter-spacing: -.04em; }
+.carouselControls { display: flex; gap: 8px; }
+.carouselControls button { width: 44px; height: 44px; border: 1px solid #ffffffaa; border-radius: 50%; background: #ffffff22; color: #fff; font-size: 22px; cursor: pointer; }
+.carouselControls button:hover, .carouselControls button:focus-visible { background: #fff; color: var(--ink); }
+.heroIndex { display: flex; justify-content: space-between; gap: 20px; padding: 28px 0; color: #8b7779; font-size: 11px; font-weight: 700; letter-spacing: .17em; }
 .ticker { overflow: hidden; background: var(--red); color: #fff; padding: 22px 0; }
 .ticker div { width: max-content; min-width: 100%; text-align: center; font-size: 13px; font-weight: 800; letter-spacing: .26em; white-space: nowrap; }
 .ticker b { margin-inline: 25px; font-size: 18px; }
-.about, .activities { padding: 145px 0; }
-.sectionLabel { padding-bottom: 28px; border-bottom: 1px solid #ded5d5; }
-.sectionLabel span { margin-inline: 12px; color: #9a8a8c; }
-.aboutHeading { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 90px; padding: 90px 0 105px; }
-.aboutHeading h2, .activities h2 { max-width: 850px; font-size: clamp(50px, 6.5vw, 95px); font-weight: 800; line-height: .98; letter-spacing: -.075em; }
-.aboutHeading p { max-width: 510px; color: #605557; font-size: 21px; line-height: 1.6; }
-.principleGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.principleCard { display: flex; flex-direction: column; justify-content: space-between; min-height: 290px; padding: 40px; border: 1px solid #eee3e2; border-radius: 20px; background: #faf6f5; }
-.principleCard > span, .programSteps span { color: var(--red); font-size: 13px; font-weight: 800; letter-spacing: .12em; }
-.principleCard h3 { margin-bottom: 14px; font-size: 29px; letter-spacing: -.05em; }
-.principleCard p { color: #6d6263; font-size: 16px; line-height: 1.6; }
-.program { padding: 145px 0; background: #a71422; color: #fff; }
-.program .sectionLabel { color: #fff; border-color: #ffffff66; }
-.program .sectionLabel span { color: #ffb6bc; }
-.programHeading { display: grid; grid-template-columns: 1.3fr .7fr; gap: 90px; align-items: end; padding: 105px 0 110px; }
-.programHeading h2 { font-size: clamp(60px, 7.5vw, 112px); font-weight: 800; line-height: .93; letter-spacing: -.075em; }
-.programHeading p { margin-bottom: 35px; color: #ffe3e5; font-size: 21px; line-height: 1.6; }
-.programHeading a { display: inline-flex; justify-content: space-between; gap: 30px; min-width: 190px; padding-bottom: 12px; border-bottom: 1px solid #fff; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-decoration: none; }
-.programHeading a span { font-size: 18px; }
-.programSteps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; padding-top: 42px; border-top: 1px solid #ffffff66; }
-.programSteps span { color: #ffb6bc; }
-.programSteps h3 { margin: 18px 0 12px; font-size: 31px; letter-spacing: -.04em; }
-.programSteps p { max-width: 320px; color: #ffe3e5; font-size: 16px; line-height: 1.6; }
+.about, .mission, .activities, .mentors, .organizations, .social { padding: 130px 0; scroll-margin-top: 92px; }
+.aboutHeading { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 80px; padding: 80px 0; }
+.aboutHeading h2, .missionHeading h2, .activitiesHeading h2, .mentorsHeading h2, .organizationsBody h2 { max-width: 850px; font-size: clamp(50px, 6.3vw, 90px); font-weight: 800; line-height: .99; letter-spacing: -.075em; }
+.aboutHeading p, .missionHeading p, .activitiesHeading p, .mentorsHeading p, .organizationsBody p { max-width: 510px; color: #605557; font-size: 20px; line-height: 1.6; }
+.connectionDiagram { display: grid; grid-template-columns: 1fr 1.18fr 1fr; align-items: stretch; gap: 20px; }
+.connectionDiagram > div { display: flex; flex-direction: column; justify-content: center; gap: 18px; min-height: 230px; padding: 32px; border: 1px solid #e9d9d9; border-radius: 20px; background: #faf6f5; text-align: center; }
+.connectionDiagram > div > span { color: var(--red); font-size: 11px; font-weight: 800; letter-spacing: .2em; }
+.connectionDiagram strong { font-size: clamp(24px, 2.4vw, 34px); letter-spacing: -.045em; }
+.connectionDiagram .diagramCore { background: var(--red); color: #fff; box-shadow: 0 18px 42px #a7142233; }
+.connectionDiagram .diagramCore > span { color: #ffc8cd; }
+.diagramCore strong { font-size: clamp(42px, 5vw, 68px); font-weight: 900; letter-spacing: -.09em; line-height: 1; }
+.diagramCore strong span { color: #ffbfc5; }
+.diagramCore small { color: #ffe5e7; font-size: 13px; }
+.diagramNote { margin-top: 30px !important; color: #716466; font-size: 15px; text-align: center; }
+.mission { background: #a71422; color: #fff; }
+.mission .sectionLabel { color: #fff; border-color: #ffffff66; }
+.mission .sectionLabel span { color: #ffb6bc; }
+.missionHeading, .activitiesHeading, .mentorsHeading, .organizationsBody, .socialBody { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 70px; padding: 80px 0; }
+.missionHeading h2 em { color: #ffbfc5; }
+.missionHeading p { color: #ffe3e5; }
+.missionGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.missionCard { display: flex; flex-direction: column; min-height: 300px; padding: 36px; border: 1px solid #ffffff50; border-radius: 20px; background: #ffffff14; }
+.missionCardTop { display: flex; align-items: start; justify-content: space-between; color: #ffd1d5; }
+.missionCardTop span { font-size: 12px; font-weight: 800; letter-spacing: .15em; }
+.missionCard h3 { margin-top: auto; margin-bottom: 12px; font-size: clamp(25px, 2.6vw, 34px); line-height: 1.12; letter-spacing: -.04em; }
+.missionCard p { color: #ffe3e5; font-size: 15px; line-height: 1.6; }
 .activities { background: #f9f6f4; }
-.activities h2 { padding: 95px 0; }
-.activityList { border-top: 1px solid #ded5d5; }
-.activityRow { display: grid; grid-template-columns: 75px 1.1fr .85fr 30px; align-items: center; gap: 24px; min-height: 120px; border-bottom: 1px solid #ded5d5; }
-.activityRow > span:first-child { color: var(--red); font-size: 13px; font-weight: 800; }
-.activityRow h3 { font-size: clamp(26px, 3.2vw, 43px); font-weight: 750; letter-spacing: -.05em; line-height: 1.1; }
-.activityRow p { color: #6d6263; font-size: 16px; line-height: 1.5; }
-.activityArrow { color: var(--red); font-size: 25px; }
+.activityList { display: grid; gap: 18px; }
+.activityRow { display: grid; grid-template-columns: 1fr 1fr; min-height: 360px; overflow: hidden; border: 1px solid #e9d9d9; border-radius: 22px; background: #fff; }
+.activityRow:nth-child(even) .activityCopy { grid-column: 2; grid-row: 1; }
+.activityRow:nth-child(even) .activityImage { grid-column: 1; grid-row: 1; }
+.activityCopy { display: flex; flex-direction: column; justify-content: center; padding: clamp(36px, 5vw, 70px); }
+.activityCopy > span { color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .15em; }
+.activityCopy h3 { margin: 26px 0 18px; font-size: clamp(35px, 4vw, 56px); line-height: 1.05; letter-spacing: -.065em; }
+.activityCopy p { max-width: 410px; color: #6d6263; font-size: 17px; line-height: 1.6; }
+.activityImage { position: relative; min-height: 360px; background: #e6d7d7; }
+.mentors { background: #fff; }
+.mentorRail { display: grid; grid-auto-columns: minmax(190px, 1fr); grid-auto-flow: column; gap: 14px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x mandatory; }
+.mentorCard { min-width: 190px; padding: 12px 12px 20px; border: 1px solid #eadfdf; border-radius: 15px; background: #faf6f5; scroll-snap-align: start; }
+.mentorPortrait { display: grid; height: 230px; place-items: center; margin-bottom: 18px; border-radius: 10px; background: linear-gradient(145deg, #e7c8ca, #f5e8e6 65%, #d9acad); }
+.mentorPortrait span { color: #ad142555; font-size: 90px; }
+.mentorCard > span { color: var(--red); font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+.mentorCard p { margin-top: 8px; color: #594e50; font-size: 16px; font-weight: 700; }
+.organizations { background: #f9f6f4; }
+.logoSlots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.logoSlots span { display: grid; min-height: 110px; place-items: center; border: 1px dashed #d8c6c8; border-radius: 14px; color: #bbafb0; font-size: 12px; font-weight: 800; letter-spacing: .25em; }
+.social { background: #fff; }
+.socialBody h2 { font-size: clamp(50px, 6.3vw, 90px); font-weight: 800; line-height: .99; letter-spacing: -.075em; }
+.socialBody p { max-width: 510px; color: #605557; font-size: 20px; line-height: 1.6; }
+.socialGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.socialGrid div { display: flex; align-items: end; justify-content: space-between; gap: 15px; min-height: 160px; padding: 28px; border: 1px solid #eadfdf; border-radius: 18px; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.socialGrid span { color: var(--red); font-size: 10px; font-weight: 800; letter-spacing: .12em; white-space: nowrap; }
 .footer { padding: 120px 0 30px; background: var(--ink); color: #fff; }
-.footerEyebrow { color: #ff8790; }
+.footerEyebrow { color: #ff8790; font-size: 12px; font-weight: 800; letter-spacing: .2em; }
 .footer h2 { margin: 55px 0 50px; font-size: clamp(55px, 8vw, 112px); font-weight: 800; letter-spacing: -.075em; line-height: .98; }
 .footer h2 em { color: #ff606c; }
 .footerBottom { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 115px; padding-top: 28px; border-top: 1px solid #ffffff44; }
 .footerBottom a { color: #fff; font-size: 25px; font-weight: 900; letter-spacing: -.09em; text-decoration: none; }
 .footerBottom a span { color: #ff606c; }
 .footerBottom p { color: #c8bfc0; font-size: 13px; }
-.about, .program, .activities { scroll-margin-top: 90px; }
 @media (max-width: 900px) {
   .container { width: min(100% - 48px, 720px); }
-  .hero { min-height: auto; }
-  .hero .container { padding-top: 80px; }
+  .hero .container { padding-top: 75px; }
   .heroMark { margin: 65px 0 75px !important; }
-  .heroBottom, .aboutHeading, .programHeading { grid-template-columns: 1fr; gap: 35px; }
-  .heroIndex { margin-top: 80px; }
-  .about, .activities, .program { padding: 95px 0; }
-  .aboutHeading, .programHeading { padding: 65px 0 75px; }
-  .principleGrid, .programSteps { grid-template-columns: 1fr; gap: 16px; }
-  .principleCard { min-height: 215px; }
-  .programSteps { gap: 35px; }
-  .activities h2 { padding: 70px 0; }
-  .activityRow { grid-template-columns: 42px 1fr 25px; gap: 12px; padding: 25px 0; }
-  .activityRow p { grid-column: 2; grid-row: 2; }
-  .activityArrow { grid-column: 3; grid-row: 1; }
+  .heroBottom, .aboutHeading, .missionHeading, .activitiesHeading, .mentorsHeading, .organizationsBody, .socialBody { grid-template-columns: 1fr; gap: 32px; }
+  .heroBottom { margin-bottom: 55px; }
+  .about, .mission, .activities, .mentors, .organizations, .social { padding: 95px 0; }
+  .aboutHeading, .missionHeading, .activitiesHeading, .mentorsHeading, .organizationsBody, .socialBody { padding: 60px 0; }
+  .connectionDiagram { grid-template-columns: 1fr; }
+  .connectionDiagram > div { min-height: 150px; }
+  .missionGrid { grid-template-columns: 1fr; }
+  .missionCard { min-height: 240px; }
+  .activityRow { min-height: 0; }
+  .activityCopy { padding: 35px; }
+  .activityImage { min-height: 300px; }
+  .logoSlots { grid-template-columns: repeat(2, 1fr); }
+  .socialGrid { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .heroGlow { width: 490px; height: 490px; right: -260px; top: 110px; }
+  .eyebrow { font-size: 10px; line-height: 1.7; }
   .heroMark { font-size: clamp(78px, 19vw, 120px); }
   .heroBottom h2 { font-size: 45px; }
-  .heroAside p, .aboutHeading p, .programHeading p { font-size: 17px; }
-  .aboutHeading h2, .activities h2 { font-size: 52px; }
-  .programHeading h2 { font-size: 60px; }
+  .heroAside p, .aboutHeading p, .missionHeading p, .activitiesHeading p, .mentorsHeading p, .organizationsBody p { font-size: 17px; }
+  .carousel { height: 320px; border-radius: 16px; }
+  .carouselCaption { right: 18px; bottom: 18px; left: 18px; }
+  .carouselControls button { width: 38px; height: 38px; }
+  .heroIndex { font-size: 9px; }
+  .aboutHeading h2, .missionHeading h2, .activitiesHeading h2, .mentorsHeading h2, .organizationsBody h2, .socialBody h2 { font-size: 52px; }
+  .activityRow, .activityRow:nth-child(even) { display: flex; flex-direction: column-reverse; }
+  .activityCopy, .activityRow:nth-child(even) .activityCopy { width: 100%; }
+  .activityImage, .activityRow:nth-child(even) .activityImage { width: 100%; min-height: 230px; }
   .footer { padding-top: 90px; }
   .footerBottom { align-items: flex-start; flex-direction: column; margin-top: 85px; }
 }

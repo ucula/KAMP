@@ -1,0 +1,82 @@
+.page { --red: #ad1425; --ink: #211a1b; min-height: calc(100svh - 92px); padding: 0 0 95px; background: #f9f6f4; color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+.page * { box-sizing: border-box; }
+.page h1, .page h2, .page h3, .page p, .page blockquote { margin: 0; }
+.page em { color: var(--red); font-style: normal; }
+.container { width: min(100% - 96px, 1220px); margin-inline: auto; }
+.hero { padding: 100px 0 110px; }
+.eyebrow, .sectionHeader > p { color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .22em; }
+.hero h1 { max-width: 950px; margin: 50px 0 38px; font-size: clamp(62px, 8vw, 116px); font-weight: 800; line-height: .95; letter-spacing: -.08em; }
+.lead { max-width: 720px; color: #605557; font-size: clamp(18px, 2vw, 23px); line-height: 1.65; }
+.section { padding: 80px 0 100px; border-top: 1px solid #ded5d5; scroll-margin-top: 92px; }
+.sectionHeader { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px 60px; align-items: end; margin-bottom: 45px; }
+.sectionHeader > p { grid-column: 1 / -1; }
+.sectionHeader h2 { max-width: 720px; font-size: clamp(44px, 5vw, 68px); font-weight: 800; line-height: 1.02; letter-spacing: -.065em; }
+.sectionHeader > span { max-width: 390px; color: #76696b; font-size: 17px; line-height: 1.55; }
+.valueGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.valueCard { min-height: 250px; padding: 30px; border: 1px solid #e9d9d9; border-radius: 18px; background: #fff; }
+.valueCard svg { color: var(--red); }
+.valueCard h3 { margin: 48px 0 10px; font-size: 24px; letter-spacing: -.04em; }
+.valueCard p { color: #6d6263; font-size: 15px; line-height: 1.55; }
+.promptGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.promptCard { min-height: 270px; padding: 35px; border: 1px solid #e9d9d9; border-radius: 18px; background: #fff; }
+.promptCard > span, .materialGrid article > span { color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .15em; }
+.promptCard h3 { margin: 18px 0 16px; font-size: 25px; letter-spacing: -.04em; }
+.promptCard blockquote { max-width: 490px; color: #3d3334; font-size: 19px; font-weight: 600; line-height: 1.45; }
+.promptCard p { margin-top: 20px; color: #74696a; font-size: 14px; line-height: 1.5; }
+.materialGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.materialGrid article { display: flex; flex-direction: column; min-height: 300px; padding: 35px; border-radius: 18px; background: #ad1425; color: #fff; }
+.materialGrid article > span { color: #ffd5d8; }
+.materialGrid h3 { margin: 55px 0 15px; font-size: 26px; letter-spacing: -.045em; }
+.materialGrid p { color: #ffe8e9; font-size: 16px; line-height: 1.55; }
+.materialGrid small { margin-top: auto; padding-top: 25px; color: #ffcbd0; font-size: 12px; }
+.nextPanel { display: flex; align-items: end; justify-content: space-between; gap: 40px; padding: 55px; border-radius: 22px; background: #211a1b; color: #fff; }
+.nextPanel p { margin-bottom: 22px; color: #ff929b; font-size: 12px; font-weight: 800; letter-spacing: .18em; }
+.nextPanel h2 { max-width: 650px; font-size: clamp(38px, 4.5vw, 62px); line-height: 1.03; letter-spacing: -.06em; }
+.nextPanel a { display: inline-flex; align-items: center; gap: 25px; min-width: max-content; padding: 16px 22px; border-radius: 100px; background: #ad1425; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-decoration: none; }
+.nextPanel a:hover { background: #d12738; }
+.pairGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.pairGrid > div { padding: 18px; border: 1px solid #e9d9d9; border-radius: 18px; background: #fff; }
+.pairGrid > div > span { display: block; margin: 8px 8px 18px; color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .16em; }
+.pairPortrait { display: grid; height: 300px; place-items: center; border-radius: 12px; background: linear-gradient(140deg, #e8cecf, #f8efed 62%, #d9acad); color: #ad142555; font-size: 110px; }
+.pairGrid h3 { margin: 20px 8px 8px; font-size: 25px; letter-spacing: -.04em; }
+.candidateGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.candidateCard { display: block; padding: 12px; border: 1px solid #e9d9d9; border-radius: 18px; background: #fff; color: #211a1b; text-align: left; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+.candidateCard:hover, .candidateCard:focus-visible { transform: translateY(-4px); box-shadow: 0 15px 32px #9d737322; }
+.candidatePortrait { display: grid; height: 230px; place-items: center; border-radius: 12px; background: linear-gradient(140deg, #b82435, #6f101c); }
+.candidatePortrait span { color: #ffffffcc; font-size: 85px; font-weight: 800; letter-spacing: -.08em; }
+.candidateCard > div:last-child { padding: 24px 14px 18px; }
+.candidateCard > div:last-child > span { color: var(--red); font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+.candidateCard h3 { margin: 10px 0; font-size: 27px; letter-spacing: -.045em; }
+.candidateCard p { color: #74696a; font-size: 15px; line-height: 1.5; }
+.candidateCard strong { display: block; margin-top: 28px; color: var(--red); font-size: 12px; letter-spacing: .1em; }
+.dialogTop { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.dialogTop p { color: #ad1425; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
+.dialogTitle { margin: 30px 0 12px; color: #211a1b; font-size: clamp(38px, 5vw, 58px); letter-spacing: -.065em; }
+.dialogIntro { margin-bottom: 30px; color: #6d6263; font-size: 16px; line-height: 1.6; }
+.dialogDetails { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.dialogDetails div { min-height: 90px; padding: 18px; border: 1px solid #eadfdf; border-radius: 12px; background: #fff; }
+.dialogDetails span { color: #ad1425; font-size: 10px; font-weight: 800; letter-spacing: .13em; }
+.dialogDetails p { margin-top: 12px; color: #554b4c; font-size: 15px; }
+@media (max-width: 900px) {
+  .container { width: min(100% - 48px, 720px); }
+  .hero { padding: 85px 0; }
+  .sectionHeader { grid-template-columns: 1fr; }
+  .sectionHeader > p { grid-column: auto; }
+  .valueGrid { grid-template-columns: repeat(2, 1fr); }
+  .materialGrid { grid-template-columns: 1fr; }
+  .materialGrid article { min-height: 240px; }
+  .materialGrid h3 { margin-top: 35px; }
+  .nextPanel { align-items: start; flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 60px; }
+  .section { padding: 65px 0 75px; }
+  .sectionHeader h2 { font-size: 46px; }
+  .valueGrid, .promptGrid, .pairGrid, .candidateGrid { grid-template-columns: 1fr; }
+  .valueCard { min-height: 205px; }
+  .valueCard h3 { margin-top: 32px; }
+  .pairPortrait { height: 220px; }
+  .nextPanel { padding: 35px; }
+  .nextPanel a { min-width: 0; }
+  .dialogDetails { grid-template-columns: 1fr; }
+}

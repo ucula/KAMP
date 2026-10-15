@@ -1,16 +1,46 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import { ArrowUpRight, MessageCircle, ScanSearch, UsersRound } from "lucide-react";
+import { CandidateGallery } from "./candidate-gallery";
+import styles from "../inner.module.css";
+
+const guidance = [
+  { icon: ScanSearch, title: "Know your story", body: "Choose a few real moments that show what you tried, learned, and would do differently." },
+  { icon: MessageCircle, title: "Speak with clarity", body: "Answer the question directly, then use a specific example to give it shape." },
+  { icon: UsersRound, title: "Make it a conversation", body: "Listen carefully and ask thoughtful questions about the people and the program." },
+];
 
 export default function InterviewPrepPage() {
   return (
-    <Box component="main" sx={{ bgcolor: "#f9f6f4", minHeight: "calc(100svh - 92px)", px: 3, py: { xs: 10, md: 15 } }}>
-      <Box sx={{ maxWidth: 1100, mx: "auto" }}>
-        <Typography sx={{ color: "#b51625", fontSize: 12, fontWeight: 800, letterSpacing: "0.22em", mb: 5 }}>KAMP6 ENGINEERING / INTERVIEW PREP</Typography>
-        <Typography component="h1" sx={{ color: "#211a1b", fontSize: { xs: 54, md: 100 }, fontWeight: 800, letterSpacing: "-0.075em", lineHeight: 0.98, maxWidth: 850 }}>Make your story heard<span style={{ color: "#b51625" }}>.</span></Typography>
-        <Typography component="p" sx={{ color: "#605557", fontSize: { xs: 18, md: 22 }, lineHeight: 1.6, maxWidth: 610, mt: 5 }}>Interview preparation resources are coming soon. Explore KAMP6 while we get them ready.</Typography>
-        <Button href="/home#about" variant="contained" sx={{ bgcolor: "#b51625", borderRadius: 50, fontSize: 12, fontWeight: 800, letterSpacing: "0.08em", mt: 5, px: 4, py: 2, "&:hover": { bgcolor: "#8f101c" } }}>DISCOVER KAMP6 ↗</Button>
-      </Box>
-    </Box>
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <section className={styles.hero} aria-labelledby="interview-title">
+          <p className={styles.eyebrow}>KAMP6 ENGINEERING / INTERVIEW PREP</p>
+          <h1 id="interview-title">A conversation about <em>potential.</em></h1>
+          <p className={styles.lead}>Prepare to share your curiosity, your experiences, and the direction you hope to explore. The guide below gives you a place to start.</p>
+        </section>
+
+        <section className={styles.section} aria-labelledby="pair-title">
+          <div className={styles.sectionHeader}><p>01 / MEET THE PEOPLE</p><h2 id="pair-title">Get to know your interview pair.</h2><span>Official interviewer portraits and introductions will be added when provided.</span></div>
+          <div className={styles.pairGrid}>
+            <div><span>INTERVIEW PAIR / 01</span><div className={styles.pairPortrait} aria-hidden="true">✳</div><h3>Profile coming soon</h3></div>
+            <div><span>INTERVIEW PAIR / 02</span><div className={styles.pairPortrait} aria-hidden="true">✳</div><h3>Profile coming soon</h3></div>
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="interview-guide-title">
+          <div className={styles.sectionHeader}><p>02 / INTERVIEW GUIDE</p><h2 id="interview-guide-title">Show how you think.</h2><span>Use these tips to prepare a thoughtful conversation.</span></div>
+          <div className={styles.valueGrid}>
+            {guidance.map(({ icon: Icon, title, body }) => <article className={styles.valueCard} key={title}><Icon size={31} strokeWidth={1.7} aria-hidden="true" /><h3>{title}</h3><p>{body}</p></article>)}
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="candidate-title">
+          <div className={styles.sectionHeader}><p>03 / OUR CANDIDATES</p><h2 id="candidate-title">Get to know the people.</h2><span>Tap a card to preview the candidate profile layout. Official information is still pending.</span></div>
+          <CandidateGallery />
+        </section>
+
+        <section className={styles.nextPanel}><div><p>BACK / APP GUIDE</p><h2>Prepare your application story.</h2></div><Link href="/app-guide">VIEW APP GUIDE <ArrowUpRight size={20} aria-hidden="true" /></Link></section>
+      </div>
+    </main>
   );
 }

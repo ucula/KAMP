@@ -5,9 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 const links = [
-  { href: "/home#about", label: "About" },
-  { href: "/home#program", label: "Program" },
-  { href: "/home#activities", label: "Activities" },
+  { href: "/home", label: "Home" },
   { href: "/app-guide", label: "App Guide" },
   { href: "/interview", label: "Interview Prep" },
 ];
@@ -51,6 +49,9 @@ export function Header({ activeHref }: { activeHref?: string }) {
               px: { xs: 1, md: 1.5 },
               whiteSpace: "nowrap",
               textTransform: "none",
+              textDecoration: href === activeHref ? "underline" : "none",
+              textDecorationColor: "#b51625",
+              textUnderlineOffset: "7px",
               "&:hover": {
                 bgcolor: "#fdf0f1",
                 color: "#b51625",
