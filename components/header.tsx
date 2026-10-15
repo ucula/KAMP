@@ -1,9 +1,13 @@
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
 const links = [
-  { href: "/home", label: "Home" },
+  { href: "/home#about", label: "About" },
+  { href: "/home#program", label: "Program" },
+  { href: "/home#activities", label: "Activities" },
   { href: "/app-guide", label: "App Guide" },
   { href: "/interview", label: "Interview Prep" },
 ];
@@ -12,46 +16,51 @@ export function Header({ activeHref }: { activeHref?: string }) {
   return (
     <AppBar
       component="header"
-      position="static"
+      position="sticky"
       elevation={0}
-      sx={{ bgcolor: "white", color: "#34435c" }}
+      sx={{ bgcolor: "white", borderBottom: "1px solid #ece6e6", color: "#211a1b" }}
     >
       <Toolbar
         component="nav"
         aria-label="Main navigation"
         sx={{
-          justifyContent: "center",
-          gap: { xs: 1, sm: 3 },
-          minHeight: "120px !important",
-          px: 2,
+          justifyContent: "space-between",
+          gap: { xs: 2, md: 4 },
+          minHeight: { xs: "76px !important", md: "92px !important" },
+          maxWidth: 1440,
+          mx: "auto",
+          px: { xs: 2.5, md: 5 },
+          width: "100%",
         }}
       >
-        {links.map(({ href, label }) => (
+        <Typography component="a" href="/home" aria-label="KAMP6 home" sx={{ color: "#211a1b", fontSize: { xs: 27, md: 32 }, fontWeight: 900, letterSpacing: "-0.09em", lineHeight: 1, textDecoration: "none", whiteSpace: "nowrap" }}>
+          KAMP<Box component="span" sx={{ color: "#b51625" }}>6</Box>
+        </Typography>
+        <Box sx={{ alignItems: "center", display: "flex", gap: { xs: 0, md: 1 }, ml: "auto", minWidth: 0, overflowX: "auto", scrollbarWidth: "none", "&::-webkit-scrollbar": { display: "none" } }}>
+          {links.map(({ href, label }) => (
           <Button
             key={href}
             href={href}
             color="inherit"
             aria-current={href === activeHref ? "page" : undefined}
             sx={{
-              color: href === activeHref ? "#981b23" : "#000309",
-              fontSize: 20,
-              fontWeight: 800,
+              color: href === activeHref ? "#b51625" : "#3b3435",
+              fontSize: { xs: 12, md: 13 },
+              fontWeight: 700,
               minWidth: "auto",
-              px: 5,
-              textDecoration: href === activeHref ? "underline" : "none",
-              textDecorationColor: "#981b23",
-              textUnderlineOffset: "8px",
+              px: { xs: 1, md: 1.5 },
+              whiteSpace: "nowrap",
               textTransform: "none",
               "&:hover": {
-                bgcolor: "transparent",
-                color: "#981b23",
-                textDecoration: href === activeHref ? "underline" : "none",
+                bgcolor: "#fdf0f1",
+                color: "#b51625",
               },
             }}
           >
             {label}
           </Button>
-        ))}
+          ))}
+        </Box>
       </Toolbar>
     </AppBar>
   );

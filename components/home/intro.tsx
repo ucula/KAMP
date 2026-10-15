@@ -58,7 +58,7 @@ export function Intro() {
             mx: "auto",
           }}
         >
-          Elevate your technical caliber with KAMP 5 Engineering. Streamlined
+          Elevate your technical caliber with KAMP6 Engineering. Streamlined
           interview preparation, specialized curriculum, and proven pathways
           into leading engineering industries.
         </Typography>

@@ -3,8 +3,8 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 
 export const metadata: Metadata = {
-  title: "KAMP 5 Engineering | Where Wisdom Empowers Potential",
-  description: "Interview preparation, specialized curriculum, and pathways into engineering industries with KAMP 5 Engineering.",
+  title: "KAMP6 Engineering | Where Wisdom Empowers Potential",
+  description: "Explore engineering, prepare for your next step, and grow with KAMP6 Engineering.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
