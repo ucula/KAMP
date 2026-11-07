@@ -1,5 +1,44 @@
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+
+const organizations = [
+  "Green and teal Thai organization",
+  "Blue Thai institutional seal",
+  "Orange Thai institutional seal",
+  "Accenture",
+  "AIS",
+  "KAMP Engineering 6",
+  "Asia Plus Group Holdings",
+  "Asset World Corporation",
+  "Bain & Company",
+  "Bluebik",
+  "Singha Corporation",
+  "Chevron",
+  "CP AXTRA",
+  "CTC",
+  "DataX",
+  "DELV Aerospace",
+  "DSS+",
+  "Food Passion",
+  "Geppetto",
+  "GPSC",
+  "Hewlett Packard Enterprise",
+  "Huawei",
+  "KBTG",
+  "M and W",
+  "Mazda",
+  "MFEC",
+  "Nestlé",
+  "PTT Group",
+  "PTT LNG",
+  "PTT OR",
+  "S. Khonkaen",
+  "T.MAN",
+  "Thai Airways",
+  "Toyota",
+  "Orange building mark",
+];
 
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
@@ -22,17 +61,20 @@ export function Organizations() {
             Mentors&apos; <span className="text-[#ad1425]">Organizations</span>
           </h2>
         </div>
-        <div
-          aria-hidden="true"
-          className="grid grid-cols-2 gap-3 min-[900px]:grid-cols-4"
-        >
-          {Array.from({ length: 8 }, (_, index) => (
+        <div className="grid grid-cols-2 gap-3 min-[900px]:grid-cols-4">
+          {organizations.map((name, index) => (
             <Card
-              key={index}
-              className="min-h-[110px] rounded-[14px] border-dashed border-[#d8c6c8] bg-transparent text-xs font-extrabold tracking-[.25em] text-[#bbafb0]"
+              key={name}
+              className="rounded-[14px] border-[#eadfdf] bg-white"
             >
-              <CardContent className="grid min-h-[110px] place-items-center p-0">
-                LOGO
+              <CardContent className="relative h-[120px] p-0">
+                <Image
+                  src={`/kamp6/organizations/organization-${String(index + 1).padStart(2, "0")}.png`}
+                  alt={`${name} logo`}
+                  fill
+                  sizes="(max-width: 899px) 50vw, 25vw"
+                  className="object-contain p-5"
+                />
               </CardContent>
             </Card>
           ))}

@@ -1,4 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+
+const mentors = Array.from(
+  { length: 34 },
+  (_, index) =>
+    `/kamp6/mentors/mentor-${String(index + 1).padStart(2, "0")}.png`,
+);
 
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
@@ -20,34 +27,24 @@ export function Mentors() {
           </h2>
         </div>
         <div
-          aria-label="Mentor profile placeholders"
-          className="grid auto-cols-[minmax(190px,1fr)] grid-flow-col gap-[14px] overflow-x-auto pb-[14px] [scroll-snap-type:x_mandatory]"
+          aria-label="KAMP Engineering 6 mentors"
+          className="mx-auto grid max-w-[1120px] grid-cols-2 gap-4 min-[600px]:grid-cols-3 min-[900px]:grid-cols-5"
         >
-          {Array.from({ length: 12 }, (_, index) => (
+          {mentors.map((src, index) => (
             <Card
-              key={index}
-              className="min-w-[190px] rounded-[15px] border-[#eadfdf] bg-[#faf6f5] p-3 pb-5 [scroll-snap-align:start]"
+              key={src}
+              className="overflow-hidden rounded-[15px] border-[#eadfdf] bg-[#2c1215]"
             >
               <CardContent className="p-0">
-                <div
-                  aria-hidden="true"
-                  className="mb-[18px] grid h-[230px] place-items-center rounded-[10px] text-[90px] text-[#ad142555]"
-                  style={{
-                    background:
-                      "linear-gradient(145deg, #e7c8ca, #f5e8e6 65%, #d9acad)",
-                  }}
-                >
-                  ✳
-                </div>
+                <Image
+                  src={src}
+                  alt={`KAMP Engineering 6 mentor profile ${index + 1}`}
+                  width={159}
+                  height={212}
+                  sizes="(max-width: 599px) 50vw, (max-width: 899px) 33vw, (max-width: 1199px) 20vw, 220px"
+                  className="h-auto w-full"
+                />
               </CardContent>
-              <CardHeader className="gap-2 p-0">
-                <span className="text-[11px] font-extrabold tracking-[.14em] text-[#ad1425]">
-                  MENTOR {String(index + 1).padStart(2, "0")}
-                </span>
-                <CardTitle className="text-base leading-normal font-bold text-[#594e50]">
-                  Profile coming soon
-                </CardTitle>
-              </CardHeader>
             </Card>
           ))}
         </div>

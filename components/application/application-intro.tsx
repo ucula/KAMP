@@ -28,13 +28,13 @@ export function ApplicationIntro() {
         desire to learn and grow. Join a community where experiences are shared,
         perspectives are valued, and future opportunities take shape.
       </p>
-      <Link
+      {/* <Link
         href="#prompts-title"
         className={cn(buttonVariants(), "mt-8 gap-3 no-underline")}
       >
         Join the KAMP6 Community
         <ArrowUpRight size={18} aria-hidden="true" />
-      </Link>
+      </Link> */}
     </section>
   );
 }

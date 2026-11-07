@@ -1,5 +1,14 @@
 import { Card } from "@/components/ui/card";
 
+const channels = [
+  { name: "FACEBOOK", href: "https://www.facebook.com/kampengineering/" },
+  {
+    name: "INSTAGRAM",
+    href: "https://www.instagram.com/kampengineering?utm_source=ig_web_button_share_sheet&exln=ZDNlZDc0MzIxNw==",
+  },
+  { name: "TIKTOK", href: "https://www.tiktok.com/@kampengineering" },
+];
+
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
 const section = "scroll-mt-[92px] py-15 min-[900px]:py-[130px]";
@@ -19,15 +28,22 @@ export function SocialMedia() {
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-[14px] min-[900px]:grid-cols-3">
-          {["FACEBOOK", "INSTAGRAM", "LINE"].map((channel) => (
+          {channels.map(({ name, href }) => (
             <Card
-              key={channel}
-              className="flex min-h-[160px] items-end justify-between gap-[15px] rounded-[18px] border-[#eadfdf] p-7 text-xl font-extrabold tracking-[-.02em]"
+              key={name}
+              className="rounded-[18px] border-[#eadfdf]"
             >
-              {channel}
-              <span className="whitespace-nowrap text-[10px] tracking-[.12em] text-[#ad1425]">
-                LINK COMING SOON ↗
-              </span>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[160px] items-end justify-between gap-[15px] rounded-[18px] p-7 text-xl font-extrabold tracking-[-.02em] text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+              >
+                {name}
+                <span className="whitespace-nowrap text-[10px] tracking-[.12em] text-[#ad1425]">
+                  VISIT CHANNEL ↗
+                </span>
+              </a>
             </Card>
           ))}
         </div>

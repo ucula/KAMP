@@ -1,5 +1,7 @@
 type SectionHeadingProps = {
+  eyebrow?: string;
   id: string;
+  note?: string;
   title: string;
 };
 
