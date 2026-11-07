@@ -1,13 +1,13 @@
 import { Header } from "@/components/header";
 
-export default function AppGuideLayout({
+export default function ApplicationLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <>
-      <Header activeHref="/app-guide" />
+      <Header activeHref="/application" />
       {children}
     </>
   );

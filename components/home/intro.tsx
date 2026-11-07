@@ -1,119 +1,75 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { HeroCarousel } from "./hero-carousel";
 
-import { ArrowRight } from "lucide-react";
+const container =
+  "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
+const cta = cn(
+  buttonVariants(),
+  "min-w-[220px] justify-between gap-8 px-6 py-[18px] text-xs font-extrabold tracking-[.1em] no-underline transition-transform hover:-translate-y-0.5",
+);
 
 export function Intro() {
   return (
-    <Box
-      component="section"
-      aria-labelledby="intro-title"
-      sx={{
-        alignItems: "center",
-        background: "linear-gradient(135deg, #f7f4f6 0%, #fafbfe 78%)",
-        // borderBottom: "5px solid #6757e8",
-        display: "flex",
-        justifyContent: "center",
-        minHeight: "calc(100svh - 120px)",
-        px: 3,
-        py: 10,
-        textAlign: "center",
-      }}
-    >
-      <Box sx={{ maxWidth: 900, mx: "auto" }}>
-        <Typography
-          id="intro-title"
-          component="h1"
-          sx={{
-            color: "#070d22",
-            fontSize: "clamp(2.75rem, 5vw, 3.75rem)",
-            fontWeight: 800,
-            letterSpacing: "-0.055em",
-            lineHeight: 0.99,
+    <>
+      <section
+        aria-labelledby="hero-title"
+        className="relative overflow-hidden bg-[#f9f6f4]"
+      >
+        <div
+          aria-hidden="true"
+          className="absolute top-[10px] right-[-250px] size-[850px] rounded-full opacity-65 max-[600px]:top-[110px] max-[600px]:right-[-260px] max-[600px]:size-[490px]"
+          style={{
+            background:
+              "radial-gradient(circle, #e6a2a8 0, #f4d8d9 38%, transparent 70%)",
           }}
+        />
+        <div
+          className={cn(container, "relative pt-[75px] min-[900px]:pt-[90px]")}
         >
-          Where Wisdom Empowers
-          <Box
-            component="span"
-            sx={{
-              background: "linear-gradient(90deg, #8f1b22, #de1643)",
-              backgroundClip: "text",
-              color: "transparent",
-              display: "block",
-            }}
+          <p className="text-[10px] leading-[1.7] font-extrabold tracking-[.23em] text-[#ad1425] min-[600px]:text-xs">
+            KASETSART ALUMNI MENTORSHIP PROGRAM <span className="mx-3">•</span>{" "}
+            ENGINEERING 6
+          </p>
+          <h1
+            id="hero-title"
+            className="my-[65px] text-[clamp(54px,12vw,72px)] leading-[.95] font-black tracking-[-.08em] min-[900px]:my-20 min-[900px]:text-[clamp(50px,7.3vw,108px)]"
           >
-            Potential
-          </Box>
-        </Typography>
-        <Typography
-          component="p"
-          sx={{
-            color: "#455671",
-            fontSize: { xs: 18, sm: 19 },
-            lineHeight: 1.45,
-            maxWidth: 670,
-            mt: 3,
-            mx: "auto",
-          }}
-        >
-          Elevate your technical caliber with KAMP6 Engineering. Streamlined
-          interview preparation, specialized curriculum, and proven pathways
-          into leading engineering industries.
-        </Typography>
-        <HeroActions />
-      </Box>
-    </Box>
-  );
-}
-
-function HeroActions() {
-  return (
-    <Stack
-      direction={{ xs: "column", sm: "row" }}
-      spacing={2}
-      sx={{ alignItems: "center", justifyContent: "center", mt: 4.5 }}
-    >
-      <Button
-        href="/app-guide"
-        variant="contained"
-        endIcon={<ArrowRight aria-hidden="true" size={18} />}
-        sx={{
-          bgcolor: "#a11922",
-          borderRadius: "12px",
-          boxShadow: "0 8px 14px rgb(125 28 34 / 18%)",
-          fontSize: 15,
-          fontWeight: 600,
-          minHeight: 50,
-          minWidth: 211,
-          px: 3,
-          textTransform: "none",
-          "&:hover": { bgcolor: "#85151d" },
-        }}
-      >
-        Start Application
-      </Button>
-      <Button
-        href="/app-guide"
-        variant="outlined"
-        sx={{
-          bgcolor: "white",
-          borderColor: "#e1e7f0",
-          borderRadius: "12px",
-          boxShadow: "0 2px 3px rgb(28 42 65 / 5%)",
-          color: "#34435c",
-          fontSize: 15,
-          fontWeight: 600,
-          minHeight: 50,
-          minWidth: 191,
-          px: 3,
-          textTransform: "none",
-          "&:hover": { bgcolor: "#f8f9fc", borderColor: "#e1e7f0" },
-        }}
-      >
-        Explore App Guide
-      </Button>
-    </Stack>
+            KAMP ENGINEERING <span className="text-[#ad1425]">6</span>
+          </h1>
+          <div className="mb-[55px] grid grid-cols-1 items-end gap-8 min-[900px]:mb-20 min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[72px]">
+            <h2 className="max-w-[760px] text-[45px] leading-[1.04] font-extrabold tracking-[-.07em] min-[900px]:text-[clamp(42px,5.2vw,76px)]">
+              Where Experience Inspires{" "}
+              <span className="text-[#ad1425]">Potential.</span>
+            </h2>
+            <div className="max-w-[440px]">
+              <p className="mb-[30px] text-[17px] leading-[1.65] text-[#605557] min-[600px]:text-lg">
+                A community where engineering experience meets emerging talent,
+                empowering the next generation to learn, connect, and lead.
+              </p>
+              <Link href="#about" className={cta}>
+                DISCOVER KAMP6{" "}
+                <span aria-hidden="true" className="text-[19px] leading-none">
+                  ↘
+                </span>
+              </Link>
+            </div>
+          </div>
+          <HeroCarousel />
+          <div className="flex justify-between gap-5 py-7 text-[9px] font-bold tracking-[.17em] text-[#8b7779] min-[600px]:text-[11px]">
+            <span>KAMP ENGINEERING 6</span>
+            <span>SCROLL TO EXPLORE ↓</span>
+          </div>
+        </div>
+      </section>
+      <div className="bg-[#ad1425] px-6 py-[22px] text-white">
+        <p className="mx-auto max-w-[1360px] text-center text-[11px] leading-[1.8] font-extrabold tracking-[.12em] min-[600px]:text-[13px] [&_b]:mx-[10px] [&_b]:text-[15px]">
+          KNOWLEDGE SHARING <b>✦</b> MEANINGFUL CONNECTIONS <b>✦</b> QUALITY
+          MENTORSHIP <b>✦</b> LEADERSHIP DEVELOPMENT <b>✦</b> STRONGER
+          COMMUNITIES
+        </p>
+      </div>
+    </>
   );
 }

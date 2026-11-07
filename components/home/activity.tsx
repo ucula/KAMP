@@ -1,88 +1,101 @@
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
+import Image from "next/image";
+import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const activities = [
-  "Mentoring",
-  "Mentor Spotlight",
-  "Wisdom on the Road",
-  "KAMP Learning Space",
-  "Workshop",
+  {
+    number: "01",
+    title: "Mentoring Sessions",
+    description:
+      "Gain practical insights, professional guides and valuable perspecives from experienced engineering mentors",
+    image: "/kamp6/hero-mentoring.png",
+    alt: "Illustrative mentorship conversation",
+  },
+  {
+    number: "02",
+    title: "Mentor Spotlight",
+    description:
+      "Discover the experiences, achievements, and perspectives of engineering professionals who inspire the next generation.",
+    image: "/kamp6/hero-collaboration.png",
+    alt: "Illustrative engineering group conversation",
+  },
+  {
+    number: "03",
+    title: "Wisdom on the Road",
+    description:
+      "Step beyond the classroom to explore real-world engineering practices, industries, and professional experiences.",
+    image: "/kamp6/hero-workshop.png",
+    alt: "Illustrative engineering workshop",
+  },
+  {
+    number: "04",
+    title: "KAMP Learning Space",
+    description:
+      "A collaborative space to exchange ideas, explore new perspectives, and grow through shared learning.",
+    image: "/kamp6/hero-collaboration.png",
+    alt: "Illustrative collaborative learning session",
+  },
+  {
+    number: "05",
+    title: "Engineering Workshop",
+    description:
+      "Transform knowledge into practice through interactive workshops, hands-on activities, and collaborative problem-solving.",
+    image: "/kamp6/hero-workshop.png",
+    alt: "Illustrative hands-on engineering activity",
+  },
 ];
+const container =
+  "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
+const heading =
+  "max-w-[850px] text-[52px] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
 
 export function Activity() {
   return (
-    <Box
-      component="section"
+    <section
+      id="activities"
       aria-labelledby="activities-title"
-      sx={{ bgcolor: "white", py: { xs: 8, md: 12 } }}
+      className="scroll-mt-[92px] bg-[#f9f6f4] py-20 min-[900px]:py-[130px]"
     >
-      <Container maxWidth="lg">
-        <Typography
-          id="activities-title"
-          component="h2"
-          sx={{
-            color: "#070d22",
-            fontSize: { xs: 32, md: 44 },
-            fontWeight: 800,
-            letterSpacing: "-0.05em",
-            mb: { xs: 6, md: 8 },
-          }}
-        >
-          Our Activities
-        </Typography>
-        <Box sx={{ display: "grid", gap: { xs: 6, md: 9 } }}>
-          {activities.map((title, index) => (
-            <Box
-              key={title}
-              sx={{
-                alignItems: "center",
-                display: "grid",
-                gap: { xs: 3, md: 8 },
-                gridTemplateColumns: {
-                  xs: "1fr",
-                  md: "repeat(2, minmax(0, 1fr))",
-                },
-              }}
+      <div className={container}>
+        <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
+        <div className="grid grid-cols-1 gap-8  min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px]">
+          <h2 id="activities-title" className={heading}>
+            Our <span className="text-[#ad1425]">Activities.</span>
+          </h2>
+        </div>
+        <div className="grid gap-[18px]">
+          {activities.map((activity, index) => (
+            <Card
+              key={activity.number}
+              className={cn(
+                "flex min-h-[360px] flex-col-reverse overflow-hidden rounded-[22px] border-[#e9d9d9] min-[900px]:flex-row",
+                index % 2 === 1 && "min-[900px]:flex-row-reverse",
+              )}
             >
-              <Typography
-                component="h3"
-                sx={{
-                  color: "#101827",
-                  fontSize: { xs: 24, md: 30 },
-                  fontWeight: 700,
-                  gridColumn: { md: index % 2 === 0 ? 1 : 2 },
-                  gridRow: { md: 1 },
-                  letterSpacing: "-0.025em",
-                  textAlign: { xs: "left", md: "center" },
-                }}
-              >
-                {title}
-              </Typography>
-              <Box
-                sx={{
-                  alignItems: "center",
-                  aspectRatio: { xs: "16 / 9", md: "5 / 2" },
-                  bgcolor: "#f7f9fc",
-                  border: "2px dashed #b7c3d2",
-                  borderRadius: "12px",
-                  display: "flex",
-                  gridColumn: { md: index % 2 === 0 ? 2 : 1 },
-                  gridRow: { md: 1 },
-                  justifyContent: "center",
-                  minHeight: 180,
-                }}
-              >
-                <Typography
-                  sx={{ color: "#74839a", fontSize: 15, fontWeight: 600 }}
-                >
-                  Image coming soon
-                </Typography>
-              </Box>
-            </Box>
+              <div className="flex flex-1 flex-col justify-center p-[35px] min-[900px]:p-[clamp(36px,5vw,70px)]">
+                {/* <span className="text-xs font-extrabold tracking-[.15em] text-[#ad1425]">
+                  {activity.number} / 05
+                </span> */}
+                <h3 className="mt-[26px] mb-[18px] text-[clamp(35px,4vw,56px)] leading-[1.05] font-bold tracking-[-.065em]">
+                  {activity.title}
+                </h3>
+                <p className="max-w-[410px] text-[17px] leading-[1.6] text-[#6d6263]">
+                  {activity.description}
+                </p>
+              </div>
+              <div className="relative min-h-[230px] flex-1 bg-[#e6d7d7] min-[900px]:min-h-[360px]">
+                <Image
+                  src={activity.image}
+                  alt={activity.alt}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            </Card>
           ))}
-        </Box>
-      </Container>
-    </Box>
+        </div>
+      </div>
+    </section>
   );
 }
