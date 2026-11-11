@@ -6,16 +6,10 @@ import type { Mentee } from "@/lib/mentees";
 export function InterviewPage({
   candidates,
   pair = null,
-  testViewEnabled = false,
-  showAll = false,
-  selectedPair = null,
   basePath = "",
 }: {
-  candidates: Mentee[];
+  candidates: Promise<Mentee[]>;
   pair?: number | null;
-  testViewEnabled?: boolean;
-  showAll?: boolean;
-  selectedPair?: number | null;
   basePath?: string;
 }) {
   return (
@@ -25,9 +19,6 @@ export function InterviewPage({
         <CandidateProfilesSection
           candidates={candidates}
           pair={pair}
-          testViewEnabled={testViewEnabled}
-          showAll={showAll}
-          selectedPair={selectedPair}
         />
         <InterviewNextStep basePath={basePath} />
       </div>

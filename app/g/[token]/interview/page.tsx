@@ -12,8 +12,10 @@ export default async function GroupInterviewPage({
   const { token } = await params;
   const pair = await groupForToken(token);
   if (!pair) notFound();
-  const candidates = (await getMentees(pair)).sort((a, b) =>
-    a.code.localeCompare(b.code, undefined, { numeric: true }),
+  const candidates = getMentees(pair).then((mentees) =>
+    mentees.sort((a, b) =>
+      a.code.localeCompare(b.code, undefined, { numeric: true }),
+    ),
   );
   const basePath = `/g/${token}`;
 
