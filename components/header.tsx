@@ -8,7 +8,13 @@ const links = [
   { href: "/interview", label: "Interview Prep" },
 ];
 
-export function Header({ activeHref }: { activeHref?: string }) {
+export function Header({
+  activeHref,
+  basePath = "",
+}: {
+  activeHref?: string;
+  basePath?: string;
+}) {
   return (
     <header
       className="sticky top-0 z-50 border-b border-white/15 text-white"
@@ -19,7 +25,7 @@ export function Header({ activeHref }: { activeHref?: string }) {
         className="mx-auto flex min-h-[76px] w-full max-w-[1440px] items-center justify-between gap-2 px-3 font-[Arial,Helvetica,sans-serif] min-[600px]:gap-4 min-[600px]:px-5 min-[900px]:min-h-[92px] min-[900px]:gap-8 min-[900px]:px-10"
       >
         <Link
-          href="/home"
+          href={basePath || "/home"}
           aria-label="KAMP Engineering 6 home"
           className="relative block h-11 w-[130px] shrink-0 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] max-[359px]:w-[115px] min-[600px]:h-12 min-[600px]:w-[165px] min-[900px]:h-[52px] min-[900px]:w-[190px]"
           style={{
@@ -43,7 +49,7 @@ export function Header({ activeHref }: { activeHref?: string }) {
           {links.map(({ href, label }) => (
             <Link
               key={href}
-              href={href}
+              href={href === "/home" && basePath ? basePath : `${basePath}${href}`}
               aria-current={href === activeHref ? "page" : undefined}
               className={cn(
                 "shrink-0 rounded-md px-1.5 py-2 text-[13px] font-bold whitespace-nowrap text-[#f5e6e8] no-underline transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] max-[359px]:px-1 max-[359px]:text-xs min-[600px]:px-2 min-[600px]:text-sm min-[900px]:px-3 min-[900px]:text-base",

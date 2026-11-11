@@ -42,7 +42,7 @@ export function Mission() {
           </h2>
         </div>
         <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-[clamp(18px,2.2vw,30px)] leading-[1.35] font-bold tracking-[-.02em] text-[#FFFFFF]">
-          <span className="text-[#ffbfc5]">KAMP</span> exists so you don't have
+          <span className="text-[#ffbfc5]">KAMP</span> exists so you don&apos;t have
           to start from zero
         </p>
         <div className="grid grid-cols-1 gap-[18px] min-[900px]:grid-cols-3">

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
 
-export function HomeFooter() {
+export function HomeFooter({ basePath = "" }: { basePath?: string }) {
   return (
     <footer className="bg-[#211a1b] pt-[90px] pb-[30px] text-white min-[900px]:pt-[120px]">
       <div className={container}>
@@ -24,7 +24,7 @@ export function HomeFooter() {
           generations to come.
         </p>
         <Link
-          href="/application"
+          href={`${basePath}/application`}
           className={cn(
             "inline-flex min-w-[220px] items-center justify-between gap-8 rounded-full bg-[#ad1425] px-6 py-[18px] text-xs font-extrabold tracking-[.1em] text-white no-underline transition-colors hover:bg-[#8f101c]",
           )}
@@ -36,7 +36,7 @@ export function HomeFooter() {
         </Link>
         <div className="mt-[85px] flex flex-col items-start justify-between gap-[30px] border-t border-white/30 pt-7 min-[600px]:mt-[115px] min-[600px]:flex-row min-[600px]:items-center">
           <Link
-            href="/home"
+            href={basePath || "/home"}
             aria-label="KAMP6 home"
             className="text-[25px] font-black tracking-[-.09em] text-white no-underline"
           >

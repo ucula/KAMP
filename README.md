@@ -1,36 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KAMP Engineering 6
 
-## Getting Started
+The 17 group links are stored in the ignored local file `.private/group-links.json` and imported into the database. Each `/g/<token>` opens the shared Home page; `/g/<token>/interview` shows candidates assigned to that group.
 
-First, run the development server:
+## Candidate database
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Create a Neon PostgreSQL database through the Vercel Marketplace and connect it to this project. The integration provides `DATABASE_URL` to Vercel.
+2. Add the same `DATABASE_URL` to your local `.env.local` file. Keep this file and the entire `.private` directory out of Git.
+3. Run `npm run import:mentees` once to create the tables and import the local group links and candidate data. Re-running it updates matching records.
+4. Push the code to GitHub. If this repository is connected to the Vercel project, the new deployment will use `DATABASE_URL`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Local development can still read `.private` when `DATABASE_URL` is absent. Production requires the database. Keep a backup of `.private/group-links.json` until the import succeeds. Group links grant access to candidate profiles, so distribute them only to the intended group.

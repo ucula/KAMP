@@ -9,11 +9,13 @@ export function CandidateProfilesSection({
   testViewEnabled,
   showAll,
   selectedPair,
+  pair = null,
 }: {
   candidates: Mentee[];
   testViewEnabled: boolean;
   showAll: boolean;
   selectedPair: number | null;
+  pair?: number | null;
 }) {
   return (
     <section
@@ -29,30 +31,35 @@ export function CandidateProfilesSection({
           {showAll ? "Hide all candidates" : "View all candidates (testing)"}
         </Link>
       )}
-      {showAll ? (
+      {showAll || pair ? (
         <>
-          <nav aria-label="Filter candidates by pair" className="mb-6 flex flex-wrap gap-2">
-            {[null, ...Array.from({ length: 17 }, (_, index) => index + 1)].map(
-              (pair) => (
-                <Link
-                  key={pair ?? "all"}
-                  href={pair ? `/interview?view=all&pair=${pair}` : "/interview?view=all"}
-                  prefetch={false}
-                  aria-current={selectedPair === pair ? "page" : undefined}
-                  className={cn(
-                    "rounded-full border border-[#eadfdf] px-4 py-2 text-sm font-semibold no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]",
-                    selectedPair === pair
-                      ? "bg-[#ad1425] text-white"
-                      : "bg-white text-[#554b4c] hover:bg-[#f2e8e8]",
-                  )}
-                >
-                  {pair ? `Pair ${pair}` : "All candidates"}
-                </Link>
-              ),
-            )}
-          </nav>
+          {showAll && (
+            <nav aria-label="Filter candidates by pair" className="mb-6 flex flex-wrap gap-2">
+              {[null, ...Array.from({ length: 17 }, (_, index) => index + 1)].map(
+                (pair) => (
+                  <Link
+                    key={pair ?? "all"}
+                    href={pair ? `/interview?view=all&pair=${pair}` : "/interview?view=all"}
+                    prefetch={false}
+                    aria-current={selectedPair === pair ? "page" : undefined}
+                    className={cn(
+                      "rounded-full border border-[#eadfdf] px-4 py-2 text-sm font-semibold no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]",
+                      selectedPair === pair
+                        ? "bg-[#ad1425] text-white"
+                        : "bg-white text-[#554b4c] hover:bg-[#f2e8e8]",
+                    )}
+                  >
+                    {pair ? `Pair ${pair}` : "All candidates"}
+                  </Link>
+                ),
+              )}
+            </nav>
+          )}
           <p className="mb-6 text-sm text-[#6d6263]">
-            Showing {candidates.length} candidates{selectedPair ? ` in Pair ${selectedPair}` : " across 17 pairs"}.
+            Showing {candidates.length} candidates
+            {pair || selectedPair
+              ? ` in Pair ${pair || selectedPair}`
+              : " across 17 pairs"}.
           </p>
           <CandidateGallery candidates={candidates} />
         </>

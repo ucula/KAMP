@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function InterviewNextStep() {
+export function InterviewNextStep({ basePath = "" }: { basePath?: string }) {
   return (
     <section className="flex flex-col items-start justify-between gap-8 rounded-[22px] bg-[#211a1b] p-[35px] text-white min-[900px]:flex-row min-[900px]:items-end min-[900px]:gap-10 min-[900px]:p-[55px]">
       <div>
@@ -15,7 +15,7 @@ export function InterviewNextStep() {
         </h2>
       </div>
       <Link
-        href="/application"
+        href={`${basePath}/application`}
         className={cn(
           buttonVariants(),
           "min-w-max gap-[25px] px-[22px] py-4 text-xs font-extrabold tracking-[.08em] no-underline",
