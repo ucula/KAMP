@@ -1,7 +1,22 @@
-# 🎓 KAMP Engineering 6
+<a id="readme-top"></a>
 
-Kasetsart Alumni Mentorship Program for engineering students and alumni.
-A public program site and private interview preparation space for 17 groups.
+<div align="center">
+  <img src="public/kamp6/kamp-engineering-6-logo.jpg" alt="KAMP Engineering 6 logo" width="180" />
+
+  <h1>🎓 KAMP Engineering 6</h1>
+  <p><strong>Where experience inspires potential.</strong></p>
+  <p>Kasetsart Alumni Mentorship Program for engineering students and alumni.</p>
+
+  <p>
+    <a href="#about-the-project"><img src="https://img.shields.io/badge/About-KAMP6-ad1425?style=for-the-badge" alt="About KAMP6" /></a>
+    <a href="#getting-started"><img src="https://img.shields.io/badge/Getting-Started-211a1b?style=for-the-badge" alt="Getting started" /></a>
+    <a href="#usage"><img src="https://img.shields.io/badge/Explore-Usage-ad1425?style=for-the-badge" alt="Explore usage" /></a>
+  </p>
+</div>
+
+<img src="public/kamp6/hero-mentoring.png" alt="Engineering mentor talking with students" width="100%" />
+
+<p align="center"><em>A public program site and private interview preparation space for 17 groups.</em></p>
 
 ## Table of Contents
 
@@ -24,16 +39,21 @@ KAMP Engineering 6 introduces the mentorship program, its activities, mentors, o
 
 The database uses `mentees_base` for applicant details, `mentee_pairs` for group assignments, and `group_links` for access tokens. A `mentees` view preserves the earlier data shape for previously deployed code without duplicating assignments.
 
-[back to top](#-kamp-engineering-6)
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
 
 ### Built With
 
-- Next.js 16 App Router, React 19, and TypeScript
-- Tailwind CSS 4
-- Neon PostgreSQL via `@neondatabase/serverless`
-- Vercel for deployment
+<p>
+  <img src="https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&amp;logo=nextdotjs&amp;logoColor=white" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&amp;logo=react&amp;logoColor=61DAFB" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&amp;logo=typescript&amp;logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&amp;logo=tailwindcss&amp;logoColor=white" alt="Tailwind CSS 4" />
+  <img src="https://img.shields.io/badge/Neon_PostgreSQL-00E599?style=for-the-badge&amp;logo=postgresql&amp;logoColor=211a1b" alt="Neon PostgreSQL" />
+</p>
 
-[back to top](#-kamp-engineering-6)
+Deployed with Vercel.
+
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
 
 ## Getting Started
 
@@ -78,7 +98,7 @@ The repository does not include candidate records, group tokens, or a database m
 - **No candidates appear:** Check the group's assignments in `mentee_pairs` and its candidate records in `mentees_base`.
 - **`DATABASE_URL is required in production`:** Add the variable to the deployment environment and redeploy.
 
-[back to top](#-kamp-engineering-6)
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
 
 ## Usage
 
@@ -86,9 +106,13 @@ The repository does not include candidate records, group tokens, or a database m
 2. Share each `/g/<token>` link only with its intended interview group. The matching `/g/<token>/interview` page shows that group's assigned candidates.
 3. For local testing, set `ENABLE_ALL_CANDIDATES_TEST_VIEW=true` and open `/interview?view=all`. This all-candidates view is disabled in production.
 
+<p align="center">
+  <img src="public/kamp6/interview-flow.png" alt="KAMP interview flow from candidate profile to two interview slots" width="90%" />
+</p>
+
 Group links grant access to candidate profiles. Do not publish tokens or candidate data in issues, screenshots, or commits.
 
-[back to top](#-kamp-engineering-6)
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
 
 ## Project Structure
 
@@ -100,28 +124,28 @@ Group links grant access to candidate profiles. Do not publish tokens or candida
 | `lib/group-links.ts` | Resolves private group tokens |
 | `public/kamp6/` | Program images and graphics |
 
-[back to top](#-kamp-engineering-6)
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
 
 ## Contributing
 
 Use a branch and open a pull request for changes. Run `npm run lint` and `npm run build` before submitting. Keep database credentials, group links, and candidate information out of commits.
 
-[back to top](#-kamp-engineering-6)
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
 
 ## License
 
 This repository does not currently include a license file. Contact the project owners before reusing its code or assets.
 
-[back to top](#-kamp-engineering-6)
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
 
 ## Contact
 
 Project repository: [ucula/KAMP](https://github.com/ucula/KAMP)
 
-[back to top](#-kamp-engineering-6)
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
 
 ## Acknowledgments
 
 Built for the Kasetsart Alumni Mentorship Program's Engineering 6 community.
 
-[back to top](#-kamp-engineering-6)
+<p align="right"><a href="#readme-top">back to top ↑</a></p>
