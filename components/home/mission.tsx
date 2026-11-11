@@ -46,7 +46,7 @@ export function Mission() {
           to start from zero
         </p>
         <div className="grid grid-cols-1 gap-[18px] min-[900px]:grid-cols-3">
-          {missions.map(({ icon: Icon, title }, index) => (
+          {missions.map(({ icon: Icon, title }) => (
             <Card
               key={title}
               className="flex min-h-[240px] flex-col rounded-[20px] border-white/30 bg-white/[.08] p-9 text-white min-[900px]:min-h-[300px]"

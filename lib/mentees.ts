@@ -23,9 +23,9 @@ export async function getMentees(pair?: number): Promise<Mentee[]> {
   if (process.env.DATABASE_URL) {
     const sql = neon(process.env.DATABASE_URL);
     const rows = pair
-      ? await sql`SELECT data FROM mentees WHERE data->'pairs' @> ${JSON.stringify([pair])}::jsonb`
-      : await sql`SELECT data FROM mentees`;
-    return rows.map((row) => row.data as Mentee);
+      ? await sql`SELECT * FROM mentees WHERE ${pair} = ANY(pairs)`
+      : await sql`SELECT * FROM mentees`;
+    return rows as Mentee[];
   }
 
   if (process.env.NODE_ENV === "production") {

@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "import:mentees": "node --env-file=.env.local scripts/import-mentees.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
