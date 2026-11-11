@@ -24,11 +24,11 @@ export function CandidateGallery({ candidates }: { candidates: Mentee[] }) {
 
   const documents = selected
     ? [
-        ["Statement of purpose", selected.sop],
+        ["SOP", selected.sop],
         ["Essay 1", selected.essay1],
         ["Essay 2", selected.essay2],
         ["Essay 3", selected.essay3],
-        ["Introduction video", selected.video],
+        ["Video", selected.video],
         ["Resume", selected.resume],
       ]
     : [];
@@ -127,17 +127,19 @@ export function CandidateGallery({ candidates }: { candidates: Mentee[] }) {
               <span className="text-[10px] font-extrabold tracking-[.13em] text-[#ad1425]">
                 {label.toUpperCase()}
               </span>
-              {href ? (
+              {href?.trim() ? (
                 <a
-                  href={href}
+                  href={href.trim()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 block text-[15px] font-semibold text-[#554b4c] underline"
+                  className="mt-3 block break-all text-[15px] font-semibold text-[#554b4c] underline"
                 >
-                  Open {label.toLowerCase()} ↗
+                  {href.trim()}
                 </a>
               ) : (
-                <p className="mt-3 text-[15px] text-[#74696a]">Not provided</p>
+                <p className="mt-3 text-[15px] font-semibold text-[#ad1425]">
+                  Did not submit
+                </p>
               )}
             </div>
           ))}
