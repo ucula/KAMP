@@ -22,9 +22,20 @@ export type Mentee = {
 export async function getMentees(pair?: number): Promise<Mentee[]> {
   if (process.env.DATABASE_URL) {
     const sql = neon(process.env.DATABASE_URL);
-    const rows = pair
-      ? await sql`SELECT * FROM mentees WHERE ${pair} = ANY(pairs)`
-      : await sql`SELECT * FROM mentees`;
+    const rows = await sql`
+      SELECT m.id, m.code, m.firstname, m.surname, m.year, m.major,
+        m.program_type, m.sop, m.essay1, m.essay2, m.essay3, m.video,
+        m.resume,
+        ARRAY(
+          SELECT mp.pair::integer FROM mentee_pairs mp
+          WHERE mp.mentee_id = m.id ORDER BY mp.pair
+        ) AS pairs
+      FROM mentees_base m
+      WHERE ${pair ?? null}::smallint IS NULL OR EXISTS (
+        SELECT 1 FROM mentee_pairs selected
+        WHERE selected.mentee_id = m.id AND selected.pair = ${pair ?? null}::smallint
+      )
+    `;
     return rows as Mentee[];
   }
 
