@@ -14,10 +14,6 @@
   </p>
 </div>
 
-<img src="public/kamp6/hero-mentoring.png" alt="Engineering mentor talking with students" width="100%" />
-
-<p align="center"><em>A public program site and private interview preparation space for 17 groups.</em></p>
-
 ## Table of Contents
 
 1. [About The Project](#about-the-project)
