@@ -8,40 +8,40 @@ const activities = [
     title: "Mentoring Sessions",
     description:
       "Gain practical insights, professional guides and valuable perspecives from experienced engineering mentors",
-    image: "/kamp6/hero-mentoring.png",
-    alt: "Illustrative mentorship conversation",
+    image: "/kamp6/activities/mentoring-sessions.jpg",
+    alt: "Mentors and mentees sharing a meal around a table",
   },
   {
     number: "02",
     title: "Mentor Spotlight",
     description:
       "Discover the experiences, achievements, and perspectives of engineering professionals who inspire the next generation.",
-    image: "/kamp6/hero-collaboration.png",
-    alt: "Illustrative engineering group conversation",
+    image: "/kamp6/activities/mentor-spotlight.jpg",
+    alt: "Two engineering professionals speaking in an interview setting",
   },
   {
     number: "03",
     title: "Wisdom on the Road",
     description:
       "Step beyond the classroom to explore real-world engineering practices, industries, and professional experiences.",
-    image: "/kamp6/hero-workshop.png",
-    alt: "Illustrative engineering workshop",
+    image: "/kamp6/activities/wisdom-on-the-road.jpg",
+    alt: "KAMP participants and hosts gathered during a site visit",
   },
   {
     number: "04",
     title: "KAMP Learning Space",
     description:
       "A collaborative space to exchange ideas, explore new perspectives, and grow through shared learning.",
-    image: "/kamp6/hero-collaboration.png",
-    alt: "Illustrative collaborative learning session",
+    image: "/kamp6/activities/kamp-learning-space.jpg",
+    alt: "Large group gathered in a lecture hall at a KAMP event",
   },
   {
     number: "05",
     title: "Engineering Workshop",
     description:
       "Transform knowledge into practice through interactive workshops, hands-on activities, and collaborative problem-solving.",
-    image: "/kamp6/hero-workshop.png",
-    alt: "Illustrative hands-on engineering activity",
+    image: "/kamp6/activities/engineering-workshop.jpg",
+    alt: "Students collaborating around a large sheet of notes during a workshop",
   },
 ];
 const container =
