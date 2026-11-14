@@ -1,4 +1,3 @@
-import { Header } from "@/components/header";
 import { InterviewPage } from "@/components/interview/interview-page";
 import { groupForToken } from "@/lib/group-links";
 import { getMentees } from "@/lib/mentees";
@@ -19,10 +18,5 @@ export default async function GroupInterviewPage({
   );
   const basePath = `/g/${token}`;
 
-  return (
-    <>
-      <Header activeHref="/interview" basePath={basePath} />
-      <InterviewPage candidates={candidates} pair={pair} basePath={basePath} />
-    </>
-  );
+  return <InterviewPage candidates={candidates} pair={pair} basePath={basePath} />;
 }
