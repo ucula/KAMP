@@ -33,7 +33,7 @@
 
 KAMP Engineering 6 introduces the mentorship program, its activities, mentors, organizations, and application information. Interviewers use one of 17 private group links to see the candidates assigned to their group. Candidate details and group assignments are stored in PostgreSQL; the application reads them on the server.
 
-The database uses `mentees_base` for applicant details, `mentee_pairs` for group assignments, and `group_links` for access tokens. A `mentees` view preserves the earlier data shape for previously deployed code without duplicating assignments.
+The database uses three tables: `mentee` for candidate details, `document` for submitted links, and `pairs` for assignments. `pairs.token` retains the private group links.
 
 <p align="right"><a href="#readme-top">back to top ↑</a></p>
 
@@ -59,7 +59,7 @@ Deployed with Vercel.
 - Git
 - Access to the provisioned Neon PostgreSQL database and its `DATABASE_URL` to view candidate data
 
-The repository does not include candidate records, group tokens, or a database migration. The database must already contain `mentees_base`, `mentee_pairs`, and `group_links` for the private interview pages to work.
+The repository does not include candidate records or group tokens. The database must already contain the three tables above for the private interview pages to work. `db/001_mentee_schema.sql` and `db/002_three_tables.sql` document the migrations from the earlier schema.
 
 ### Installation
 
@@ -90,8 +90,8 @@ The repository does not include candidate records, group tokens, or a database m
 ### Troubleshooting
 
 - **The public pages load but a group interview page fails:** Check that `DATABASE_URL` points to the provisioned database, or that both `.private` files are available for local development.
-- **A group interview link returns 404:** Check the full token and confirm that it exists in `group_links`. Group tokens are 16 lowercase hexadecimal characters.
-- **No candidates appear:** Check the group's assignments in `mentee_pairs` and its candidate records in `mentees_base`.
+- **A group interview link returns 404:** Check the full token and confirm that it exists in `pairs`. Group tokens are 16 lowercase hexadecimal characters.
+- **No candidates appear:** Check the group's assignments in `pairs` and its candidate records in `mentee`.
 - **`DATABASE_URL is required in production`:** Add the variable to the deployment environment and redeploy.
 
 <p align="right"><a href="#readme-top">back to top ↑</a></p>

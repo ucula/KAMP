@@ -3,7 +3,7 @@ import path from "node:path";
 import { neon } from "@neondatabase/serverless";
 
 export type Mentee = {
-  id: number;
+  id: number | string;
   pairs: number[];
   code: string;
   firstname: string;
@@ -23,17 +23,19 @@ export async function getMentees(pair?: number): Promise<Mentee[]> {
   if (process.env.DATABASE_URL) {
     const sql = neon(process.env.DATABASE_URL);
     const rows = await sql`
-      SELECT m.id, m.code, m.firstname, m.surname, m.year, m.major,
-        m.program_type, m.sop, m.essay1, m.essay2, m.essay3, m.video,
-        m.resume,
+      SELECT m.code AS id, m.code, m.firstname, m.lastname AS surname, m.year,
+        m.major, m.program AS program_type,
+        d.sop, d.essay AS essay1, d.essay AS essay2, d.essay AS essay3,
+        d.video, d.resume,
         ARRAY(
-          SELECT mp.pair::integer FROM mentee_pairs mp
-          WHERE mp.mentee_id = m.id ORDER BY mp.pair
+          SELECT p.pair_number::integer FROM pairs p
+          WHERE p.code = m.code ORDER BY p.pair_number
         ) AS pairs
-      FROM mentees_base m
+      FROM mentee m
+      JOIN document d ON d.code = m.code
       WHERE ${pair ?? null}::smallint IS NULL OR EXISTS (
-        SELECT 1 FROM mentee_pairs selected
-        WHERE selected.mentee_id = m.id AND selected.pair = ${pair ?? null}::smallint
+        SELECT 1 FROM pairs selected
+        WHERE selected.code = m.code AND selected.pair_number = ${pair ?? null}::smallint
       )
     `;
     return rows as Mentee[];

@@ -7,8 +7,8 @@ export async function groupForToken(token: string): Promise<number | null> {
 
   if (process.env.DATABASE_URL) {
     const sql = neon(process.env.DATABASE_URL);
-    const rows = await sql`SELECT pair FROM group_links WHERE token = ${token}`;
-    return (rows[0]?.pair as number | undefined) ?? null;
+    const rows = await sql`SELECT pair_number FROM pairs WHERE token = ${token} LIMIT 1`;
+    return (rows[0]?.pair_number as number | undefined) ?? null;
   }
 
   if (process.env.NODE_ENV === "production") {
