@@ -1,7 +1,7 @@
 <a id="readme-top"></a>
 
 <div align="center">
-  <img src="public/kamp6/kamp-engineering-6-logo.jpg" alt="KAMP Engineering 6 logo" width="180" />
+  <img src="public/kamp6/kamp-engineering-6-logo-white.png" alt="KAMP Engineering 6 logo" width="180" />
 
   <h1>🎓 KAMP Engineering 6</h1>
   <p><strong>Where experience inspires potential.</strong></p>

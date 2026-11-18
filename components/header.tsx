@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -15,6 +18,8 @@ export function Header({
   activeHref?: string;
   basePath?: string;
 }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header
       className="sticky top-0 z-50 border-b border-white/15 text-white"
@@ -22,54 +27,62 @@ export function Header({
     >
       <nav
         aria-label="Main navigation"
-        className="mx-auto flex min-h-[76px] w-full max-w-[1440px] items-center justify-between gap-2 px-3 font-[Arial,Helvetica,sans-serif] min-[600px]:gap-4 min-[600px]:px-5 min-[900px]:min-h-[92px] min-[900px]:gap-8 min-[900px]:px-10"
+        onKeyDown={(event) => {
+          if (event.key === "Escape") setMenuOpen(false);
+        }}
+        className="relative mx-auto flex min-h-[68px] w-full max-w-[1440px] items-center justify-between gap-2 px-3 font-[Arial,Helvetica,sans-serif] min-[600px]:gap-4 min-[600px]:px-5 min-[900px]:min-h-[76px] min-[900px]:gap-8 min-[900px]:px-10"
       >
         <Link
           href={basePath || "/home"}
+          onClick={() => setMenuOpen(false)}
           aria-label="KAMP Engineering 6 home"
-          className="relative block h-11 w-[130px] shrink-0 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] max-[359px]:w-[115px] min-[600px]:h-12 min-[600px]:w-[165px] min-[900px]:h-[52px] min-[900px]:w-[190px]"
-          style={{
-            maskImage:
-              "linear-gradient(90deg, transparent, black 7%, black 93%, transparent)",
-            WebkitMaskImage:
-              "linear-gradient(90deg, transparent, black 7%, black 93%, transparent)",
-          }}
+          className="relative block h-11 w-[130px] shrink-0 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] max-[359px]:w-[115px] min-[600px]:h-12 min-[600px]:w-[165px] min-[900px]:w-[180px]"
         >
           <Image
-            src="/kamp6/kamp-engineering-6-logo.jpg"
+            src="/kamp6/kamp-engineering-6-logo-white.png"
             alt=""
-            width={1108}
-            height={1098}
-            sizes="(max-width: 359px) 155px, (max-width: 599px) 175px, (max-width: 899px) 225px, 255px"
+            width={596}
+            height={231}
+            sizes="(max-width: 359px) 120px, (max-width: 599px) 140px, (max-width: 899px) 170px, 190px"
             loading="eager"
-            className="absolute top-1/2 left-1/2 h-auto w-[175px] max-w-none -translate-x-1/2 -translate-y-1/2 max-[359px]:w-[155px] min-[600px]:w-[225px] min-[900px]:w-[255px]"
+            className="absolute top-1/2 left-1/2 h-auto w-[140px] max-w-none -translate-x-1/2 -translate-y-1/2 max-[359px]:w-[120px] min-[600px]:w-[170px] min-[900px]:w-[190px]"
           />
         </Link>
-        <div className="ml-auto flex min-w-0 items-center gap-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden min-[900px]:gap-2">
+        <div
+          id="main-menu"
+          className={cn(
+            "absolute top-full right-0 left-0 z-10 flex-col border-b border-white/15 bg-[#211a1b] px-3 py-2 shadow-lg min-[769px]:static min-[769px]:ml-auto min-[769px]:flex min-[769px]:flex-row min-[769px]:items-center min-[769px]:gap-0 min-[769px]:border-0 min-[769px]:bg-transparent min-[769px]:p-0 min-[769px]:shadow-none min-[900px]:gap-2",
+            menuOpen ? "flex" : "hidden",
+          )}
+        >
           {links.map(({ href, label }) => (
             <Link
               key={href}
               href={href === "/home" && basePath ? basePath : `${basePath}${href}`}
+              onClick={() => setMenuOpen(false)}
               aria-current={href === activeHref ? "page" : undefined}
               className={cn(
-                "shrink-0 rounded-md px-1.5 py-2 text-[13px] font-bold whitespace-nowrap text-[#f5e6e8] no-underline transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] max-[359px]:px-1 max-[359px]:text-xs min-[600px]:px-2 min-[600px]:text-sm min-[900px]:px-3 min-[900px]:text-base",
+                "flex min-h-11 items-center rounded-md px-3 py-2 text-sm font-bold text-[#f5e6e8] no-underline transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] min-[769px]:min-h-0 min-[769px]:shrink-0 min-[769px]:px-2 min-[769px]:whitespace-nowrap min-[900px]:px-3",
                 href === activeHref &&
                   "text-[#ffbfc5] underline decoration-[#ff8790] underline-offset-[7px]",
               )}
             >
-              {href === "/interview" ? (
-                <>
-                  <span className="min-[600px]:hidden">Interview</span>
-                  <span className="hidden min-[600px]:inline">
-                    Interview Prep
-                  </span>
-                </>
-              ) : (
-                label
-              )}
+              {label}
             </Link>
           ))}
         </div>
+        <button
+          type="button"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="main-menu"
+          onClick={() => setMenuOpen((open) => !open)}
+          className="ml-auto flex size-11 shrink-0 flex-col items-center justify-center gap-[5px] rounded-md text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] min-[769px]:hidden"
+        >
+          <span className={cn("h-0.5 w-6 rounded-full bg-current transition-transform", menuOpen && "translate-y-[7px] rotate-45")} />
+          <span className={cn("h-0.5 w-6 rounded-full bg-current transition-opacity", menuOpen && "opacity-0")} />
+          <span className={cn("h-0.5 w-6 rounded-full bg-current transition-transform", menuOpen && "-translate-y-[7px] -rotate-45")} />
+        </button>
       </nav>
     </header>
   );

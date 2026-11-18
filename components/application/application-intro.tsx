@@ -2,7 +2,7 @@ export function ApplicationIntro() {
   return (
     <section
       aria-labelledby="application-title"
-      className="py-[85px] min-[900px]:pt-[100px] min-[900px]:pb-[110px]"
+      className="py-14 min-[900px]:pt-16 min-[900px]:pb-20"
     >
       <p className="text-xs font-extrabold tracking-[.22em] text-[#ad1425]">
         KAMP ENGINEERING 6 / APPLICATION

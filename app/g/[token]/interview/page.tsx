@@ -18,5 +18,7 @@ export default async function GroupInterviewPage({
   );
   const basePath = `/g/${token}`;
 
-  return <InterviewPage candidates={candidates} pair={pair} basePath={basePath} />;
+  return (
+    <InterviewPage candidates={candidates} pair={pair} basePath={basePath} />
+  );
 }

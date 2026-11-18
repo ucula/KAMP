@@ -42,9 +42,9 @@ const organizations = [
 
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
-const section = "scroll-mt-[92px] py-20 min-[900px]:py-[130px]";
+const section = "scroll-mt-[92px] py-14 min-[900px]:py-20";
 const heading =
-  "max-w-[850px] text-[52px] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
+  "max-w-[850px] text-[clamp(34px,8vw,52px)] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
 const headingRow =
   "grid grid-cols-1 gap-8 min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px] ";
 

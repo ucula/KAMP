@@ -13,3 +13,78 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; }
+
+.typewriter-heading {
+  position: relative;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0;
+}
+
+.typewriter-layout { display: block; visibility: hidden; }
+.typewriter-display { position: absolute; inset: 0; display: block; }
+
+.typewriter-layout > span,
+.typewriter-display > span {
+  box-sizing: content-box;
+  display: inline-block;
+  vertical-align: bottom;
+  border-right: .12ch solid transparent;
+  white-space: nowrap;
+}
+
+.typewriter-display > span {
+  overflow: hidden;
+  width: 0;
+  border-color: #ad1425;
+  animation:
+    fx-type .35s steps(var(--chars)) var(--delay) both,
+    fx-caret .2s steps(1) var(--delay) 2,
+    fx-caret-hide 0s linear calc(var(--delay) + .4s) forwards;
+}
+
+.typewriter-display > span:nth-child(1) { --chars: 5; --delay: 0s; }
+.typewriter-display > span:nth-child(2) { --chars: 10; --delay: .4s; }
+.typewriter-display > span:nth-child(3) { --chars: 8; --delay: .8s; }
+.typewriter-display > span:nth-child(4) { --chars: 10; --delay: 1.2s; }
+
+.typewriter-heading:not(.is-visible) .typewriter-display > span {
+  width: auto;
+  border-color: transparent;
+  animation: none;
+}
+.community-typewriter .typewriter-display > span:nth-child(1) { --chars: 9; --delay: 0s; }
+.community-typewriter .typewriter-display > span:nth-child(2) { --chars: 1; --delay: .4s; }
+.community-typewriter .typewriter-display > span:nth-child(3) { --chars: 11; --delay: .8s; }
+
+@keyframes fx-type {
+  to { width: calc(var(--chars) * 1ch); }
+}
+
+@keyframes fx-caret {
+  50% { border-color: transparent; }
+}
+
+@keyframes fx-caret-hide {
+  to { border-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-display > span {
+    width: auto;
+    border: 0;
+    animation: none;
+  }
+}
+
+.values-ticker-track { animation: values-ticker-scroll 24s linear infinite; }
+.values-ticker-group { min-width: max-content; }
+
+@keyframes values-ticker-scroll {
+  to { transform: translateX(-25%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .values-ticker-track { width: auto; animation: none; }
+  .values-ticker-group { min-width: 0; flex-wrap: wrap; justify-content: center; white-space: normal; }
+  .values-ticker-group:not(:first-child) { display: none; }
+}

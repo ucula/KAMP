@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export function InterviewNextStep({ basePath = "" }: { basePath?: string }) {
   return (
-    <section className="flex flex-col items-start justify-between gap-8 rounded-[22px] bg-[#211a1b] p-[35px] text-white min-[900px]:flex-row min-[900px]:items-end min-[900px]:gap-10 min-[900px]:p-[55px]">
+    <section className="flex flex-col items-start justify-between gap-8 rounded-[22px] bg-[#211a1b] p-7 text-white min-[900px]:flex-row min-[900px]:items-end min-[900px]:gap-10 min-[900px]:p-10">
       <div>
         <p className="mb-[22px] text-xs font-extrabold tracking-[.18em] text-[#ff929b]">
           APPLICATION GUIDE

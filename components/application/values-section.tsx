@@ -34,7 +34,7 @@ export function ValuesSection() {
   return (
     <section
       aria-labelledby="values-title"
-      className="scroll-mt-[92px] border-t border-[#ded5d5] py-[65px] min-[600px]:py-20 min-[900px]:pb-[100px]"
+      className="scroll-mt-[92px] border-t border-[#ded5d5] py-12 min-[600px]:py-14 min-[900px]:pb-16"
     >
       <h2
         id="values-title"

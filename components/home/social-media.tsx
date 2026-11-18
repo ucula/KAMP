@@ -11,9 +11,9 @@ const channels = [
 
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
-const section = "scroll-mt-[92px] py-15 min-[900px]:py-[130px]";
+const section = "scroll-mt-[92px] py-12 min-[900px]:py-20";
 const heading =
-  "max-w-[850px] text-[52px] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
+  "max-w-[850px] text-[clamp(34px,8vw,52px)] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
 const headingRow =
   "grid grid-cols-1 gap-8 min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px]";
 
@@ -37,7 +37,7 @@ export function SocialMedia() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-[160px] items-end justify-between gap-[15px] rounded-[18px] p-7 text-xl font-extrabold tracking-[-.02em] text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+                className="flex min-h-[140px] flex-col items-start justify-end gap-2 rounded-[18px] p-6 text-xl font-extrabold tracking-[-.02em] text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:min-h-[160px] min-[600px]:flex-row min-[600px]:items-end min-[600px]:justify-between min-[600px]:gap-[15px] min-[600px]:p-7"
               >
                 {name}
                 <span className="whitespace-nowrap text-[10px] tracking-[.12em] text-[#ad1425]">

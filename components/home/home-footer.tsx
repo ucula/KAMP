@@ -6,12 +6,12 @@ const container =
 
 export function HomeFooter({ basePath = "" }: { basePath?: string }) {
   return (
-    <footer className="bg-[#211a1b] pt-[90px] pb-[30px] text-white min-[900px]:pt-[120px]">
+    <footer className="bg-[#211a1b] pt-16 pb-8 text-white min-[900px]:pt-20">
       <div className={container}>
         <p className="text-xs font-extrabold tracking-[.2em] text-[#ff8790]">
           PAY IT FORWARD
         </p>
-        <h2 className="my-[55px] text-[clamp(55px,8vw,100px)] leading-[.98] font-extrabold tracking-[-.075em]">
+        <h2 className="my-10 text-[clamp(38px,8vw,100px)] leading-[.98] font-extrabold tracking-[-.075em]">
           Knowledge Shard Today.
           <br />
           <span className="text-[#ff606c]">
@@ -34,7 +34,7 @@ export function HomeFooter({ basePath = "" }: { basePath?: string }) {
             ↗
           </span>
         </Link>
-        <div className="mt-[85px] flex flex-col items-start justify-between gap-[30px] border-t border-white/30 pt-7 min-[600px]:mt-[115px] min-[600px]:flex-row min-[600px]:items-center">
+        <div className="mt-14 flex flex-col items-start justify-between gap-[30px] border-t border-white/30 pt-7 min-[600px]:mt-20 min-[600px]:flex-row min-[600px]:items-center">
           <Link
             href={basePath || "/home"}
             aria-label="KAMP6 home"

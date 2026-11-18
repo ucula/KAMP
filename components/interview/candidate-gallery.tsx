@@ -6,23 +6,30 @@ import { ArrowUpRight, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Mentee } from "@/lib/mentees";
 
-export function CandidateGallery({ candidates }: { candidates: Mentee[] }) {
+export function CandidateGallery({
+  candidates,
+}: {
+  candidates: Promise<Mentee[]>;
+}) {
+  const [loadedCandidates, setLoadedCandidates] = useState<Mentee[] | null>(null);
+  const [loadError, setLoadError] = useState(false);
   const [selected, setSelected] = useState<Mentee | null>(null);
   const [search, setSearch] = useState("");
   const [year, setYear] = useState("");
   const [programType, setProgramType] = useState("");
   const [columns, setColumns] = useState<1 | 2 | 3>(3);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const profiles = loadedCandidates ?? [];
   const query = search.trim().replace(/\s+/g, " ").toLocaleLowerCase();
   const years = [
-    ...new Set(candidates.map((candidate) => candidate.year).filter(Boolean)),
+    ...new Set(profiles.map((candidate) => candidate.year).filter(Boolean)),
   ].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   const programTypes = [
     ...new Set(
-      candidates.map((candidate) => candidate.program_type).filter(Boolean),
+      profiles.map((candidate) => candidate.program_type).filter(Boolean),
     ),
   ].sort();
-  const visibleCandidates = candidates.filter(
+  const visibleCandidates = profiles.filter(
     (candidate) =>
       (!year || candidate.year === year) &&
       (!programType || candidate.program_type === programType) &&
@@ -31,6 +38,21 @@ export function CandidateGallery({ candidates }: { candidates: Mentee[] }) {
           .toLocaleLowerCase()
           .includes(query)),
   );
+
+  useEffect(() => {
+    let active = true;
+    candidates.then(
+      (rows) => {
+        if (active) setLoadedCandidates(rows);
+      },
+      () => {
+        if (active) setLoadError(true);
+      },
+    );
+    return () => {
+      active = false;
+    };
+  }, [candidates]);
 
   useEffect(() => {
     if (selected && !dialogRef.current?.open) dialogRef.current?.showModal();
@@ -121,7 +143,11 @@ export function CandidateGallery({ candidates }: { candidates: Mentee[] }) {
             role="status"
             className="m-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425]"
           >
-            {visibleCandidates.length} OF {candidates.length} PROFILES
+            {loadedCandidates
+              ? `${visibleCandidates.length} OF ${profiles.length} PROFILES`
+              : loadError
+                ? "COULD NOT LOAD PROFILES"
+                : "LOADING PROFILES"}
           </p>
           <div
             role="group"
@@ -144,7 +170,7 @@ export function CandidateGallery({ candidates }: { candidates: Mentee[] }) {
                 aria-label={`${count} ${count === 1 ? "column" : "columns"}`}
                 aria-pressed={columns === count}
                 onClick={() => setColumns(count)}
-                className={`flex size-9 items-center justify-center rounded-lg border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] ${columns === count ? "border-[#ad1425] bg-[#ad1425]" : "border-[#d8c6c8] bg-white hover:border-[#ad1425]"}`}
+                className={`size-9 items-center justify-center rounded-lg border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] ${count === 3 ? "hidden min-[900px]:flex" : "flex"} ${columns === count ? "border-[#ad1425] bg-[#ad1425]" : "border-[#d8c6c8] bg-white hover:border-[#ad1425]"}`}
               >
                 <Image
                   src={icon}
@@ -160,10 +186,24 @@ export function CandidateGallery({ candidates }: { candidates: Mentee[] }) {
           </div>
         </div>
       </div>
+      {!loadedCandidates && !loadError && (
+        <div role="status" className="flex items-center gap-3 text-sm text-[#6d6263]">
+          <span
+            aria-hidden="true"
+            className="size-6 animate-spin rounded-full border-[3px] border-[#eadfdf] border-t-[#ad1425]"
+          />
+          Loading mentees…
+        </div>
+      )}
+      {loadError && (
+        <p role="alert" className="rounded-[18px] border border-[#e8b5b9] bg-[#fff8f8] p-6 text-[#ad1425]">
+          Could not load mentees. Please refresh the page.
+        </p>
+      )}
       <div
-        className={`grid grid-cols-1 gap-4 ${columns === 1 ? "min-[600px]:grid-cols-1" : columns === 2 ? "min-[600px]:grid-cols-2" : "min-[600px]:grid-cols-3"}`}
+        className={`grid grid-cols-1 gap-4 ${columns === 1 ? "min-[600px]:grid-cols-1" : columns === 2 ? "min-[600px]:grid-cols-2" : "min-[600px]:grid-cols-2 min-[900px]:grid-cols-3"}`}
       >
-        {visibleCandidates.map((candidate) => (
+        {loadedCandidates && visibleCandidates.map((candidate) => (
           <button
             key={candidate.id}
             type="button"
@@ -207,7 +247,7 @@ export function CandidateGallery({ candidates }: { candidates: Mentee[] }) {
           </button>
         ))}
       </div>
-      {visibleCandidates.length === 0 && (
+      {loadedCandidates && visibleCandidates.length === 0 && (
         <p className="rounded-[18px] border border-[#e9d9d9] bg-white p-6 text-[#6d6263]">
           No candidates match your search or filters.
         </p>

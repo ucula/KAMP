@@ -47,14 +47,14 @@ const activities = [
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
 const heading =
-  "max-w-[850px] text-[52px] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
+  "max-w-[850px] text-[clamp(34px,8vw,52px)] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
 
 export function Activity() {
   return (
     <section
       id="activities"
       aria-labelledby="activities-title"
-      className="scroll-mt-[92px] bg-[#f9f6f4] py-20 min-[900px]:py-[130px]"
+      className="scroll-mt-[92px] bg-[#f9f6f4] py-14 min-[900px]:py-20"
     >
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />

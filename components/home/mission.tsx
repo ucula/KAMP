@@ -23,20 +23,20 @@ const missions = [
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
 const heading =
-  "max-w-[850px] text-[52px] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
+  "max-w-[850px] text-[clamp(34px,8vw,52px)] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
 
 export function Mission() {
   return (
     <section
       id="mission"
       aria-labelledby="mission-title"
-      className="scroll-mt-[92px] bg-[#a71422] py-24 text-white min-[900px]:py-[130px]"
+      className="scroll-mt-[92px] bg-[#a71422] py-16 text-white min-[900px]:py-20"
     >
       <div className={container}>
         <p className="border-b border-white/40 pb-[25px] text-xs font-extrabold tracking-[.22em]">
           {/* 02 <span className="mx-[14px] text-[#ffb6bc]">/</span> OUR MISSION */}
         </p>
-        <div className="grid grid-cols-1 gap-8 py-[60px] min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px] min-[900px]:py-8">
+        <div className="grid grid-cols-1 gap-8 py-10 min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px] min-[900px]:py-8">
           <h2 id="mission-title" className={heading}>
             Missions to <span className="text-[#ffbfc5]">complete.</span>
           </h2>

@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { HeroCarousel } from "./hero-carousel";
+import { useReplayOnView } from "./use-replay-on-view";
 
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
@@ -9,8 +12,17 @@ const cta = cn(
   buttonVariants(),
   "min-w-[220px] justify-between gap-8 px-6 py-[18px] text-xs font-extrabold tracking-[.1em] no-underline transition-transform hover:-translate-y-0.5",
 );
+const tickerItems = [
+  "KNOWLEDGE SHARING",
+  "MEANINGFUL CONNECTIONS",
+  "QUALITY MENTORSHIP",
+  "LEADERSHIP DEVELOPMENT",
+  "STRONGER COMMUNITIES",
+];
 
 export function Intro() {
+  const { ref, visible } = useReplayOnView();
+
   return (
     <>
       <section
@@ -25,36 +37,41 @@ export function Intro() {
               "radial-gradient(circle, #e6a2a8 0, #f4d8d9 38%, transparent 70%)",
           }}
         />
-        <div
-          className={cn(container, "relative pt-[75px] min-[900px]:pt-[90px]")}
-        >
-          <p className="text-[10px] leading-[1.7] font-extrabold tracking-[.23em] text-[#ad1425] min-[600px]:text-xs">
+        <div className={cn(container, "relative pt-12 min-[900px]:pt-16")}>
+          {/* <p className="text-[10px] leading-[1.7] font-extrabold tracking-[.23em] text-[#ad1425] min-[600px]:text-xs">
             KASETSART ALUMNI MENTORSHIP PROGRAM <span className="mx-3">•</span>{" "}
             ENGINEERING 6
-          </p>
-          <h1
-            id="hero-title"
-            className="my-[65px] text-[clamp(54px,12vw,72px)] leading-[.95] font-black tracking-[-.08em] min-[900px]:my-20 min-[900px]:text-[clamp(50px,7.3vw,108px)]"
-          >
-            KAMP ENGINEERING <span className="text-[#ad1425]">6</span>
-          </h1>
-          <div className="mb-[55px] grid grid-cols-1 items-end gap-8 min-[900px]:mb-20 min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[72px]">
-            <h2 className="max-w-[760px] text-[45px] leading-[1.04] font-extrabold tracking-[-.07em] min-[900px]:text-[clamp(42px,5.2vw,76px)]">
-              Where Experience Inspires{" "}
-              <span className="text-[#ad1425]">Potential.</span>
-            </h2>
-            <div className="max-w-[440px]">
-              <p className="mb-[30px] text-[17px] leading-[1.65] text-[#605557] min-[600px]:text-lg">
-                A community where engineering experience meets emerging talent,
-                empowering the next generation to learn, connect, and lead.
-              </p>
+          </p> */}
+          <div className="grid gap-6 min-[900px]:mb-14">
+            <h1
+              ref={ref}
+              id="hero-title"
+              aria-label="Where Experience Inspires Potential."
+              className={cn("typewriter-heading max-w-[920px] text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:text-[clamp(42px,5vw,72px)]", visible && "is-visible")}
+            >
+              <span className="typewriter-layout" aria-hidden="true">
+                <span>Where</span> <span>Experience</span> <span>Inspires</span>
+                {"\u00a0"}
+                <span>Potential.</span>
+              </span>
+              <span className="typewriter-display" aria-hidden="true">
+                <span>Where</span> <span>Experience</span> <span>Inspires</span>
+                {"\u00a0"}
+                <span className="text-[#ad1425]">Potential.</span>
+              </span>
+            </h1>
+            <p className="mb-[30px] text-xl leading-[1.55] text-[#605557] min-[900px]:text-xl">
+              A community where engineering experience meets emerging talent,
+              empowering the next generation to learn, connect, and lead.
+            </p>
+            {/* <div className="max-w-[760px]">
               <Link href="#about" className={cta}>
                 DISCOVER KAMP6{" "}
                 <span aria-hidden="true" className="text-[19px] leading-none">
                   ↘
                 </span>
               </Link>
-            </div>
+            </div> */}
           </div>
           <HeroCarousel />
           <div className="flex justify-between gap-5 py-7 text-[9px] font-bold tracking-[.17em] text-[#8b7779] min-[600px]:text-[11px]">
@@ -63,12 +80,23 @@ export function Intro() {
           </div>
         </div>
       </section>
-      <div className="bg-[#ad1425] px-6 py-[22px] text-white">
-        <p className="mx-auto max-w-[1360px] text-center text-[11px] leading-[1.8] font-extrabold tracking-[.12em] min-[600px]:text-[13px] [&_b]:mx-[10px] [&_b]:text-[15px]">
-          KNOWLEDGE SHARING <b>✦</b> MEANINGFUL CONNECTIONS <b>✦</b> QUALITY
-          MENTORSHIP <b>✦</b> LEADERSHIP DEVELOPMENT <b>✦</b> STRONGER
-          COMMUNITIES
-        </p>
+      <div className="overflow-hidden bg-[#ad1425] py-4 text-white">
+        <p className="sr-only">{tickerItems.join(" · ")}</p>
+        <div className="values-ticker-track flex w-max">
+          {[0, 1, 2, 3].map((copy) => (
+            <div
+              key={copy}
+              aria-hidden="true"
+              className="values-ticker-group flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 text-[11px] leading-[1.8] font-extrabold tracking-[.12em] min-[600px]:text-[13px]"
+            >
+              {tickerItems.map((item) => (
+                <span key={item} className="inline-flex items-center gap-8">
+                  {item} <b className="text-[15px]">✦</b>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
