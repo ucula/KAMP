@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { TypewriterHeading } from "@/components/ui/typewriter-heading";
 
 const activities = [
   {
@@ -37,7 +38,7 @@ const activities = [
   },
   {
     number: "05",
-    title: "Engineering Workshop",
+    title: "Workshops",
     description:
       "Transform knowledge into practice through interactive workshops, hands-on activities, and collaborative problem-solving.",
     image: "/kamp6/activities/engineering-workshop.jpg",
@@ -45,9 +46,9 @@ const activities = [
   },
 ];
 const container =
-  "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
+  "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
 const heading =
-  "max-w-[850px] text-[clamp(34px,8vw,52px)] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
+  "max-w-[920px] text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:text-[clamp(42px,5vw,72px)]";
 
 export function Activity() {
   return (
@@ -59,9 +60,7 @@ export function Activity() {
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
         <div className="grid grid-cols-1 gap-8  min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px]">
-          <h2 id="activities-title" className={heading}>
-            Our <span className="text-[#ad1425]">Activities.</span>
-          </h2>
+          <TypewriterHeading as="h2" id="activities-title" className={heading} text="Our" accent="Activities." accentClassName="text-[#ad1425]" />
         </div>
         <div className="grid gap-[18px]">
           {activities.map((activity, index) => (
@@ -76,9 +75,7 @@ export function Activity() {
                 {/* <span className="text-xs font-extrabold tracking-[.15em] text-[#ad1425]">
                   {activity.number} / 05
                 </span> */}
-                <h3 className="mt-[26px] mb-[18px] text-[clamp(35px,4vw,56px)] leading-[1.05] font-bold tracking-[-.065em]">
-                  {activity.title}
-                </h3>
+                <TypewriterHeading as="h3" className="mt-[26px] mb-[18px] text-[clamp(35px,4vw,56px)] leading-[1.05] font-bold tracking-[-.065em]" text={activity.title} />
                 <p className="max-w-[410px] text-[17px] leading-[1.6] text-[#6d6263]">
                   {activity.description}
                 </p>

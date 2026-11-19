@@ -1,4 +1,4 @@
-import ApplicationPage from "@/app/application/page";
+import { ApplicationPageContent } from "@/components/application/application-page";
 import { Header } from "@/components/header";
 
 export default async function GroupApplicationPage({
@@ -10,7 +10,7 @@ export default async function GroupApplicationPage({
   return (
     <>
       <Header activeHref="/application" basePath={`/g/${token}`} />
-      <ApplicationPage />
+      <ApplicationPageContent basePath={`/g/${token}`} />
     </>
   );
 }

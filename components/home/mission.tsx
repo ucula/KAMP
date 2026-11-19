@@ -1,5 +1,6 @@
 import { HeartHandshake, Lightbulb, UsersRound } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { TypewriterHeading } from "@/components/ui/typewriter-heading";
 
 const missions = [
   {
@@ -21,9 +22,9 @@ const missions = [
   },
 ];
 const container =
-  "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
+  "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
 const heading =
-  "max-w-[850px] text-[clamp(34px,8vw,52px)] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
+  "max-w-[920px] text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:text-[clamp(42px,5vw,72px)]";
 
 export function Mission() {
   return (
@@ -37,13 +38,11 @@ export function Mission() {
           {/* 02 <span className="mx-[14px] text-[#ffb6bc]">/</span> OUR MISSION */}
         </p>
         <div className="grid grid-cols-1 gap-8 py-10 min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px] min-[900px]:py-8">
-          <h2 id="mission-title" className={heading}>
-            Missions to <span className="text-[#ffbfc5]">complete.</span>
-          </h2>
+          <TypewriterHeading as="h2" id="mission-title" className={heading} text="Our" accent="Missions." accentClassName="text-[#ffbfc5]" />
         </div>
         <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-[clamp(18px,2.2vw,30px)] leading-[1.35] font-bold tracking-[-.02em] text-[#FFFFFF]">
-          <span className="text-[#ffbfc5]">KAMP</span> exists so you don&apos;t have
-          to start from zero
+          <span className="text-[#ffbfc5]">KAMP ENGINEERING</span> exists so you
+          don&apos;t have to start from zero
         </p>
         <div className="grid grid-cols-1 gap-[18px] min-[900px]:grid-cols-3">
           {missions.map(({ icon: Icon, title }) => (
@@ -54,9 +53,7 @@ export function Mission() {
               <div className="flex items-start justify-between text-[#ffd1d5]">
                 <Icon size={42} strokeWidth={1.5} aria-hidden="true" />
               </div>
-              <h3 className="mt-auto mb-3 text-[clamp(25px,2.6vw,34px)] leading-[1.12] font-bold tracking-[-.04em]">
-                {title}
-              </h3>
+              <TypewriterHeading as="h3" className="mt-auto mb-3 text-[clamp(25px,2.6vw,34px)] leading-[1.12] font-bold tracking-[-.04em]" text={title} />
             </Card>
           ))}
         </div>

@@ -1,50 +1,84 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { TypewriterHeading } from "@/components/ui/typewriter-heading";
 
 const organizations = [
-  "Green and teal Thai organization",
-  "Blue Thai institutional seal",
-  "Orange Thai institutional seal",
-  "Accenture",
-  "AIS",
-  "KAMP Engineering 6",
-  "Asia Plus Group Holdings",
-  "Asset World Corporation",
-  "Bain & Company",
-  "Bluebik",
-  "Singha Corporation",
-  "Chevron",
-  "CP AXTRA",
-  "CTC",
-  "DataX",
-  "DELV Aerospace",
-  "DSS+",
-  "Food Passion",
-  "Geppetto",
-  "GPSC",
-  "Hewlett Packard Enterprise",
-  "Huawei",
-  "KBTG",
-  "M and W",
-  "Mazda",
-  "MFEC",
-  "Nestlé",
-  "PTT Group",
-  "PTT LNG",
-  "PTT OR",
-  "S. Khonkaen",
-  "T.MAN",
-  "Thai Airways",
-  "Toyota",
-  "Orange building mark",
-];
+  { name: "ก.ล.ต.", locale: "th", logo: "sec-thailand.png" },
+  {
+    name: "การประปานครหลวง",
+    locale: "th",
+    logo: "metropolitan-waterworks-authority.png",
+  },
+  {
+    name: "สำนักงานทรัพยากรน้ำแห่งชาติ",
+    locale: "th",
+    logo: "national-water-resources-office.png",
+  },
+  { name: "Accenture Thailand", locale: "en", logo: "accenture-thailand.png" },
+  { name: "AIS", locale: "en", logo: "ais.png" },
+  {
+    name: "Asia Plus Group Holding",
+    locale: "en",
+    logo: "asia-plus-group-holding.png",
+  },
+  {
+    name: "Asset World Corporation",
+    locale: "en",
+    logo: "asset-world-corporation.png",
+  },
+  { name: "Bain & Company", locale: "en", logo: "bain-and-company.png" },
+  { name: "Bluebik Group PLC", locale: "en", logo: "bluebik-group.png" },
+  { name: "Chevron", locale: "en", logo: "chevron.png" },
+  { name: "CP AXTRA", locale: "en", logo: "cp-axtra.png" },
+  { name: "CTC", locale: "en", logo: "ctc.png" },
+  { name: "Data X", locale: "en", logo: "data-x.png" },
+  { name: "DELV Aerospace", locale: "en", logo: "delv.png" },
+  { name: "DSS+", locale: "en", logo: "dss.png" },
+  { name: "Food Passion", locale: "en", logo: "food-passion.png" },
+  { name: "GEPPETTO", locale: "en", logo: "geppetto.png" },
+  { name: "GPSC", locale: "en", logo: "gpsc.png" },
+  {
+    name: "Hewlett Packard Enterprise",
+    locale: "en",
+    logo: "hewlett-packard-enterprise.png",
+  },
+  { name: "Huawei Technology", locale: "en", logo: "huawei-technology.png" },
+  { name: "KBTG", locale: "en", logo: "kbtg.png" },
+  { name: "LINE MAN Wongnai", locale: "en", logo: "line-man-wongnai.png" },
+  { name: "Mazda Sales", locale: "en", logo: "mazda-sales.png" },
+  { name: "MFEC", locale: "en", logo: "mfec.png" },
+  { name: "Nestlé", locale: "en", logo: "nestle.png" },
+  { name: "PTT", locale: "en", logo: "ptt.png" },
+  { name: "PTT LNG", locale: "en", logo: "ptt-lng.png" },
+  {
+    name: "PTT Oil and Retail Business PLC",
+    locale: "en",
+    logo: "ptt-oil-and-retail-business.png",
+  },
+  { name: "S. Khonkaen", locale: "en", logo: "s-khonkaen.png" },
+  { name: "Singha Corporation", locale: "en", logo: "singha.png" },
+  { name: "T.MAN", locale: "en", logo: "t-man.png" },
+  { name: "Thai Airways", locale: "en", logo: "thai-airways.png" },
+  {
+    name: "Toyota Motor Thailand",
+    locale: "en",
+    logo: "toyota-motor-thailand.png",
+  },
+  { name: "TTS", locale: "en", logo: "tts.png" },
+].sort((a, b) => {
+  if (a.locale !== b.locale) return a.locale === "th" ? -1 : 1;
+  return new Intl.Collator(a.locale, { sensitivity: "base" }).compare(
+    a.name,
+    b.name,
+  );
+});
 
 const container =
-  "mx-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
+  "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
 const section = "scroll-mt-[92px] py-14 min-[900px]:py-20";
 const heading =
-  "max-w-[850px] text-[clamp(34px,8vw,52px)] leading-[.99] font-extrabold tracking-[-.075em] min-[900px]:text-[clamp(50px,6.3vw,90px)]";
+  "max-w-none whitespace-nowrap text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:text-[clamp(42px,5vw,72px)]";
 const headingRow =
   "grid grid-cols-1 gap-8 min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px] ";
 
@@ -57,19 +91,24 @@ export function Organizations() {
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
         <div className={headingRow}>
-          <h2 id="organizations-title" className={heading}>
-            Mentors&apos; <span className="text-[#ad1425]">Organizations</span>
-          </h2>
+          <TypewriterHeading
+            as="h2"
+            id="organizations-title"
+            className={heading}
+            text="Mentors'"
+            accent="Organizations"
+            accentClassName="text-[#ad1425]"
+          />
         </div>
         <div className="grid grid-cols-2 gap-3 min-[900px]:grid-cols-4">
-          {organizations.map((name, index) => (
+          {organizations.map(({ name, logo }) => (
             <Card
               key={name}
               className="rounded-[14px] border-[#eadfdf] bg-white"
             >
-              <CardContent className="relative h-[120px] p-0">
+              <CardContent className="relative h-[90px] p-0">
                 <Image
-                  src={`/kamp6/organizations/organization-${String(index + 1).padStart(2, "0")}.png`}
+                  src={`/kamp6/organizations/${logo}`}
                   alt={`${name} logo`}
                   fill
                   sizes="(max-width: 899px) 50vw, 25vw"

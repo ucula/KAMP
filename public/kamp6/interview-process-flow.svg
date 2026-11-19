@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1772 672" role="img" aria-labelledby="title desc">
+  <title id="title">Interview selection process</title>
+  <desc id="desc">Candidate profiles are reviewed, candidates interview with mentors in 15 to 16 slots, and mentors select mentees.</desc>
+  <g fill="#fff" stroke="#c96675" stroke-width="4">
+    <rect x="44" y="92" width="520" height="454" rx="28"/>
+    <rect x="626" y="92" width="520" height="454" rx="28"/>
+    <rect x="1208" y="92" width="520" height="454" rx="28"/>
+  </g>
+  <g fill="#686868" font-family="Arial, Helvetica, sans-serif" font-size="34" text-anchor="middle">
+    <text x="886" y="62"><tspan font-weight="700">Interview</tspan><tspan> 15–16 slots</tspan></text>
+    <text x="1468" y="62" font-weight="700">FINAL</text>
+    <text x="886" y="631"><tspan font-weight="700">10 min</tspan><tspan>/slots</tspan></text>
+  </g>
+  <g fill="#111" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" text-anchor="middle">
+    <text x="304" y="365">CANDIDATE PROFILE</text>
+    <text x="304" y="407">- RESUME</text><text x="304" y="449">- SOP</text>
+    <text x="304" y="491">- ESSAY</text><text x="304" y="533">- VIDEO</text>
+    <text x="886" y="329">MENTOR</text><text x="886" y="499">CANDIDATE</text>
+    <text x="1468" y="329">MENTOR</text><text x="1468" y="499">MENTEE</text>
+  </g>
+  <g fill="#ad1425">
+    <path d="M570 302h16v-22l32 40-32 40v-22h-16z"/>
+    <path d="M1152 302h16v-22l32 40-32 40v-22h-16z"/>
+  </g>
+  <g fill="#111">
+    <!-- Folder -->
+    <path d="M231 143h78l21 21h56a12 12 0 0 1 12 12v14H220v-35a12 12 0 0 1 11-12z"/>
+    <path d="M229 202h169l-26 69a12 12 0 0 1-11 9H220z"/>
+    <!-- People -->
+    <circle cx="814" cy="186" r="28"/><circle cx="958" cy="186" r="28"/>
+    <path d="M768 268v-23a47 47 0 0 1 92 0v23a12 12 0 0 1-12 12h-68a12 12 0 0 1-12-12z"/>
+    <path d="M912 268v-23a47 47 0 0 1 92 0v23a12 12 0 0 1-12 12h-68a12 12 0 0 1-12-12z"/>
+    <circle cx="886" cy="389" r="26"/><path d="M844 460v-20a42 42 0 0 1 84 0v20z"/>
+    <!-- Final mentor pair -->
+    <circle cx="1396" cy="186" r="28"/><circle cx="1540" cy="186" r="28"/>
+    <path d="M1350 268v-23a47 47 0 0 1 92 0v23a12 12 0 0 1-12 12h-68a12 12 0 0 1-12-12z"/>
+    <path d="M1494 268v-23a47 47 0 0 1 92 0v23a12 12 0 0 1-12 12h-68a12 12 0 0 1-12-12z"/>
+    <!-- Four mentees -->
+    <g>
+      <circle cx="1310" cy="382" r="22"/><circle cx="1416" cy="382" r="22"/><circle cx="1522" cy="382" r="22"/><circle cx="1628" cy="382" r="22"/>
+      <path d="M1275 441v-17a35 35 0 0 1 70 0v17zM1381 441v-17a35 35 0 0 1 70 0v17zM1487 441v-17a35 35 0 0 1 70 0v17zM1593 441v-17a35 35 0 0 1 70 0v17z"/>
+    </g>
+  </g>
+</svg>

@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { CommunityHeading } from "./community-heading";
+import { TypewriterHeading } from "@/components/ui/typewriter-heading";
 
 const container =
-  "mx-auto my-auto w-[calc(100%-48px)] max-w-[1360px] min-[900px]:w-[calc(100%-96px)]";
+  "mx-auto my-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
 const heading =
-  "text-[clamp(28px,5vw,72px)] leading-[.99] font-extrabold tracking-[-.075em]";
+  "max-w-none text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:whitespace-nowrap min-[900px]:text-[clamp(42px,5vw,72px)]";
 
 export function Kamp() {
   return (
@@ -15,7 +15,15 @@ export function Kamp() {
     >
       <div className={container}>
         <div className="pt-12 pb-6 min-[900px]:pt-14 min-[900px]:pb-8">
-          <CommunityHeading className={heading} />
+          <TypewriterHeading
+            as="h2"
+            id="about-title"
+            className={heading}
+            text="Kasetsart Alumni Mentorship"
+            secondLine="Program"
+            accent="- Engineering"
+            accentClassName="text-[#ad1425]"
+          />
           <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-[clamp(18px,2.2vw,30px)] leading-[1.35] font-bold tracking-[-.02em] text-[#211a1b]">
             <span className="text-[#a71422]">Platform</span> to connect the
             value with all stakeholders for creating a Well-Rounded
@@ -23,10 +31,10 @@ export function Kamp() {
           </p>
         </div>
         <Image
-          src="/kamp6/community-connection.png"
-          alt="KAMP Engineering 6 connects engi, Kasetsart University, and business, public, and private sectors."
-          width={1948}
-          height={703}
+          src="/kamp6/kamp-overview.png"
+          alt="KAMP Engineering connects KU Engineering, Kasetsart University, and business, public, and private sectors."
+          width={1920}
+          height={1080}
           sizes="(max-width: 899px) calc(100vw - 48px), (max-width: 1456px) calc(100vw - 96px), 1360px"
           className="h-auto w-full rounded-2xl"
         />

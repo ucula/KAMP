@@ -7,8 +7,9 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/home", label: "Home" },
-  { href: "/application", label: "Application" },
-  { href: "/interview", label: "Interview Prep" },
+  { href: "/application", label: "Application-Guide" },
+  { href: "/interview", label: "Interview-Guide" },
+  { href: "/candidates", label: "Your Candidates" },
 ];
 
 export function Header({
