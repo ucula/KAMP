@@ -16,6 +16,7 @@ export type Mentee = {
   essay2: string;
   essay3: string;
   video: string;
+  self_intro_video: string;
   resume: string;
 };
 
@@ -26,7 +27,7 @@ export async function getMentees(pair?: number): Promise<Mentee[]> {
       SELECT m.code AS id, m.code, m.firstname, m.lastname AS surname, m.year,
         m.major, m.program AS program_type,
         d.sop, d.essay AS essay1, d.essay AS essay2, d.essay AS essay3,
-        d.video, d.resume,
+        d.video, d.self_intro_video, d.resume,
         ARRAY(
           SELECT p.pair_number::integer FROM pairs p
           WHERE p.code = m.code ORDER BY p.pair_number
@@ -46,6 +47,12 @@ export async function getMentees(pair?: number): Promise<Mentee[]> {
   }
 
   const data = await readFile(path.join(process.cwd(), ".private", "mentees.json"), "utf8");
-  const mentees = JSON.parse(data) as Mentee[];
-  return pair ? mentees.filter((mentee) => mentee.pairs.includes(pair)) : mentees;
+  const mentees = JSON.parse(data) as Omit<Mentee, "self_intro_video">[];
+  const menteesWithSelfIntro = mentees.map((mentee) => ({
+    ...mentee,
+    self_intro_video: "",
+  }));
+  return pair
+    ? menteesWithSelfIntro.filter((mentee) => mentee.pairs.includes(pair))
+    : menteesWithSelfIntro;
 }

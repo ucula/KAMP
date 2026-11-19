@@ -66,7 +66,7 @@ export function CandidateGallery({
 
   const documents = selected
     ? [
-        ["Self-Introduction Video", ""],
+        ["Self-Introduction Video", selected.self_intro_video],
         ["SOP", selected.sop],
         ["Essay", selected.essay1],
         ["Short Answer Video", selected.video],
