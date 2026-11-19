@@ -59,7 +59,9 @@ export function Header({
           {links.map(({ href, label }) => (
             <Link
               key={href}
-              href={href === "/home" && basePath ? basePath : `${basePath}${href}`}
+              href={
+                href === "/home" && basePath ? basePath : `${basePath}${href}`
+              }
               onClick={() => setMenuOpen(false)}
               aria-current={href === activeHref ? "page" : undefined}
               className={cn(
@@ -80,9 +82,24 @@ export function Header({
           onClick={() => setMenuOpen((open) => !open)}
           className="ml-auto flex size-11 shrink-0 flex-col items-center justify-center gap-[5px] rounded-md text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] min-[769px]:hidden"
         >
-          <span className={cn("h-0.5 w-6 rounded-full bg-current transition-transform", menuOpen && "translate-y-[7px] rotate-45")} />
-          <span className={cn("h-0.5 w-6 rounded-full bg-current transition-opacity", menuOpen && "opacity-0")} />
-          <span className={cn("h-0.5 w-6 rounded-full bg-current transition-transform", menuOpen && "-translate-y-[7px] -rotate-45")} />
+          <span
+            className={cn(
+              "h-0.5 w-6 rounded-full bg-current transition-transform",
+              menuOpen && "translate-y-[7px] rotate-45",
+            )}
+          />
+          <span
+            className={cn(
+              "h-0.5 w-6 rounded-full bg-current transition-opacity",
+              menuOpen && "opacity-0",
+            )}
+          />
+          <span
+            className={cn(
+              "h-0.5 w-6 rounded-full bg-current transition-transform",
+              menuOpen && "-translate-y-[7px] -rotate-45",
+            )}
+          />
         </button>
       </nav>
     </header>

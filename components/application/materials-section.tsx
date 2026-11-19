@@ -34,8 +34,6 @@ const materials: Material[] = [
       "What goals or opportunities are you seeking at this stage?",
       "Why did you choose to apply to KAMP Engineering, and how do you think the program can help you move closer to your goals?",
     ],
-    templateHref:
-      "https://docs.google.com/document/d/1uiknpuoCJrlXbF4TELZoi9UssUCEMZfZS5Rz-La-K9w/edit?tab=t.0",
   },
   {
     number: "02 / ESSAY",
@@ -53,8 +51,6 @@ const materials: Material[] = [
       "When you faced challenges, what helped you keep going, take responsibility, and see it through?",
       "What are you proud of, or what did you learn from the experience?",
     ],
-    templateHref:
-      "https://docs.google.com/document/d/105R3pTa-6VqchuWNUxr3IYyDucnXBMXXD3Q7wg_r4FE/edit?tab=t.0",
   },
   {
     number: "03 / PROMPT VIDEO",
