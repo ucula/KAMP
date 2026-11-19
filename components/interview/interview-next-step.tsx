@@ -15,7 +15,7 @@ export function InterviewNextStep({ basePath = "" }: { basePath?: string }) {
         />
       </div>
       <Link
-        href={`${basePath}/application`}
+        href={`${basePath}/candidates`}
         className={cn(
           buttonVariants(),
           "min-w-max gap-[25px] px-[22px] py-4 text-xs font-extrabold tracking-[.08em] no-underline",
