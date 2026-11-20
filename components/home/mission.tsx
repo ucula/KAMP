@@ -1,6 +1,6 @@
 import { HeartHandshake, Lightbulb, UsersRound } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 
 const missions = [
   {
@@ -38,7 +38,7 @@ export function Mission() {
           {/* 02 <span className="mx-[14px] text-[#ffb6bc]">/</span> OUR MISSION */}
         </p>
         <div className="grid grid-cols-1 gap-8 py-10 min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px] min-[900px]:py-8">
-          <TypewriterHeading as="h2" id="mission-title" className={heading} text="Our" accent="Missions." accentClassName="text-[#ffbfc5]" />
+          <TextHeading as="h2" id="mission-title" className={heading} text="Our" accent="Missions." accentClassName="text-[#ffbfc5]" />
         </div>
         <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-[clamp(18px,2.2vw,30px)] leading-[1.35] font-bold tracking-[-.02em] text-[#FFFFFF]">
           <span className="text-[#ffbfc5]">KAMP ENGINEERING</span> exists so you
@@ -53,7 +53,7 @@ export function Mission() {
               <div className="flex items-start justify-between text-[#ffd1d5]">
                 <Icon size={42} strokeWidth={1.5} aria-hidden="true" />
               </div>
-              <TypewriterHeading as="h3" className="mt-auto mb-3 text-[clamp(25px,2.6vw,34px)] leading-[1.12] font-bold tracking-[-.04em]" text={title} />
+              <TextHeading as="h3" className="mt-auto mb-3 text-[clamp(25px,2.6vw,34px)] leading-[1.12] font-bold tracking-[-.04em]" text={title} />
             </Card>
           ))}
         </div>

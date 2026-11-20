@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 import {
   Briefcase,
   ChevronDown,
@@ -82,7 +82,7 @@ export function MaterialsSection() {
       aria-labelledby="materials-title"
       className="scroll-mt-[92px] border-t border-[#ded5d5] py-12 min-[600px]:py-14 min-[900px]:pb-16"
     >
-      <TypewriterHeading
+      <TextHeading
         as="h2"
         id="materials-title"
         className="mb-[45px] max-w-none text-[clamp(36px,5vw,68px)] leading-[1.02] font-extrabold tracking-[-.065em] min-[900px]:whitespace-nowrap"

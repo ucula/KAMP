@@ -1,15 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { ArrowUp, ArrowUpRight, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Mentee } from "@/lib/mentees";
+import slotSchedule from "@/lib/candidate-slots.json";
+
+const slots = slotSchedule.flatMap((codes, index) =>
+  codes.flatMap((code, slot) =>
+    code ? [{ code, pair: index + 1, slot: slot + 1 }] : [],
+  ),
+);
+const scheduledPairs = new Map<string, number[]>();
+for (const { code, pair } of slots) {
+  scheduledPairs.set(code, [...(scheduledPairs.get(code) ?? []), pair]);
+}
 
 export function CandidateGallery({
   candidates,
+  allPairs = false,
 }: {
   candidates: Promise<Mentee[]>;
+  allPairs?: boolean;
 }) {
   const [loadedCandidates, setLoadedCandidates] = useState<Mentee[] | null>(
     null,
@@ -19,6 +32,8 @@ export function CandidateGallery({
   const [search, setSearch] = useState("");
   const [year, setYear] = useState("");
   const [programType, setProgramType] = useState("");
+  const [selectedPair, setSelectedPair] = useState("");
+  const [view, setView] = useState<"code" | "slot">("code");
   const [columns, setColumns] = useState<1 | 2 | 3>(3);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const profiles = loadedCandidates ?? [];
@@ -39,11 +54,54 @@ export function CandidateGallery({
     (candidate) =>
       (!year || candidate.year === year) &&
       (!programType || candidate.program_type === programType) &&
+      (!allPairs ||
+        !selectedPair ||
+        (scheduledPairs.get(candidate.code) ?? candidate.pairs).includes(
+          Number(selectedPair),
+        )) &&
       (!query ||
         `${candidate.firstname} ${candidate.surname} ${candidate.code}`
           .toLocaleLowerCase()
           .includes(query)),
   );
+  const visibleByCode = new Map(
+    visibleCandidates.map((candidate) => [candidate.code, candidate]),
+  );
+  const allByCode = new Map(profiles.map((candidate) => [candidate.code, candidate]));
+  const displayRows =
+    allPairs && view === "slot"
+      ? [
+          ...slots
+            .filter(
+              ({ code, pair }) =>
+                (!selectedPair || pair === Number(selectedPair)) &&
+                (visibleByCode.has(code) ||
+                  (!allByCode.has(code) &&
+                    !year &&
+                    !programType &&
+                    (!query || code.toLocaleLowerCase().includes(query)))),
+            )
+            .map((entry) => ({
+              ...entry,
+              candidate: allByCode.get(entry.code) ?? null,
+            })),
+          ...(!selectedPair
+            ? visibleCandidates
+                .filter((candidate) => !scheduledPairs.has(candidate.code))
+                .map((candidate) => ({
+                  code: candidate.code,
+                  pair: 0,
+                  slot: 0,
+                  candidate,
+                }))
+            : []),
+        ]
+      : visibleCandidates.map((candidate) => ({
+          code: candidate.code,
+          pair: 0,
+          slot: 0,
+          candidate,
+        }));
 
   useEffect(() => {
     let active = true;
@@ -148,7 +206,9 @@ export function CandidateGallery({
             className="m-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425]"
           >
             {loadedCandidates
-              ? `${visibleCandidates.length} OF ${profiles.length} PROFILES`
+              ? view === "slot" && allPairs
+                ? `${displayRows.length} SLOT ENTRIES`
+                : `${visibleCandidates.length} OF ${profiles.length} PROFILES`
               : loadError
                 ? "COULD NOT LOAD PROFILES"
                 : "LOADING PROFILES"}
@@ -189,6 +249,24 @@ export function CandidateGallery({
             ))}
           </div>
         </div>
+        {allPairs && (
+          <div className="grid gap-4 min-[600px]:col-span-2 min-[600px]:grid-cols-2 min-[900px]:col-span-3">
+            <div>
+              <label htmlFor="candidate-pair" className="mb-2 block text-sm font-bold text-[#554b4c]">Pair</label>
+              <select id="candidate-pair" value={selectedPair} onChange={(event) => setSelectedPair(event.target.value)} className="w-full rounded-xl border border-[#d8c6c8] bg-white px-4 py-3 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]">
+                <option value="">All pairs</option>
+                {slotSchedule.map((_, index) => <option key={index} value={index + 1}>Pair {index + 1}</option>)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="candidate-view" className="mb-2 block text-sm font-bold text-[#554b4c]">View by</label>
+              <select id="candidate-view" value={view} onChange={(event) => setView(event.target.value as "code" | "slot")} className="w-full rounded-xl border border-[#d8c6c8] bg-white px-4 py-3 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]">
+                <option value="code">Candidate code</option>
+                <option value="slot">Interview slot</option>
+              </select>
+            </div>
+          </div>
+        )}
       </div>
       {!loadedCandidates && !loadError && (
         <div
@@ -214,9 +292,13 @@ export function CandidateGallery({
         className={`grid grid-cols-1 gap-4 ${columns === 1 ? "min-[600px]:grid-cols-1" : columns === 2 ? "min-[600px]:grid-cols-2" : "min-[600px]:grid-cols-2 min-[900px]:grid-cols-3"}`}
       >
         {loadedCandidates &&
-          visibleCandidates.map((candidate) => (
+          displayRows.map(({ candidate, code, pair, slot }, index) => (
+            <Fragment key={`${pair}-${slot}-${code}`}>
+            {allPairs && view === "slot" && (index === 0 || displayRows[index - 1].pair !== pair) && (
+              <h3 className="col-span-full mt-5 border-b border-[#e4cfd0] pb-3 text-xl font-extrabold text-[#ad1425]">{pair ? `Pair ${pair}` : "No slot assigned"}</h3>
+            )}
+            {candidate ? (
             <button
-              key={candidate.id}
               type="button"
               onClick={() => setSelected(candidate)}
               className="group relative flex min-h-[250px] min-w-0 w-full cursor-pointer flex-col items-start justify-between overflow-hidden rounded-[20px] border border-[#e9d9d9] bg-white px-5 py-5 text-left text-[#211a1b] shadow-[0_8px_24px_#5a25250a] transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 hover:border-[#c77a82] hover:shadow-[0_18px_35px_#9d737322] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
@@ -233,6 +315,7 @@ export function CandidateGallery({
                 <span className="rounded-full border border-[#f0dddd] bg-[#fff7f7] px-3 py-1 text-[11px] font-extrabold tracking-[.08em] text-[#ad1425]">
                   {candidate.code}
                 </span>
+                {slot > 0 && <span className="text-xs font-extrabold text-[#ad1425]">Slot {slot}</span>}
               </span>
               <span className="relative block w-full">
                 <strong className="block text-[21px] leading-[1.2] tracking-[-.045em] break-words">
@@ -256,9 +339,16 @@ export function CandidateGallery({
                 />
               </span>
             </button>
+            ) : (
+              <div className="flex min-h-[250px] flex-col justify-between rounded-[20px] border border-[#e9d9d9] bg-white p-5 text-[#211a1b]">
+                <span className="text-xs font-extrabold text-[#ad1425]">{code} · Slot {slot}</span>
+                <strong className="text-lg">Profile unavailable</strong>
+              </div>
+            )}
+            </Fragment>
           ))}
       </div>
-      {loadedCandidates && visibleCandidates.length === 0 && (
+      {loadedCandidates && displayRows.length === 0 && (
         <p className="rounded-[18px] border border-[#e9d9d9] bg-white p-6 text-[#6d6263]">
           No candidates match your search or filters.
         </p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 import { HeroCarousel } from "./hero-carousel";
 
 const container =
@@ -35,7 +35,7 @@ export function Intro() {
             ENGINEERING 6
           </p> */}
           <div className="grid gap-6 min-[900px]:mb-14">
-            <TypewriterHeading
+            <TextHeading
               as="h1"
               id="hero-title"
               ariaLabel="Where experience inspires potential"

@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 
 const channels = [
   {
@@ -85,7 +85,7 @@ export function SocialMedia() {
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
         <div className={headingRow}>
-          <TypewriterHeading as="h2" id="social-title" className={heading} text="Our Social media" accent="Platform" accentClassName="text-[#ad1425]" />
+          <TextHeading as="h2" id="social-title" className={heading} text="Our Social media" accent="Platform" accentClassName="text-[#ad1425]" />
         </div>
         <div className="grid grid-cols-1 gap-[14px] min-[900px]:grid-cols-2 min-[1200px]:grid-cols-3">
           {channels.map(({ name, href, icon, tone }) => (

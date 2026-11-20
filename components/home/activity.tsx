@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 
 const activities = [
   {
@@ -60,7 +60,7 @@ export function Activity() {
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
         <div className="grid grid-cols-1 gap-8  min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px]">
-          <TypewriterHeading as="h2" id="activities-title" className={heading} text="Our" accent="Activities." accentClassName="text-[#ad1425]" />
+          <TextHeading as="h2" id="activities-title" className={heading} text="Our" accent="Activities." accentClassName="text-[#ad1425]" />
         </div>
         <div className="grid gap-[18px]">
           {activities.map((activity, index) => (
@@ -75,7 +75,7 @@ export function Activity() {
                 {/* <span className="text-xs font-extrabold tracking-[.15em] text-[#ad1425]">
                   {activity.number} / 05
                 </span> */}
-                <TypewriterHeading as="h3" className="mt-[26px] mb-[18px] text-[clamp(35px,4vw,56px)] leading-[1.05] font-bold tracking-[-.065em]" text={activity.title} />
+                <TextHeading as="h3" className="mt-[26px] mb-[18px] text-[clamp(35px,4vw,56px)] leading-[1.05] font-bold tracking-[-.065em]" text={activity.title} />
                 <p className="max-w-[410px] text-[17px] leading-[1.6] text-[#6d6263]">
                   {activity.description}
                 </p>

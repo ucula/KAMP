@@ -10,28 +10,10 @@
 @source "../components/home/";
 @source "../components/application/";
 @source "../components/interview/";
+@source "../components/candidates/";
 
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; }
-
-.typewriter-heading {
-  position: relative;
-  font-family: "JetBrains Mono", monospace;
-  letter-spacing: 0;
-}
-
-.typewriter-word { display: inline-block; }
-.is-visible .typewriter-word {
-  animation: typewriter-reveal var(--duration) steps(var(--chars), end) var(--delay) both;
-}
-@keyframes typewriter-reveal {
-  from { clip-path: inset(0 100% 0 0); }
-  to { clip-path: inset(0 0 0 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .is-visible .typewriter-word { animation: none; }
-}
 
 .values-ticker-track { animation: values-ticker-scroll 24s linear infinite; }
 .values-ticker-group { min-width: max-content; }

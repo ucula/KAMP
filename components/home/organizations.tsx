@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 
 const organizations = [
   { name: "ก.ล.ต.", locale: "th", logo: "sec-thailand.png" },
@@ -91,7 +91,7 @@ export function Organizations() {
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
         <div className={headingRow}>
-          <TypewriterHeading
+          <TextHeading
             as="h2"
             id="organizations-title"
             className={heading}

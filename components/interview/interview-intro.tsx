@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 
 const steps = [
   {
@@ -67,7 +67,7 @@ export function InterviewIntro() {
     >
       <div className="grid gap-8">
         <div>
-          <TypewriterHeading
+          <TextHeading
             as="h1"
             id="interview-title"
             className="max-w-none text-[clamp(48px,7vw,96px)] leading-[.95] font-extrabold tracking-[-.07em] min-[900px]:whitespace-nowrap"
@@ -175,7 +175,7 @@ export function InterviewIntro() {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-4 rounded-[20px] bg-[#ad1425] px-6 py-7 text-white min-[600px]:px-10">
-        <div className="flex flex-1 basis-[470px] items-center gap-5">
+        <div className="flex min-w-0 flex-1 basis-[470px] items-center gap-3 min-[600px]:gap-5">
           <span
             aria-hidden="true"
             className="text-5xl font-extrabold tracking-[-.04em] text-white/40"
@@ -186,7 +186,7 @@ export function InterviewIntro() {
             <p className="mb-2 text-xs font-bold tracking-[.2em] text-white/75">
               STEP 05
             </p>
-            <h2 className="text-3xl leading-tight font-extrabold tracking-[-.03em]">
+            <h2 className="text-[clamp(22px,6vw,30px)] leading-tight font-extrabold tracking-[-.03em]">
               Mentee Announcement.
             </h2>
           </div>
@@ -197,14 +197,14 @@ export function InterviewIntro() {
         </p>
       </div>
 
-      <div className="space-y-8 rounded-[24px] bg-[#2a1b1f] p-6 text-white min-[600px]:p-10 min-[900px]:p-12">
+      <div className="space-y-8 rounded-[24px] bg-[#ad1425] p-6 text-white min-[600px]:p-10 min-[900px]:p-12">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div>
-            <p className="mb-3 text-xs font-bold tracking-[.2em] text-[#e0525e]">
+            <p className="mb-3 text-xs font-bold tracking-[.2em] text-white/80">
               TIMING · PER SLOT
             </p>
             <h2 className="text-4xl leading-[1.04] font-extrabold tracking-[-.04em] min-[600px]:text-5xl">
-              10-Minute <span className="text-[#e0525e]">Schedule.</span>
+              10-Minute <span className="text-[#ffe0e2]">Schedule.</span>
             </h2>
           </div>
           <div className="flex flex-wrap gap-2 text-sm font-semibold">
@@ -226,53 +226,53 @@ export function InterviewIntro() {
             <div className="flex flex-[8] items-center bg-[#f5f2f2] px-4 text-[#141414] min-[600px]:px-6">
               Interview
             </div>
-            <div aria-hidden="true" className="flex-1 bg-[#e0525e]" />
+            <div aria-hidden="true" className="flex-1 bg-[#f6bec3]" />
             <div
               aria-hidden="true"
-              className="flex-1 border-l-4 border-white bg-[#6e5b60]"
+              className="flex-1 border-l-4 border-white bg-[#79101b]"
             />
           </div>
           <div
             aria-hidden="true"
-            className="relative h-7 text-xs font-bold text-[#f5f2f2]"
+            className="relative h-7 text-xs font-bold text-white"
           >
             <span className="absolute left-0">0</span>
             <span className="absolute left-[80%] -translate-x-1/2">8</span>
-            <span className="absolute left-[90%] -translate-x-1/2 text-[#e0525e]">
+            <span className="absolute left-[90%] -translate-x-1/2">
               9
             </span>
             <span className="absolute right-0">10</span>
           </div>
         </div>
 
-        <div className="grid gap-7 border-t border-[#4a3a3e] pt-6 min-[600px]:grid-cols-2 min-[1200px]:grid-cols-4">
+        <div className="grid gap-7 border-t border-white/25 pt-6 min-[600px]:grid-cols-2 min-[1200px]:grid-cols-4">
           {schedule.map((item) => (
             <div key={item.time} className="flex flex-col gap-2">
               <span
-                className={`text-3xl font-extrabold tracking-[-.03em] ${item.time === "08:00" || item.time === "09:00" ? "text-[#e0525e]" : "text-white"}`}
+                className={`text-3xl font-extrabold tracking-[-.03em] ${item.time === "08:00" || item.time === "09:00" ? "text-[#ffe0e2]" : "text-white"}`}
               >
                 {item.time}
               </span>
-              <span className="text-xs font-bold tracking-[.17em] text-[#f5f2f2]">
+              <span className="text-xs font-bold tracking-[.17em] text-white">
                 {item.label}
               </span>
-              <p className="m-0 text-base leading-[1.6] text-[#cfc5c7]">
+              <p className="m-0 text-base leading-[1.6] text-white/85">
                 {item.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#4a3a3e] pt-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/25 pt-6">
           <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
             <strong className="text-xl font-extrabold">
               10:00 — Next Candidate
             </strong>
-            <span className="text-base leading-[1.6] text-[#cfc5c7]">
+            <span className="text-base leading-[1.6] text-white/85">
               The next candidate enters, and the interview starts again.
             </span>
           </div>
-          <span className="rounded-full bg-[#ad1425] px-4 py-2 text-xs font-bold tracking-[.17em]">
+          <span className="rounded-full bg-white px-4 py-2 text-xs font-bold tracking-[.17em] text-[#ad1425]">
             NEW ROUND
           </span>
         </div>

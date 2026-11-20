@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 
 const container =
   "mx-auto my-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
@@ -15,7 +15,7 @@ export function Kamp() {
     >
       <div className={container}>
         <div className="pt-12 pb-6 min-[900px]:pt-14 min-[900px]:pb-8">
-          <TypewriterHeading
+          <TextHeading
             as="h2"
             id="about-title"
             className={heading}

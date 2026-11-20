@@ -1,6 +1,6 @@
 import type { Mentee } from "@/lib/mentees";
 import { CandidateGallery } from "./candidate-gallery";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 
 export function CandidateProfilesSection({
   candidates,
@@ -19,7 +19,7 @@ export function CandidateProfilesSection({
         className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full border-[42px] border-[#ad1425]/5"
       />
 
-      <TypewriterHeading
+      <TextHeading
         as="h2"
         id="candidate-title"
         className="relative mb-4 max-w-none text-[46px] leading-[1.12] font-extrabold tracking-[-.065em] min-[600px]:text-[clamp(44px,5vw,68px)] min-[900px]:whitespace-nowrap"
@@ -34,7 +34,7 @@ export function CandidateProfilesSection({
         </p>
         <span aria-hidden="true" className="h-px flex-1 bg-[#e4cfd0]" />
       </div>
-      <CandidateGallery key={pair ?? "all"} candidates={candidates} />
+      <CandidateGallery key={pair ?? "all"} candidates={candidates} allPairs={pair === null} />
     </section>
   );
 }

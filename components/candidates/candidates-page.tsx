@@ -1,4 +1,4 @@
-import { CandidateProfilesSection } from "@/components/interview/candidate-profiles-section";
+import { CandidateProfilesSection } from "./candidate-profiles-section";
 import type { Mentee } from "@/lib/mentees";
 
 export function CandidatesPage({

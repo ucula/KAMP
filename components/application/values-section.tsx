@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardHeader,
 } from "@/components/ui/card";
-import { TypewriterHeading } from "@/components/ui/typewriter-heading";
+import { TextHeading } from "@/components/ui/text-heading";
 
 const values = [
   {
@@ -43,7 +43,7 @@ export function ValuesSection() {
       <p className="mb-4 text-xs font-extrabold tracking-[.22em] text-[#ad1425]">
         EVALUATION RUBRICS
       </p>
-      <TypewriterHeading
+      <TextHeading
         as="h2"
         id="values-title"
         className="mb-8 text-[clamp(34px,4.5vw,58px)] leading-[1.08] font-extrabold tracking-[-.06em]"
@@ -63,7 +63,7 @@ export function ValuesSection() {
                 className="text-[#ad1425]"
               />
               <div className="flex w-full items-start justify-between gap-4">
-                <TypewriterHeading as="h3" className="text-[22px] leading-[1.1] font-bold tracking-[-.04em]" text={title} />
+                <TextHeading as="h3" className="text-[22px] leading-[1.1] font-bold tracking-[-.04em]" text={title} />
                 <span className="shrink-0 text-2xl font-extrabold text-[#ad1425]">
                   {weight}
                 </span>

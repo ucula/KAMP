@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { CandidatesPage } from "@/components/interview/candidates-page";
+import { CandidatesPage } from "@/components/candidates/candidates-page";
 import { groupForToken } from "@/lib/group-links";
 import { getMentees } from "@/lib/mentees";
 

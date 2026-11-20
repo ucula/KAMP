@@ -80,7 +80,7 @@ export function Header({
           aria-expanded={menuOpen}
           aria-controls="main-menu"
           onClick={() => setMenuOpen((open) => !open)}
-          className="ml-auto flex size-11 shrink-0 flex-col items-center justify-center gap-[5px] rounded-md text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] min-[769px]:hidden"
+          className="ml-auto flex size-11 shrink-0 appearance-none flex-col items-center justify-center gap-[5px] rounded-md border border-white/20 bg-white/5 text-[#ffbfc5] hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] min-[769px]:hidden"
         >
           <span
             className={cn(
