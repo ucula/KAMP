@@ -174,7 +174,7 @@ export function InterviewIntro() {
         ))}
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-[20px] bg-white px-6 py-7 text-[#211a1b] min-[600px]:px-10">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-[20px] border border-[#ece5e6] bg-white px-6 py-7 text-[#211a1b] shadow-[0_10px_30px_#5a25250a] min-[600px]:px-10">
         <div className="flex min-w-0 flex-1 basis-[470px] items-center gap-3 min-[600px]:gap-5">
           <span
             aria-hidden="true"
