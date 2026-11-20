@@ -75,7 +75,7 @@ export function InterviewIntro() {
             accent="Process."
             accentClassName="text-[#ad1425]"
           />
-          <p className="mt-5 max-w-[760px] text-lg leading-[1.6] text-[#605557]">
+          <p className="mt-5 text-lg leading-[1.6] text-[#605557]">
             A step-by-step guide for mentors — from reviewing candidate profiles
             to announcing the selected mentees.
           </p>
@@ -174,24 +174,35 @@ export function InterviewIntro() {
         ))}
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-[20px] bg-[#ad1425] px-6 py-7 text-white min-[600px]:px-10">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-[20px] bg-white px-6 py-7 text-[#211a1b] min-[600px]:px-10">
         <div className="flex min-w-0 flex-1 basis-[470px] items-center gap-3 min-[600px]:gap-5">
           <span
             aria-hidden="true"
-            className="text-5xl font-extrabold tracking-[-.04em] text-white/40"
+            className="text-5xl font-extrabold tracking-[-.04em] text-[#eadadc] max-[599px]:hidden"
           >
             05
           </span>
+
           <div>
-            <p className="mb-2 text-xs font-bold tracking-[.2em] text-white/75">
+            <p className="mb-2 text-xs font-bold tracking-[.2em] text-[#ad1425] max-[599px]:hidden">
               STEP 05
             </p>
+
+            <p className="mb-2 hidden text-xs font-bold tracking-[.2em] text-[#ad1425] max-[599px]:block">
+              STEP 05
+            </p>
+
+            <span className="hidden text-5xl font-extrabold tracking-[-.04em] text-[#eadadc] max-[599px]:block">
+              05
+            </span>
+
             <h2 className="text-[clamp(22px,6vw,30px)] leading-tight font-extrabold tracking-[-.03em]">
               Mentee Announcement.
             </h2>
           </div>
         </div>
-        <p className="m-0 max-w-[520px] flex-1 basis-[380px] text-lg leading-[1.6] text-white/85">
+
+        <p className="m-0 max-w-[520px] flex-1 basis-[380px] text-lg leading-[1.6] text-[#5f5a5b]">
           After all interviews are completed, the selected mentees will be
           announced on the same day.
         </p>

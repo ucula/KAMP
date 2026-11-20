@@ -14,7 +14,7 @@ export function ApplicationIntro() {
         accent="Guide"
         accentClassName="text-[#ad1425]"
       />
-      <p className="mt-5 max-w-[760px] text-lg leading-[1.6] text-[#605557]">
+      <p className="mt-5 text-lg leading-[1.6] text-[#605557]">
         A guide to the materials mentees submitted — from statement of purpose
         and essay to videos and resume.
       </p>
