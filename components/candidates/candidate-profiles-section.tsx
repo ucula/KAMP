@@ -23,7 +23,9 @@ export function CandidateProfilesSection({
         as="h2"
         id="candidate-title"
         className="relative mb-4 max-w-none text-[46px] leading-[1.12] font-extrabold tracking-[-.065em] min-[600px]:text-[clamp(44px,5vw,68px)] min-[900px]:whitespace-nowrap"
-        text="Meet your CANDIDATES"
+        text="Meet your "
+        accent="CANDIDATES"
+        accentClassName="text-[#ad1425]"
       />
       <p className="relative mb-10 max-w-[580px] text-base leading-[1.6] text-[#6d6263]">
         Explore the mentees and open a profile to see their submitted materials.
@@ -34,7 +36,11 @@ export function CandidateProfilesSection({
         </p>
         <span aria-hidden="true" className="h-px flex-1 bg-[#e4cfd0]" />
       </div>
-      <CandidateGallery key={pair ?? "all"} candidates={candidates} allPairs={pair === null} />
+      <CandidateGallery
+        key={pair ?? "all"}
+        candidates={candidates}
+        allPairs={pair === null}
+      />
     </section>
   );
 }
