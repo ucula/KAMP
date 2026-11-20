@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { TextHeading } from "@/components/ui/text-heading";
+import { homeTopicHeadingClass, TextHeading } from "@/components/ui/text-heading";
 
 const activities = [
   {
@@ -47,8 +47,7 @@ const activities = [
 ];
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
-const heading =
-  "max-w-[920px] text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:text-[clamp(42px,5vw,72px)]";
+const heading = `${homeTopicHeadingClass} max-w-[920px]`;
 
 export function Activity() {
   return (

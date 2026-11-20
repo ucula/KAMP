@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
 
+export const homeTopicHeadingClass =
+  "text-[clamp(48px,7vw,70px)] leading-[.95] font-extrabold tracking-[-.07em]";
+
 type Props = {
   as: "h1" | "h2" | "h3";
   id?: string;

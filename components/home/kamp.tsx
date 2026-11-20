@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { TextHeading } from "@/components/ui/text-heading";
+import { homeTopicHeadingClass, TextHeading } from "@/components/ui/text-heading";
 
 const container =
   "mx-auto my-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
-const heading =
-  "max-w-none text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:whitespace-nowrap min-[900px]:text-[clamp(42px,5vw,72px)]";
+const heading = `${homeTopicHeadingClass} max-w-none min-[900px]:whitespace-nowrap`;
 
 export function Kamp() {
   return (

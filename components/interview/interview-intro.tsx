@@ -147,10 +147,10 @@ export function InterviewIntro() {
             >
               {step.number}
             </span>
-            <h2 className="min-h-[60px] text-xl leading-[1.25] font-bold tracking-[-.02em]">
+            <h2 className="text-xl leading-[1.25] font-bold tracking-[-.02em] min-[1200px]:min-h-[60px]">
               {step.title}
             </h2>
-            <p className="min-h-[112px] text-base leading-[1.6] text-[#5f5a5b]">
+            <p className="text-base leading-[1.6] text-[#5f5a5b] min-[1200px]:min-h-[112px]">
               {step.description}
             </p>
             {step.details && (
@@ -238,9 +238,7 @@ export function InterviewIntro() {
           >
             <span className="absolute left-0">0</span>
             <span className="absolute left-[80%] -translate-x-1/2">8</span>
-            <span className="absolute left-[90%] -translate-x-1/2">
-              9
-            </span>
+            <span className="absolute left-[90%] -translate-x-1/2">9</span>
             <span className="absolute right-0">10</span>
           </div>
         </div>

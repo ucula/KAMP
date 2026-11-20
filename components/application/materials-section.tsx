@@ -121,11 +121,11 @@ export function MaterialsSection() {
                   <ChevronDown
                     size={22}
                     aria-hidden="true"
-                    className="shrink-0 transition-transform group-open:rotate-180"
+                    className="shrink-0 transition-transform duration-300 group-open:rotate-180"
                   />
                 </summary>
-                <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-700 ease-in-out group-open:grid-rows-[1fr] motion-reduce:transition-none">
-                  <div className="min-h-0 overflow-hidden opacity-0 transition-opacity duration-700 ease-in group-open:opacity-100 motion-reduce:transition-none">
+                <div className="grid grid-rows-[0fr] overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-open:grid-rows-[1fr] motion-reduce:transition-none">
+                  <div className="min-h-0 overflow-hidden opacity-0 transition-opacity duration-200 ease-out group-open:opacity-100 group-open:delay-75 motion-reduce:transition-none">
                     <div className="mt-5 border-t border-white/25 pt-4 text-base leading-[1.45] text-[#ffe8e9]">
                       <p>{body}</p>
                       {prompt && <p>{prompt}</p>}

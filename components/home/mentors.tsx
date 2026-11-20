@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { TextHeading } from "@/components/ui/text-heading";
+import { homeTopicHeadingClass, TextHeading } from "@/components/ui/text-heading";
 
 const mentors = Array.from(
   { length: 34 },
@@ -11,8 +11,7 @@ const mentors = Array.from(
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
 const section = "scroll-mt-[92px] py-16 min-[900px]:py-20";
-const heading =
-  "w-full text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:whitespace-nowrap min-[900px]:text-[clamp(42px,5vw,72px)]";
+const heading = `${homeTopicHeadingClass} w-full`;
 
 export function Mentors() {
   return (
