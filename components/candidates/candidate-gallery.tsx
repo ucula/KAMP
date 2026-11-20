@@ -20,10 +20,13 @@ for (const { code, pair } of slots) {
 export function CandidateGallery({
   candidates,
   allPairs = false,
+  pair = null,
 }: {
   candidates: Promise<Mentee[]>;
   allPairs?: boolean;
+  pair?: number | null;
 }) {
+  const pairScope = pair ?? 0;
   const [loadedCandidates, setLoadedCandidates] = useState<Mentee[] | null>(
     null,
   );
@@ -69,12 +72,14 @@ export function CandidateGallery({
   );
   const allByCode = new Map(profiles.map((candidate) => [candidate.code, candidate]));
   const displayRows =
-    allPairs && view === "slot"
+    view === "slot"
       ? [
           ...slots
             .filter(
               ({ code, pair }) =>
-                (!selectedPair || pair === Number(selectedPair)) &&
+                (allPairs
+                  ? !selectedPair || pair === Number(selectedPair)
+                  : pair === pairScope) &&
                 (visibleByCode.has(code) ||
                   (!allByCode.has(code) &&
                     !year &&
@@ -87,10 +92,17 @@ export function CandidateGallery({
             })),
           ...(!selectedPair
             ? visibleCandidates
-                .filter((candidate) => !scheduledPairs.has(candidate.code))
+                .filter(
+                  (candidate) =>
+                    !slots.some(
+                      (entry) =>
+                        entry.code === candidate.code &&
+                        (allPairs || entry.pair === pairScope),
+                    ),
+                )
                 .map((candidate) => ({
                   code: candidate.code,
-                  pair: 0,
+                  pair: pairScope,
                   slot: 0,
                   candidate,
                 }))
@@ -206,7 +218,7 @@ export function CandidateGallery({
             className="m-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425]"
           >
             {loadedCandidates
-              ? view === "slot" && allPairs
+              ? view === "slot"
                 ? `${displayRows.length} SLOT ENTRIES`
                 : `${visibleCandidates.length} OF ${profiles.length} PROFILES`
               : loadError
@@ -249,15 +261,14 @@ export function CandidateGallery({
             ))}
           </div>
         </div>
-        {allPairs && (
-          <div className="grid gap-4 min-[600px]:col-span-2 min-[600px]:grid-cols-2 min-[900px]:col-span-3">
-            <div>
+        <div className="grid gap-4 min-[600px]:col-span-2 min-[600px]:grid-cols-2 min-[900px]:col-span-3">
+            {allPairs && <div>
               <label htmlFor="candidate-pair" className="mb-2 block text-sm font-bold text-[#554b4c]">Pair</label>
               <select id="candidate-pair" value={selectedPair} onChange={(event) => setSelectedPair(event.target.value)} className="w-full rounded-xl border border-[#d8c6c8] bg-white px-4 py-3 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]">
                 <option value="">All pairs</option>
                 {slotSchedule.map((_, index) => <option key={index} value={index + 1}>Pair {index + 1}</option>)}
               </select>
-            </div>
+            </div>}
             <div>
               <label htmlFor="candidate-view" className="mb-2 block text-sm font-bold text-[#554b4c]">View by</label>
               <select id="candidate-view" value={view} onChange={(event) => setView(event.target.value as "code" | "slot")} className="w-full rounded-xl border border-[#d8c6c8] bg-white px-4 py-3 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]">
@@ -266,8 +277,7 @@ export function CandidateGallery({
               </select>
             </div>
           </div>
-        )}
-      </div>
+        </div>
       {!loadedCandidates && !loadError && (
         <div
           role="status"

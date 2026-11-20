@@ -40,6 +40,7 @@ export function CandidateProfilesSection({
         key={pair ?? "all"}
         candidates={candidates}
         allPairs={pair === null}
+        pair={pair}
       />
     </section>
   );
