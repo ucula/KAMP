@@ -41,9 +41,7 @@ export function CandidateGallery({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const profiles = loadedCandidates ?? [];
   const query = search.trim().replace(/\s+/g, " ").toLocaleLowerCase();
-  const years = [
-    ...new Set(profiles.map((candidate) => candidate.year).filter(Boolean)),
-  ].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  const years = ["1", "2", "3", "4"];
   const programTypes = [
     ...new Set(
       profiles.map((candidate) => candidate.program_type).filter(Boolean),
