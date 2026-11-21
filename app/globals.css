@@ -17,21 +17,33 @@ body { margin: 0; }
 
 .values-ticker-track { animation: values-ticker-scroll 24s linear infinite; }
 
-.gallery-crossfade-in { animation: gallery-crossfade-in 700ms ease both; }
-.gallery-crossfade-out { animation: gallery-crossfade-out 700ms ease both; }
+.carousel-in-next { animation: carousel-in-next 520ms cubic-bezier(.22,.61,.36,1) both; }
+.carousel-out-next { animation: carousel-out-next 520ms cubic-bezier(.22,.61,.36,1) both; }
+.carousel-in-previous { animation: carousel-in-previous 520ms cubic-bezier(.22,.61,.36,1) both; }
+.carousel-out-previous { animation: carousel-out-previous 520ms cubic-bezier(.22,.61,.36,1) both; }
 
-@keyframes gallery-crossfade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes carousel-in-next {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }
 
-@keyframes gallery-crossfade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
+@keyframes carousel-out-next {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes carousel-in-previous {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes carousel-out-previous {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gallery-crossfade-in, .gallery-crossfade-out { animation-duration: 1ms; }
+  .carousel-in-next, .carousel-out-next, .carousel-in-previous, .carousel-out-previous { animation-duration: 1ms; }
 }
 .values-ticker-group { min-width: max-content; }
 
