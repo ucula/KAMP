@@ -50,7 +50,6 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
         fill
         sizes="(max-width: 899px) calc(100vw - 48px), (max-width: 1456px) calc(100vw - 96px), 1360px"
         quality={90}
-        unoptimized={process.env.NODE_ENV === "development"}
         className="hidden object-cover min-[900px]:block"
         preload={index === 0}
       />
@@ -59,7 +58,6 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
         alt=""
         fill
         sizes="(max-width: 899px) calc(100vw - 48px), 1px"
-        unoptimized={process.env.NODE_ENV === "development"}
         className="object-cover min-[900px]:hidden"
       />
     </div>

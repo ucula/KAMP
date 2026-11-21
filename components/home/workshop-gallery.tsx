@@ -51,7 +51,6 @@ export function ActivityGallery({ photos, label }: { photos: { wide: string; fou
           alt={`${label} photo ${index + 1}`}
           fill
           sizes="(min-width: 900px) 50vw, 1px"
-          unoptimized={process.env.NODE_ENV === "development"}
           className="hidden object-cover min-[900px]:block"
         />
         <Image
@@ -59,7 +58,6 @@ export function ActivityGallery({ photos, label }: { photos: { wide: string; fou
           alt=""
           fill
           sizes="(max-width: 899px) 100vw, 1px"
-          unoptimized={process.env.NODE_ENV === "development"}
           className="object-cover min-[900px]:hidden"
         />
       </div>

@@ -1,4 +1,4 @@
-import { readdirSync } from "node:fs";
+import { readdirSync, statSync } from "node:fs";
 import path from "node:path";
 
 export type CategoryPhoto = {
@@ -10,6 +10,11 @@ export type CategoryPhoto = {
 export function getCategoryPhotos(publicFolder: string): CategoryPhoto[] {
   const directory = path.join(process.cwd(), "public", publicFolder);
   const variants = new Map<string, Partial<CategoryPhoto>>();
+  // Next caches optimized output by URL, so an edit needs a new URL.
+  const imageUrl = (relativePath: string) => {
+    const { mtimeMs, size } = statSync(path.join(directory, relativePath));
+    return `/${publicFolder}/${relativePath}?v=${mtimeMs}-${size}`;
+  };
   const entries = readdirSync(directory, { withFileTypes: true });
   const ratioFolders = entries.filter(
     (entry) => entry.isDirectory() && ["16x9", "4x3"].includes(entry.name),
@@ -26,7 +31,7 @@ export function getCategoryPhotos(publicFolder: string): CategoryPhoto[] {
         if (!match) continue;
         const name = match[1];
         const photo = variants.get(name) ?? { name };
-        photo[ratio] = `/${publicFolder}/${folder.name}/${entry.name}`;
+        photo[ratio] = imageUrl(`${folder.name}/${entry.name}`);
         variants.set(name, photo);
       }
     }
@@ -38,8 +43,7 @@ export function getCategoryPhotos(publicFolder: string): CategoryPhoto[] {
 
       const [, name, ratio] = match;
       const photo = variants.get(name) ?? { name };
-      photo[ratio === "16x9" ? "wide" : "fourThree"] =
-        `/${publicFolder}/${entry.name}`;
+      photo[ratio === "16x9" ? "wide" : "fourThree"] = imageUrl(entry.name);
       variants.set(name, photo);
     }
   }
