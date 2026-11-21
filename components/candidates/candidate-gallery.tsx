@@ -8,13 +8,11 @@ import type { Mentee } from "@/lib/mentees";
 import slotSchedule from "@/lib/candidate-slots.json";
 
 const slots = slotSchedule.flatMap((codes, index) =>
-  codes.flatMap((code, slot) =>
-    code ? [{ code, pair: index + 1, slot: slot + 1 }] : [],
-  ),
+  codes.map((code, slot) => ({ code, pair: index + 1, slot: slot + 1 })),
 );
 const scheduledPairs = new Map<string, number[]>();
 for (const { code, pair } of slots) {
-  scheduledPairs.set(code, [...(scheduledPairs.get(code) ?? []), pair]);
+  if (code) scheduledPairs.set(code, [...(scheduledPairs.get(code) ?? []), pair]);
 }
 
 export function CandidateGallery({
@@ -348,9 +346,15 @@ export function CandidateGallery({
               </span>
             </button>
             ) : (
-              <div className="flex min-h-[250px] flex-col justify-between rounded-[20px] border border-[#e9d9d9] bg-white p-5 text-[#211a1b]">
-                <span className="text-xs font-extrabold text-[#ad1425]">{code} · Slot {slot}</span>
-                <strong className="text-lg">Profile unavailable</strong>
+              <div className="relative flex min-h-[250px] min-w-0 w-full flex-col items-start justify-between overflow-hidden rounded-[20px] border border-[#e9d9d9] bg-white px-5 py-5 text-left text-[#211a1b] shadow-[0_8px_24px_#5a25250a]">
+                <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[#ad1425]" />
+                <span aria-hidden="true" className="pointer-events-none absolute -top-16 -right-16 size-44 rounded-full border-[22px] border-[#ad1425]/5" />
+                <span className="relative flex w-full items-center justify-end gap-3">
+                  {code && <span className="rounded-full border border-[#f0dddd] bg-[#fff7f7] px-3 py-1 text-[11px] font-extrabold tracking-[.08em] text-[#ad1425]">{code}</span>}
+                  <span className="text-xs font-extrabold text-[#ad1425]">Slot {slot}</span>
+                </span>
+                <strong className="relative block w-full text-[21px] leading-[1.2] tracking-[-.045em] break-words">{code ? "Profile unavailable" : "No mentee assigned"}</strong>
+                <span aria-hidden="true" className="relative block h-[30px] w-full border-t border-[#f0e4e4]" />
               </div>
             )}
             </Fragment>
