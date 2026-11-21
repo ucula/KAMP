@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { homeTopicHeadingClass, TextHeading } from "@/components/ui/text-heading";
+import { getCategoryPhotos } from "@/lib/kamp-activity-images";
 import { ActivityGallery } from "./workshop-gallery";
 
 const activities = [
@@ -47,31 +48,20 @@ const activities = [
       "Build friendships and shared memories through outings and activities beyond the classroom.",
   },
 ] as const;
-const pairedPhotos = (prefix: string, count: number) =>
-  Array.from({ length: count }, (_, index) => ({
-    wide: `/kamp6/activities/${prefix}-${index + 1}-16x9.webp`,
-    fourThree: `/kamp6/activities/${prefix}-${index + 1}-4x3.webp`,
-  }));
-const activityPhotos = {
-  kls: [
-    { wide: "/kamp6/activities/kls-4.webp", fourThree: "/kamp6/activities/kls-1.webp" },
-    { wide: "/kamp6/activities/kls-3.webp", fourThree: "/kamp6/activities/kls-2.webp" },
-    { wide: "/kamp6/activities/kls-6.webp", fourThree: "/kamp6/activities/kls-5.webp" },
-  ],
-  spotlight: [
-    { wide: "/kamp6/activities/spotlight-2.webp", fourThree: "/kamp6/activities/spotlight-1.webp" },
-    { wide: "/kamp6/activities/spotlight-4.webp", fourThree: "/kamp6/activities/spotlight-3.webp" },
-  ],
-  mentoring: pairedPhotos("mentoring", 11),
-  wisdom: pairedPhotos("company-visit", 5),
-  workshops: pairedPhotos("workshop", 4),
-  outing: pairedPhotos("outing", 10),
-};
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
 const heading = `${homeTopicHeadingClass} max-w-[920px]`;
 
 export function Activity() {
+  const activityPhotos = {
+    kls: getCategoryPhotos("kamp6/activities/kls"),
+    spotlight: getCategoryPhotos("kamp6/activities/mentor-spotlight"),
+    mentoring: getCategoryPhotos("kamp6/activities/mentoring-sessions"),
+    wisdom: getCategoryPhotos("kamp6/activities/wisdom-on-the-road"),
+    workshops: getCategoryPhotos("kamp6/activities/workshops"),
+    outing: getCategoryPhotos("kamp6/activities/outing"),
+  };
+
   return (
     <section
       id="activities"

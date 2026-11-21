@@ -1,7 +1,6 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import { TextHeading } from "@/components/ui/text-heading";
+import { getCategoryPhotos } from "@/lib/kamp-activity-images";
 import { HeroCarousel } from "./hero-carousel";
 
 const container =
@@ -15,6 +14,8 @@ const tickerItems = [
 ];
 
 export function Intro() {
+  const slides = getCategoryPhotos("kamp6/intro");
+
   return (
     <>
       <section
@@ -51,7 +52,7 @@ export function Intro() {
             </p>
           </div>
           <div className="mt-10">
-            <HeroCarousel />
+            <HeroCarousel slides={slides} />
             <div className="flex justify-between gap-5 py-7 text-[9px] font-bold tracking-[.17em] text-[#8b7779] min-[600px]:text-[11px]">
               <span>KAMP ENGINEERING 6</span>
               <span>SCROLL TO EXPLORE ↓</span>

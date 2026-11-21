@@ -2,11 +2,42 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { homeTopicHeadingClass, TextHeading } from "@/components/ui/text-heading";
 
-const mentors = Array.from(
-  { length: 34 },
-  (_, index) =>
-    `/kamp6/mentors/updated/mentor-${String(index + 1).padStart(2, "0")}.png`,
-);
+const mentors = [
+  "E35.png",
+  "E40.png",
+  "E43-1.png",
+  "E43-2.png",
+  "E45.png",
+  "E46-1.png",
+  "E46-2.png",
+  "E46-3.png",
+  "E46-4.png",
+  "E46-5.png",
+  "E48-1.png",
+  "E48-2.png",
+  "E48-3.png",
+  "E49.png",
+  "E50-1.png",
+  "E50-2.png",
+  "E51-1.png",
+  "E51-2.png",
+  "E53-1.png",
+  "E53-2.png",
+  "E54-1.png",
+  "E54-2.png",
+  "E54-3.png",
+  "E57-1.png",
+  "E57-2.png",
+  "E58-1.png",
+  "E58-2.png",
+  "E59-1.png",
+  "E59-2.png",
+  "E59-3.png",
+  "E60-1.png",
+  "E60-2.png",
+  "E65.png",
+  "E68.png",
+].map((name) => `/kamp6/mentors/${name}`);
 
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
