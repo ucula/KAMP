@@ -7,23 +7,28 @@ import { Button } from "@/components/ui/button";
 
 const slides = [
   {
-    src: "/kamp6/activities/mentoring-sessions.jpg",
+    wide: "/kamp6/activities/mentoring-sessions.jpg",
+    fourThree: "/kamp6/activities/mentoring-sessions.jpg",
     alt: "Mentors and mentees sharing a meal around a table",
   },
   {
-    src: "/kamp6/activities/mentor-spotlight.jpg",
+    wide: "/kamp6/activities/mentor-spotlight.jpg",
+    fourThree: "/kamp6/activities/mentor-spotlight.jpg",
     alt: "Two engineering professionals speaking in an interview setting",
   },
   {
-    src: "/kamp6/activities/wisdom-on-the-road-hero.jpg",
+    wide: "/kamp6/activities/wisdom-on-the-road-hero.jpg",
+    fourThree: "/kamp6/activities/wisdom-on-the-road-hero.jpg",
     alt: "KAMP participants and hosts gathered during a site visit",
   },
   {
-    src: "/kamp6/activities/kamp-learning-space.jpg",
+    wide: "/kamp6/activities/kamp-learning-space.jpg",
+    fourThree: "/kamp6/activities/kamp-learning-space.jpg",
     alt: "Large group gathered in a lecture hall at a KAMP event",
   },
   {
-    src: "/kamp6/activities/engineering-workshop.jpg",
+    wide: "/kamp6/activities/engineering-workshop.jpg",
+    fourThree: "/kamp6/activities/engineering-workshop.jpg",
     alt: "Students collaborating around a large sheet of notes during a workshop",
   },
 ];
@@ -46,22 +51,23 @@ export function HeroCarousel() {
       aria-label="KAMP6 experience gallery"
       className="mx-auto w-full"
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#33292a] min-[600px]:aspect-[16/10] min-[900px]:aspect-video min-[600px]:rounded-3xl">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#33292a] min-[600px]:aspect-[4/3] min-[900px]:aspect-video min-[600px]:rounded-3xl">
         {slides.map((slide, index) => (
           <div
-            key={slide.src}
+            key={slide.wide}
             aria-hidden={index !== active}
             className={`absolute inset-0 transition-opacity duration-700 ${index === active ? "opacity-100" : "opacity-0"}`}
           >
             <Image
-              src={slide.src}
+              src={slide.wide}
               alt={index === active ? slide.alt : ""}
               fill
               sizes="(max-width: 899px) calc(100vw - 48px), (max-width: 1456px) calc(100vw - 96px), 1360px"
               quality={90}
-              className="object-contain"
+              className="hidden object-cover min-[900px]:block"
               preload={index === 0}
             />
+            <Image src={slide.fourThree} alt="" fill sizes="(max-width: 899px) calc(100vw - 48px), 1px" className="object-cover min-[900px]:hidden" />
           </div>
         ))}
       </div>
@@ -79,7 +85,7 @@ export function HeroCarousel() {
         <div className="flex items-center">
           {slides.map((slide, index) => (
             <button
-              key={slide.src}
+              key={slide.wide}
               type="button"
               aria-label={`Show image ${index + 1} of ${slides.length}`}
               aria-pressed={index === active}

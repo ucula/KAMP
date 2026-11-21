@@ -9,7 +9,7 @@ const activities = [
     title: "Mentoring Sessions",
     description:
       "Gain practical insights, professional guides and valuable perspecives from experienced engineering mentors",
-    image: "/kamp6/activities/mentoring-sessions.jpg",
+    image: { wide: "/kamp6/activities/mentoring-sessions.jpg", fourThree: "/kamp6/activities/mentoring-sessions.jpg" },
     alt: "Mentors and mentees sharing a meal around a table",
   },
   {
@@ -17,7 +17,7 @@ const activities = [
     title: "Mentor Spotlight",
     description:
       "Discover the experiences, achievements, and perspectives of engineering professionals who inspire the next generation.",
-    image: "/kamp6/activities/mentor-spotlight.jpg",
+    image: { wide: "/kamp6/activities/mentor-spotlight.jpg", fourThree: "/kamp6/activities/mentor-spotlight.jpg" },
     alt: "Two engineering professionals speaking in an interview setting",
   },
   {
@@ -25,7 +25,7 @@ const activities = [
     title: "Wisdom on the Road",
     description:
       "Step beyond the classroom to explore real-world engineering practices, industries, and professional experiences.",
-    image: "/kamp6/activities/wisdom-on-the-road.jpg",
+    image: { wide: "/kamp6/activities/wisdom-on-the-road.jpg", fourThree: "/kamp6/activities/wisdom-on-the-road.jpg" },
     alt: "KAMP participants and hosts gathered during a site visit",
   },
   {
@@ -33,7 +33,7 @@ const activities = [
     title: "KAMP Learning Space",
     description:
       "A collaborative space to exchange ideas, explore new perspectives, and grow through shared learning.",
-    image: "/kamp6/activities/kamp-learning-space.jpg",
+    image: { wide: "/kamp6/activities/kamp-learning-space.jpg", fourThree: "/kamp6/activities/kamp-learning-space.jpg" },
     alt: "Large group gathered in a lecture hall at a KAMP event",
   },
   {
@@ -41,7 +41,7 @@ const activities = [
     title: "Workshops",
     description:
       "Transform knowledge into practice through interactive workshops, hands-on activities, and collaborative problem-solving.",
-    image: "/kamp6/activities/engineering-workshop.jpg",
+    image: { wide: "/kamp6/activities/engineering-workshop.jpg", fourThree: "/kamp6/activities/engineering-workshop.jpg" },
     alt: "Students collaborating around a large sheet of notes during a workshop",
   },
 ];
@@ -79,14 +79,16 @@ export function Activity() {
                   {activity.description}
                 </p>
               </div>
-              <div className="relative min-h-[230px] flex-1 bg-[#e6d7d7] min-[900px]:min-h-[360px]">
+              <div className="relative aspect-[4/3] min-h-[230px] flex-1 bg-[#e6d7d7] min-[900px]:aspect-auto min-[900px]:min-h-[360px]">
                 <Image
-                  src={activity.image}
+                  src={activity.image.wide}
                   alt={activity.alt}
                   fill
                   sizes="(max-width: 900px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
+                  className="hidden min-[900px]:block"
                 />
+                <Image src={activity.image.fourThree} alt="" fill sizes="(max-width: 899px) 100vw, 1px" className="object-cover min-[900px]:hidden" />
               </div>
             </Card>
           ))}
