@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SyntheticEvent } from "react";
 import { Button } from "@/components/ui/button";
+import { INTRO_IMAGE_READY_EVENT } from "./intro-image-gate";
 
 type HeroSlide = { name: string; wide: string; fourThree: string };
 
@@ -37,31 +38,45 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
     index: number,
     animation = "",
     onAnimationEnd?: () => void,
-  ) => (
-    <div
-      key={index}
-      aria-hidden={index !== active}
-      onAnimationEnd={onAnimationEnd}
-      className={`absolute inset-0 ${animation}`}
-    >
-      <Image
-        src={slides[index].wide}
-        alt={index === active ? `KAMP Engineering 6 intro slide ${index + 1}` : ""}
-        fill
-        sizes="(min-width: 1316px) 1220px, (min-width: 900px) calc(100vw - 96px), 1px"
-        className="hidden object-cover min-[900px]:block"
-        preload={index === 0}
-      />
-      <Image
-        src={slides[index].fourThree}
-        alt=""
-        fill
-        sizes="(max-width: 899px) calc(100vw - 48px), 1px"
-        className="object-cover min-[900px]:hidden"
-        loading={index === active ? "eager" : "lazy"}
-      />
-    </div>
-  );
+  ) => {
+    const reportImageReady = (event: SyntheticEvent<HTMLImageElement>) => {
+      if (index === 0 && event.currentTarget.getClientRects().length > 0) {
+        window.dispatchEvent(new Event(INTRO_IMAGE_READY_EVENT));
+      }
+    };
+
+    return (
+      <div
+        key={index}
+        aria-hidden={index !== active}
+        onAnimationEnd={onAnimationEnd}
+        className={`absolute inset-0 ${animation}`}
+      >
+        <Image
+          src={slides[index].wide}
+          alt={index === active ? `KAMP Engineering 6 intro slide ${index + 1}` : ""}
+          fill
+          sizes="(min-width: 1316px) 1220px, (min-width: 900px) calc(100vw - 96px), 1px"
+          className="hidden object-cover min-[900px]:block"
+          data-intro-image={index === 0 ? "wide" : undefined}
+          onLoad={reportImageReady}
+          onError={reportImageReady}
+          preload={index === 0}
+        />
+        <Image
+          src={slides[index].fourThree}
+          alt=""
+          fill
+          sizes="(max-width: 899px) calc(100vw - 48px), 1px"
+          className="object-cover min-[900px]:hidden"
+          data-intro-image={index === 0 ? "four-three" : undefined}
+          onLoad={reportImageReady}
+          onError={reportImageReady}
+          loading={index === active ? "eager" : "lazy"}
+        />
+      </div>
+    );
+  };
 
   return (
     <div
