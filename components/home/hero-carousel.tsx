@@ -48,8 +48,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
         src={slides[index].wide}
         alt={index === active ? `KAMP Engineering 6 intro slide ${index + 1}` : ""}
         fill
-        sizes="(max-width: 899px) calc(100vw - 48px), (max-width: 1456px) calc(100vw - 96px), 1360px"
-        quality={90}
+        sizes="(min-width: 1316px) 1220px, (min-width: 900px) calc(100vw - 96px), 1px"
         className="hidden object-cover min-[900px]:block"
         preload={index === 0}
       />
@@ -59,6 +58,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
         fill
         sizes="(max-width: 899px) calc(100vw - 48px), 1px"
         className="object-cover min-[900px]:hidden"
+        loading={index === active ? "eager" : "lazy"}
       />
     </div>
   );
