@@ -34,7 +34,7 @@ export function CandidateGallery({
   const [year, setYear] = useState("");
   const [programType, setProgramType] = useState("");
   const [selectedPair, setSelectedPair] = useState("");
-  const [view, setView] = useState<"code" | "slot">("code");
+  const [view, setView] = useState<"code" | "slot">("slot");
   const [columns, setColumns] = useState<1 | 2 | 3>(3);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const profiles = loadedCandidates ?? [];
