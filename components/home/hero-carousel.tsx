@@ -80,7 +80,7 @@ export function HeroCarousel() {
         >
           <ArrowRight size={20} aria-hidden="true" />
         </Button>
-        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center rounded-full bg-[#211a1b]/65 px-2 py-1">
+        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-0 rounded-full bg-[#211a1b]/70 px-1 py-0.5 min-[900px]:gap-1 min-[900px]:px-1.5">
           {slides.map((slide, index) => (
             <button
               key={slide.wide}
@@ -88,9 +88,9 @@ export function HeroCarousel() {
               aria-label={`Show image ${index + 1} of ${slides.length}`}
               aria-pressed={index === active}
               onClick={() => setActive(index)}
-              className="flex size-8 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="flex size-4 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white min-[900px]:size-6"
             >
-              <span className={`size-2 rounded-full ${index === active ? "bg-white" : "bg-white/50"}`} />
+              <span className={`size-1 rounded-full transition-colors min-[900px]:size-1.5 ${index === active ? "bg-white" : "bg-white/50"}`} />
             </button>
           ))}
         </div>

@@ -11,25 +11,21 @@ const values = [
   {
     icon: Sprout,
     title: "Growth Readiness",
-    weight: "30%",
     body: "Open to learning, reflective about themselves, and able to see growth as a process.",
   },
   {
     icon: BookOpen,
     title: "Learning Commitment",
-    weight: "30%",
     body: "Willing to invest in their own learning and make the most of the opportunities KAMP offers.",
   },
   {
     icon: Target,
     title: "Purposeful Learning",
-    weight: "25%",
     body: "Able to describe what they are looking for and their goals or intentions for learning, even if their answers are still developing.",
   },
   {
     icon: UsersRound,
     title: "Community Mindset",
-    weight: "15%",
     body: "Ready to learn from others, open to different perspectives, and grow alongside the community.",
   },
 ];
@@ -50,7 +46,7 @@ export function ValuesSection() {
         text="Who we are looking for."
       />
       <div className="grid gap-3 rounded-[22px] p-4 min-[600px]:grid-cols-2 min-[600px]:p-6">
-        {values.map(({ icon: Icon, title, weight, body }) => (
+        {values.map(({ icon: Icon, title, body }) => (
           <Card
             key={title}
             className="min-h-[190px] rounded-[16px] border-0 bg-white p-[26px]"
@@ -62,11 +58,8 @@ export function ValuesSection() {
                 aria-hidden="true"
                 className="text-[#ad1425]"
               />
-              <div className="flex w-full items-start justify-between gap-4">
+              <div className="w-full">
                 <TextHeading as="h3" className="text-[22px] leading-[1.1] font-bold tracking-[-.04em]" text={title} />
-                <span className="shrink-0 text-2xl font-extrabold text-[#ad1425]">
-                  {weight}
-                </span>
               </div>
             </CardHeader>
             <CardContent className="p-0 pt-3">
