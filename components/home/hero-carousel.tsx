@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useState, type SyntheticEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { INTRO_IMAGE_READY_EVENT } from "./intro-image-gate";
+import { HOME_IMAGE_LOAD_EVENT, HOME_IMAGES_READY_EVENT } from "./home-image-gate";
 
 type HeroSlide = { name: string; wide: string; fourThree: string };
 
@@ -12,15 +12,24 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   const [active, setActive] = useState(0);
   const [previous, setPrevious] = useState<number | null>(null);
   const [direction, setDirection] = useState<"previous" | "next">("next");
+  const [canRotate, setCanRotate] = useState(false);
 
   useEffect(() => {
+    const startCarousel = () => setCanRotate(true);
+    window.addEventListener(HOME_IMAGES_READY_EVENT, startCarousel, { once: true });
+    if (document.querySelector('[data-home-images-ready="true"]')) startCarousel();
+    return () => window.removeEventListener(HOME_IMAGES_READY_EVENT, startCarousel);
+  }, []);
+
+  useEffect(() => {
+    if (!canRotate) return;
     const timer = window.setInterval(() => {
       setPrevious(active);
       setDirection("next");
       setActive((current) => (current + 1) % slides.length);
     }, 6000);
     return () => window.clearInterval(timer);
-  }, [active, slides.length]);
+  }, [active, canRotate, slides.length]);
 
   const moveSlide = (step: -1 | 1) => {
     setPrevious(active);
@@ -41,7 +50,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   ) => {
     const reportImageReady = (event: SyntheticEvent<HTMLImageElement>) => {
       if (index === 0 && event.currentTarget.getClientRects().length > 0) {
-        window.dispatchEvent(new Event(INTRO_IMAGE_READY_EVENT));
+        window.dispatchEvent(new Event(HOME_IMAGE_LOAD_EVENT));
       }
     };
 
@@ -58,7 +67,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
           fill
           sizes="(min-width: 1316px) 1220px, (min-width: 900px) calc(100vw - 96px), 1px"
           className="hidden object-cover min-[900px]:block"
-          data-intro-image={index === 0 ? "wide" : undefined}
+          data-home-critical-image={index === 0 ? "true" : undefined}
           onLoad={reportImageReady}
           onError={reportImageReady}
           preload={index === 0}
@@ -69,7 +78,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
           fill
           sizes="(max-width: 899px) calc(100vw - 48px), 1px"
           className="object-cover min-[900px]:hidden"
-          data-intro-image={index === 0 ? "four-three" : undefined}
+          data-home-critical-image={index === 0 ? "true" : undefined}
           onLoad={reportImageReady}
           onError={reportImageReady}
           loading={index === active ? "eager" : "lazy"}

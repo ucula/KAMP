@@ -2,19 +2,27 @@
 
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SyntheticEvent } from "react";
+import { HOME_IMAGE_LOAD_EVENT, HOME_IMAGES_READY_EVENT } from "./home-image-gate";
 
 export function ActivityGallery({ photos, label }: { photos: { wide: string; fourThree: string }[]; label: string }) {
   const [active, setActive] = useState(0);
   const [previous, setPrevious] = useState<number | null>(null);
   const [direction, setDirection] = useState<"previous" | "next">("next");
+  const [canRotate, setCanRotate] = useState(false);
   const currentActive = active >= 0 && active < photos.length ? active : 0;
   const currentPrevious =
     previous !== null && previous >= 0 && previous < photos.length
       ? previous
       : null;
   useEffect(() => {
-    if (!photos.length) return;
+    const startCarousel = () => setCanRotate(true);
+    window.addEventListener(HOME_IMAGES_READY_EVENT, startCarousel, { once: true });
+    if (document.querySelector('[data-home-images-ready="true"]')) startCarousel();
+    return () => window.removeEventListener(HOME_IMAGES_READY_EVENT, startCarousel);
+  }, []);
+  useEffect(() => {
+    if (!photos.length || !canRotate) return;
     const timer = window.setInterval(() => {
       setPrevious(currentActive);
       setDirection("next");
@@ -24,7 +32,7 @@ export function ActivityGallery({ photos, label }: { photos: { wide: string; fou
       });
     }, 6000);
     return () => window.clearInterval(timer);
-  }, [currentActive, photos.length]);
+  }, [canRotate, currentActive, photos.length]);
 
   const changePhoto = (step: -1 | 1) => {
     if (!photos.length) return;
@@ -38,6 +46,11 @@ export function ActivityGallery({ photos, label }: { photos: { wide: string; fou
   const renderPhoto = (index: number, animation: string, onAnimationEnd?: () => void) => {
     const photo = photos[index];
     if (!photo) return null;
+    const reportImageReady = (event: SyntheticEvent<HTMLImageElement>) => {
+      if (index === 0 && event.currentTarget.getClientRects().length > 0) {
+        window.dispatchEvent(new Event(HOME_IMAGE_LOAD_EVENT));
+      }
+    };
 
     return (
       <div
@@ -52,6 +65,10 @@ export function ActivityGallery({ photos, label }: { photos: { wide: string; fou
           fill
           sizes="(min-width: 900px) 50vw, 1px"
           className="hidden object-cover min-[900px]:block"
+          data-home-critical-image={index === 0 ? "true" : undefined}
+          onLoad={reportImageReady}
+          onError={reportImageReady}
+          loading={index === currentActive ? "eager" : "lazy"}
         />
         <Image
           src={photo.fourThree}
@@ -59,6 +76,10 @@ export function ActivityGallery({ photos, label }: { photos: { wide: string; fou
           fill
           sizes="(max-width: 899px) 100vw, 1px"
           className="object-cover min-[900px]:hidden"
+          data-home-critical-image={index === 0 ? "true" : undefined}
+          onLoad={reportImageReady}
+          onError={reportImageReady}
+          loading={index === currentActive ? "eager" : "lazy"}
         />
       </div>
     );

@@ -21,6 +21,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/kamp6/activities/:path*",
+        has: [{ type: "query", key: "v" }],
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
 };
