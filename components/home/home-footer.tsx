@@ -37,7 +37,7 @@ export function HomeFooter({ basePath = "" }: { basePath?: string }) {
         </Link>
         <div className="mt-14 flex flex-col items-start justify-between gap-[30px] border-t border-white/30 pt-7 min-[600px]:mt-20 min-[600px]:flex-row min-[600px]:items-center">
           <Link
-            href={basePath || "/home"}
+            href={`${basePath}/home`}
             aria-label="KAMP Engineering 6 home"
             className="relative block h-11 w-[130px] shrink-0 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] max-[359px]:w-[115px] min-[600px]:h-12 min-[600px]:w-[165px] min-[900px]:w-[180px]"
           >

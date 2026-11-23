@@ -34,7 +34,7 @@ export function Header({
         className="relative mx-auto flex min-h-[68px] w-full max-w-[1440px] items-center justify-between gap-2 px-3 font-[Arial,Helvetica,sans-serif] min-[600px]:gap-4 min-[600px]:px-5 min-[900px]:min-h-[76px] min-[900px]:gap-8 min-[900px]:px-10"
       >
         <Link
-          href={basePath || "/home"}
+          href={`${basePath}/home`}
           onClick={() => setMenuOpen(false)}
           aria-label="KAMP Engineering 6 home"
           className="relative block h-11 w-[130px] shrink-0 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8790] max-[359px]:w-[115px] min-[600px]:h-12 min-[600px]:w-[165px] min-[900px]:w-[180px]"
@@ -59,9 +59,7 @@ export function Header({
           {links.map(({ href, label }) => (
             <Link
               key={href}
-              href={
-                href === "/home" && basePath ? basePath : `${basePath}${href}`
-              }
+              href={`${basePath}${href}`}
               onClick={() => setMenuOpen(false)}
               aria-current={href === activeHref ? "page" : undefined}
               className={cn(
