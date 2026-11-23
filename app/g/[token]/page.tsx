@@ -1,18 +1,10 @@
-import { Header } from "@/components/header";
-import { HomeContent } from "@/components/home/home-page";
-import { HomeImageGate } from "@/components/home/home-image-gate";
+import { redirect } from "next/navigation";
 
-export default async function GroupHomePage({
+export default async function GroupEntryPage({
   params,
 }: {
   params: Promise<{ token: string }>;
 }) {
   const { token } = await params;
-  const basePath = `/g/${token}`;
-  return (
-    <HomeImageGate>
-      <Header activeHref="/home" basePath={basePath} />
-      <HomeContent basePath={basePath} />
-    </HomeImageGate>
-  );
+  redirect(`/g/${token}/candidates`);
 }
