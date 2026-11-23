@@ -23,29 +23,33 @@ export function EntryImageGate({
         alt: "",
         fill: true,
         sizes: index === 0
-          ? wide ? "(min-width: 1316px) 1220px, calc(100vw - 96px)" : "calc(100vw - 48px)"
-          : wide ? "50vw" : "100vw",
+          ? wide
+            ? "(min-width: 1316px) 1220px, (min-width: 900px) calc(100vw - 96px), 1px"
+            : "(max-width: 899px) calc(100vw - 48px), 1px"
+          : wide ? "(min-width: 900px) 50vw, 1px" : "(max-width: 899px) 100vw, 1px",
       });
-      return new Promise<void>((resolve) => {
+      return new Promise<boolean>((resolve) => {
         const image = new window.Image();
-        image.onload = () => resolve();
-        image.onerror = () => resolve();
+        image.fetchPriority = index === 0 ? "high" : "low";
+        image.onload = () => image.decode().then(() => resolve(true), () => resolve(false));
+        image.onerror = () => resolve(false);
         image.sizes = props.sizes || "100vw";
         image.srcset = props.srcSet || "";
         image.src = props.src;
-        if (image.complete) resolve();
+        if (image.complete && image.naturalWidth > 0) {
+          image.decode().then(() => resolve(true), () => resolve(false));
+        }
       });
     });
     const timeout = window.setTimeout(() => {
       if (active) {
-        markHomeImagesReady();
         setReady(true);
       }
-    }, 10_000);
-    Promise.all(loads).then(() => {
+    }, 30_000);
+    Promise.all(loads).then((results) => {
       if (active) {
         window.clearTimeout(timeout);
-        markHomeImagesReady();
+        if (results.every(Boolean)) markHomeImagesReady();
         setReady(true);
       }
     });
