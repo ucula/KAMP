@@ -7,9 +7,11 @@ import { homeImagesAreReady, markHomeImagesReady } from "./home-image-gate";
 export function EntryImageGate({
   children,
   images,
+  introCount,
 }: {
   children: React.ReactNode;
   images: { wide: string; fourThree: string }[];
+  introCount: number;
 }) {
   const [ready, setReady] = useState(homeImagesAreReady);
 
@@ -22,7 +24,7 @@ export function EntryImageGate({
         src: wide ? photo.wide : photo.fourThree,
         alt: "",
         fill: true,
-        sizes: index === 0
+        sizes: index < introCount
           ? wide
             ? "(min-width: 1316px) 1220px, (min-width: 900px) calc(100vw - 96px), 1px"
             : "(max-width: 899px) calc(100vw - 48px), 1px"
@@ -57,7 +59,7 @@ export function EntryImageGate({
       active = false;
       window.clearTimeout(timeout);
     };
-  }, [images]);
+  }, [images, introCount]);
 
   return (
     <>
