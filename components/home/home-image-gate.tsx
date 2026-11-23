@@ -5,15 +5,30 @@ import { useEffect, useRef, useState } from "react";
 export const HOME_IMAGE_LOAD_EVENT = "kamp-home-image-load";
 export const HOME_IMAGES_READY_EVENT = "kamp-home-images-ready";
 
+let homeImagesReady = false;
+export function homeImagesAreReady() {
+  return homeImagesReady;
+}
+
+export function markHomeImagesReady() {
+  homeImagesReady = true;
+}
+
 export function HomeImageGate({ children }: { children: React.ReactNode }) {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(homeImagesReady);
   const gateRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (homeImagesReady) {
+      gateRef.current?.setAttribute("data-home-images-ready", "true");
+      window.dispatchEvent(new Event(HOME_IMAGES_READY_EVENT));
+      return;
+    }
     let pageReady = false;
     const reveal = () => {
       if (pageReady) return;
       pageReady = true;
+      markHomeImagesReady();
       gateRef.current?.setAttribute("data-home-images-ready", "true");
       setReady(true);
       window.dispatchEvent(new Event(HOME_IMAGES_READY_EVENT));
