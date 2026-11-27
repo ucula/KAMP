@@ -12,7 +12,7 @@ export function CandidatesPage({
     <main className="fluid-type min-h-[calc(100svh-92px)] bg-[#f9f6f4] py-12 font-[Arial,Helvetica,sans-serif] text-[#211a1b] min-[900px]:py-16">
       <div className="mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]">
         <div className="mb-10 min-[900px]:mb-14">
-          <h1 className="m-0 text-[clamp(36px,9vw,112px)] leading-[.95] font-extrabold tracking-[-.055em]">
+          <h1 className="page-title m-0 leading-[.95] font-extrabold tracking-[-.055em]">
             Your <span className="text-[#b5202e]">Candidates.</span>
           </h1>
           <p className="mt-6 text-base leading-[1.6] text-[#605557] min-[600px]:text-lg min-[900px]:text-xl">

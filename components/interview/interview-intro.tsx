@@ -28,7 +28,7 @@ export function InterviewIntro() {
       <header className="space-y-5">
         <h1
           id="interview-title"
-          className="text-[clamp(60px,10vw,124px)] leading-[.95] font-extrabold tracking-[-.045em]"
+          className="page-title leading-[.95] font-extrabold tracking-[-.045em]"
         >
           Interview <span className="text-[#b5202e]">Process.</span>
         </h1>

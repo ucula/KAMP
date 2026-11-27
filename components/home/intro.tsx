@@ -40,7 +40,7 @@ export function Intro() {
               as="h1"
               id="hero-title"
               ariaLabel="Where experience inspires potential"
-              className="max-w-none text-[clamp(36px,7vw,96px)] leading-[.95] font-extrabold tracking-[-.07em] min-[900px]:whitespace-nowrap"
+              className="page-title max-w-none leading-[.95] font-extrabold tracking-[-.07em] min-[900px]:whitespace-nowrap"
               text="Where Experiences"
               secondLine="Inspires"
               accent="Potential"

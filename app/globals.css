@@ -32,6 +32,8 @@ body { margin: 0; }
   font-size: var(--text-base);
 }
 
+.page-title { font-size: clamp(36px, 7vw, 96px); }
+
 .values-ticker-track { animation: values-ticker-scroll 24s linear infinite; }
 
 .carousel-in-next { animation: carousel-in-next 520ms cubic-bezier(.22,.61,.36,1) both; }
