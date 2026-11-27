@@ -53,6 +53,7 @@ export function CandidateGallery({
   const [search, setSearch] = useState("");
   const [year, setYear] = useState("");
   const [programType, setProgramType] = useState("");
+  const [major, setMajor] = useState("");
   const [selectedPair, setSelectedPair] = useState("");
   const [view, setView] = useState<"code" | "slot">("slot");
   const [columns, setColumns] = useState<1 | 2 | 3>(3);
@@ -65,6 +66,9 @@ export function CandidateGallery({
       profiles.map((candidate) => candidate.program_type).filter(Boolean),
     ),
   ].sort();
+  const majors = [
+    ...new Set(profiles.map((candidate) => candidate.major).filter(Boolean)),
+  ].sort();
   const formatProgramType = (value: string) => {
     const type = value.trim();
     return ["ปกติ", "พิเศษ", "นานาชาติ"].includes(type) ? `ภาค${type}` : type;
@@ -73,6 +77,7 @@ export function CandidateGallery({
     (candidate) =>
       (!year || candidate.year === year) &&
       (!programType || candidate.program_type === programType) &&
+      (!major || candidate.major === major) &&
       (!allPairs ||
         !selectedPair ||
         (scheduledPairs.get(candidate.code) ?? candidate.pairs).includes(
@@ -102,6 +107,7 @@ export function CandidateGallery({
                   (!allByCode.has(code) &&
                     !year &&
                     !programType &&
+                    !major &&
                     (!query || code.toLocaleLowerCase().includes(query)))),
             )
             .map((entry) => ({
@@ -161,6 +167,13 @@ export function CandidateGallery({
         ["Resume", selected.resume],
       ]
     : [];
+  const statusMessage = loadedCandidates
+    ? view === "slot"
+      ? `${displayRows.length} SLOT ENTRIES`
+      : `${visibleCandidates.length} OF ${profiles.length} PROFILES`
+    : loadError
+      ? "COULD NOT LOAD PROFILES"
+      : "LOADING PROFILES";
 
   return (
     <>
@@ -230,54 +243,26 @@ export function CandidateGallery({
             ))}
           </select>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-4 min-[600px]:col-span-2">
-          <p
-            role="status"
-            className="m-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425]"
+        <div>
+          <label
+            htmlFor="candidate-major"
+            className="mb-1.5 block text-sm font-bold text-[#554b4c] min-[600px]:mb-2"
           >
-            {loadedCandidates
-              ? view === "slot"
-                ? `${displayRows.length} SLOT ENTRIES`
-                : `${visibleCandidates.length} OF ${profiles.length} PROFILES`
-              : loadError
-                ? "COULD NOT LOAD PROFILES"
-                : "LOADING PROFILES"}
-          </p>
-          <div
-            role="group"
-            aria-label="Candidate grid columns"
-            className="hidden items-center gap-2 min-[600px]:flex"
+            Major
+          </label>
+          <select
+            id="candidate-major"
+            value={major}
+            onChange={(event) => setMajor(event.target.value)}
+            className="w-full rounded-xl border border-[#d8c6c8] bg-white px-3 py-2.5 text-sm text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:px-4 min-[600px]:py-3 min-[600px]:text-base"
           >
-            <span className="mr-1 text-xs font-bold text-[#554b4c]">
-              Columns
-            </span>
-            {(
-              [
-                [1, "/kamp6/icons/fluent-mdl2--single-column.svg"],
-                [2, "/kamp6/icons/fluent-mdl2--double-column.svg"],
-                [3, "/kamp6/icons/cil--view-column.svg"],
-              ] as const
-            ).map(([count, icon]) => (
-              <button
-                key={count}
-                type="button"
-                aria-label={`${count} ${count === 1 ? "column" : "columns"}`}
-                aria-pressed={columns === count}
-                onClick={() => setColumns(count)}
-                className={`size-9 items-center justify-center rounded-lg border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] ${count === 3 ? "hidden min-[900px]:flex" : "flex"} ${columns === count ? "border-[#ad1425] bg-[#ad1425]" : "border-[#d8c6c8] bg-white hover:border-[#ad1425]"}`}
-              >
-                <Image
-                  src={icon}
-                  alt=""
-                  width={20}
-                  height={20}
-                  className={
-                    columns === count ? "brightness-0 invert" : "opacity-70"
-                  }
-                />
-              </button>
+            <option value="">All majors</option>
+            {majors.map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
             ))}
-          </div>
+          </select>
         </div>
         <div className="grid gap-3 min-[600px]:col-span-2 min-[600px]:grid-cols-2 min-[600px]:gap-4">
           {allPairs && (
@@ -301,6 +286,12 @@ export function CandidateGallery({
                   </option>
                 ))}
               </select>
+              <p
+                role="status"
+                className="mt-3 mb-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425]"
+              >
+                {statusMessage}
+              </p>
             </div>
           )}
           <div>
@@ -321,6 +312,51 @@ export function CandidateGallery({
               <option value="code">Candidate code</option>
               <option value="slot">Interview slot</option>
             </select>
+          </div>
+        </div>
+        {!allPairs && (
+          <p
+            role="status"
+            className="m-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425] min-[600px]:col-span-2"
+          >
+            {statusMessage}
+          </p>
+        )}
+        <div className="hidden min-[600px]:col-span-2 min-[600px]:flex min-[600px]:justify-end">
+          <div
+            role="group"
+            aria-label="Candidate grid columns"
+            className="flex items-center gap-2"
+          >
+            <span className="mr-1 text-xs font-bold text-[#554b4c]">
+              Columns
+            </span>
+            {(
+              [
+                [1, "/kamp6/icons/fluent-mdl2--single-column.svg"],
+                [2, "/kamp6/icons/fluent-mdl2--double-column.svg"],
+                [3, "/kamp6/icons/cil--view-column.svg"],
+              ] as const
+            ).map(([count, icon]) => (
+              <button
+                key={count}
+                type="button"
+                aria-label={`${count} ${count === 1 ? "column" : "columns"}`}
+                aria-pressed={columns === count}
+                onClick={() => setColumns(count)}
+                className={`flex size-9 items-center justify-center rounded-lg border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] ${count === 3 ? "hidden min-[900px]:flex" : ""} ${columns === count ? "border-[#ad1425] bg-[#ad1425]" : "border-[#d8c6c8] bg-white hover:border-[#ad1425]"}`}
+              >
+                <Image
+                  src={icon}
+                  alt=""
+                  width={20}
+                  height={20}
+                  className={
+                    columns === count ? "brightness-0 invert" : "opacity-70"
+                  }
+                />
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -358,11 +394,12 @@ export function CandidateGallery({
                   </h3>
                 )}
               {candidate ? (
-                <button
-                  type="button"
-                  onClick={() => setSelected(candidate)}
-                  className="group relative flex min-h-[250px] min-w-0 w-full cursor-pointer flex-col items-start justify-between overflow-hidden rounded-[20px] border border-[#e9d9d9] bg-white px-5 py-5 text-left text-[#211a1b] shadow-[0_8px_24px_#5a25250a] transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 hover:border-[#c77a82] hover:shadow-[0_18px_35px_#9d737322] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
-                >
+                <div className="group relative min-h-[250px] min-w-0 w-full">
+                  <button
+                    type="button"
+                    onClick={() => setSelected(candidate)}
+                    className="relative flex min-h-[250px] min-w-0 w-full cursor-pointer flex-col items-start justify-between overflow-hidden rounded-[20px] border border-[#e9d9d9] bg-white px-5 py-5 text-left text-[#211a1b] shadow-[0_8px_24px_#5a25250a] transition-[transform,border-color,box-shadow] duration-200 group-hover:-translate-y-1 group-hover:border-[#c77a82] group-hover:shadow-[0_18px_35px_#9d737322] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+                  >
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-0 top-0 h-1 bg-[#ad1425]"
@@ -402,7 +439,8 @@ export function CandidateGallery({
                       className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </span>
-                </button>
+                  </button>
+                </div>
               ) : (
                 <div className="relative flex min-h-[250px] min-w-0 w-full flex-col items-start justify-between overflow-hidden rounded-[20px] border border-[#e9d9d9] bg-white px-5 py-5 text-left text-[#211a1b] shadow-[0_8px_24px_#5a25250a]">
                   <span
