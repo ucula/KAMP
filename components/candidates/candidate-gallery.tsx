@@ -145,19 +145,19 @@ export function CandidateGallery({
 
   return (
     <>
-      <div className="relative mb-8 grid gap-4 rounded-[20px] border border-[#eadada] bg-white/80 p-5 shadow-[0_10px_30px_#5a25250a] min-[600px]:grid-cols-2 min-[600px]:p-6">
+      <div className="relative mb-6 grid gap-3 rounded-[20px] border border-[#eadada] bg-white/80 p-4 shadow-[0_10px_30px_#5a25250a] min-[600px]:mb-8 min-[600px]:grid-cols-2 min-[600px]:gap-4 min-[600px]:p-6">
         <div>
           <label
             htmlFor="candidate-search"
-            className="mb-2 block text-sm font-bold text-[#554b4c]"
+            className="mb-1.5 block text-sm font-bold text-[#554b4c] min-[600px]:mb-2"
           >
             Search candidates by name or code
           </label>
           <div className="relative">
             <Search
               aria-hidden="true"
-              size={19}
-              className="absolute top-1/2 left-4 -translate-y-1/2 text-[#a8777d]"
+              size={18}
+              className="absolute top-1/2 left-3 -translate-y-1/2 text-[#a8777d]"
             />
             <input
               id="candidate-search"
@@ -165,14 +165,14 @@ export function CandidateGallery({
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Enter a name or code"
-              className="w-full rounded-xl border border-[#d8c6c8] bg-white py-3 pr-4 pl-11 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+              className="w-full rounded-xl border border-[#d8c6c8] bg-white py-2.5 pr-3 pl-10 text-sm text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:py-3 min-[600px]:pr-4 min-[600px]:pl-11 min-[600px]:text-base"
             />
           </div>
         </div>
         <div>
           <label
             htmlFor="candidate-year"
-            className="mb-2 block text-sm font-bold text-[#554b4c]"
+            className="mb-1.5 block text-sm font-bold text-[#554b4c] min-[600px]:mb-2"
           >
             Year
           </label>
@@ -180,7 +180,7 @@ export function CandidateGallery({
             id="candidate-year"
             value={year}
             onChange={(event) => setYear(event.target.value)}
-            className="w-full rounded-xl border border-[#d8c6c8] bg-white px-4 py-3 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+            className="w-full rounded-xl border border-[#d8c6c8] bg-white px-3 py-2.5 text-sm text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:px-4 min-[600px]:py-3 min-[600px]:text-base"
           >
             <option value="">All years</option>
             {years.map((value) => (
@@ -193,7 +193,7 @@ export function CandidateGallery({
         <div>
           <label
             htmlFor="candidate-program"
-            className="mb-2 block text-sm font-bold text-[#554b4c]"
+            className="mb-1.5 block text-sm font-bold text-[#554b4c] min-[600px]:mb-2"
           >
             Program type
           </label>
@@ -201,7 +201,7 @@ export function CandidateGallery({
             id="candidate-program"
             value={programType}
             onChange={(event) => setProgramType(event.target.value)}
-            className="w-full rounded-xl border border-[#d8c6c8] bg-white px-4 py-3 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+            className="w-full rounded-xl border border-[#d8c6c8] bg-white px-3 py-2.5 text-sm text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:px-4 min-[600px]:py-3 min-[600px]:text-base"
           >
             <option value="">All programs</option>
             {programTypes.map((value) => (
@@ -260,12 +260,12 @@ export function CandidateGallery({
             ))}
           </div>
         </div>
-        <div className="grid gap-4 min-[600px]:col-span-2 min-[600px]:grid-cols-2">
+        <div className="grid gap-3 min-[600px]:col-span-2 min-[600px]:grid-cols-2 min-[600px]:gap-4">
           {allPairs && (
             <div>
               <label
                 htmlFor="candidate-pair"
-                className="mb-2 block text-sm font-bold text-[#554b4c]"
+                className="mb-1.5 block text-sm font-bold text-[#554b4c] min-[600px]:mb-2"
               >
                 Pair
               </label>
@@ -273,7 +273,7 @@ export function CandidateGallery({
                 id="candidate-pair"
                 value={selectedPair}
                 onChange={(event) => setSelectedPair(event.target.value)}
-                className="w-full rounded-xl border border-[#d8c6c8] bg-white px-4 py-3 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+                className="w-full rounded-xl border border-[#d8c6c8] bg-white px-3 py-2.5 text-sm text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:px-4 min-[600px]:py-3 min-[600px]:text-base"
               >
                 <option value="">All pairs</option>
                 {slotSchedule.map((_, index) => (
@@ -287,7 +287,7 @@ export function CandidateGallery({
           <div>
             <label
               htmlFor="candidate-view"
-              className="mb-2 block text-sm font-bold text-[#554b4c]"
+                className="mb-1.5 block text-sm font-bold text-[#554b4c] min-[600px]:mb-2"
             >
               View by
             </label>
@@ -297,7 +297,7 @@ export function CandidateGallery({
               onChange={(event) =>
                 setView(event.target.value as "code" | "slot")
               }
-              className="w-full rounded-xl border border-[#d8c6c8] bg-white px-4 py-3 text-base text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+                className="w-full rounded-xl border border-[#d8c6c8] bg-white px-3 py-2.5 text-sm text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:px-4 min-[600px]:py-3 min-[600px]:text-base"
             >
               <option value="code">Candidate code</option>
               <option value="slot">Interview slot</option>

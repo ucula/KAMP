@@ -12,7 +12,7 @@ export function CandidateProfilesSection({
   return (
     <section
       aria-labelledby="candidate-title"
-      className="relative mb-14 scroll-mt-[110px] overflow-hidden rounded-[28px] border border-[#e8d8d8] bg-gradient-to-br from-white via-[#fffafa] to-[#f5e8e7] px-5 py-8 shadow-[0_24px_70px_#5a252511] min-[600px]:px-9 min-[600px]:py-10 min-[900px]:mb-16 min-[900px]:px-12"
+      className="relative mb-14 scroll-mt-[110px] overflow-hidden rounded-[28px] border border-[#e8d8d8] bg-gradient-to-br from-white via-[#fffafa] to-[#f5e8e7] px-4 py-6 shadow-[0_24px_70px_#5a252511] min-[600px]:px-9 min-[600px]:py-10 min-[900px]:mb-16 min-[900px]:px-12"
     >
       <div
         aria-hidden="true"
@@ -22,15 +22,15 @@ export function CandidateProfilesSection({
       <TextHeading
         as="h2"
         id="candidate-title"
-        className="relative mb-4 max-w-none text-[clamp(34px,6vw,46px)] leading-[1.12] font-extrabold tracking-[-.065em] min-[600px]:text-[clamp(36px,6vw,68px)] min-[900px]:whitespace-nowrap"
+        className="relative mb-3 max-w-none text-[clamp(32px,6vw,46px)] leading-[1.08] font-extrabold tracking-[-.065em] min-[600px]:mb-4 min-[600px]:text-[clamp(36px,6vw,68px)] min-[900px]:whitespace-nowrap"
         text="Meet your "
         accent="CANDIDATES"
         accentClassName="text-[#ad1425]"
       />
-      <p className="relative mb-10 max-w-[580px] text-base leading-[1.6] text-[#6d6263]">
+      <p className="relative mb-6 max-w-[580px] text-base leading-[1.6] text-[#6d6263] min-[600px]:mb-10">
         Explore the mentees and open a profile to see their submitted materials.
       </p>
-      <div className="relative mb-6 flex items-center gap-4">
+      <div className="relative mb-4 flex items-center gap-3 min-[600px]:mb-6 min-[600px]:gap-4">
         <p className="m-0 shrink-0 text-xs font-bold tracking-[.08em] text-[#8d5a60]">
           CANDIDATE PROFILES{pair ? ` / PAIR ${pair}` : " / ALL PAIRS"}
         </p>

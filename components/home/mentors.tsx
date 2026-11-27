@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { homeTopicHeadingClass, TextHeading } from "@/components/ui/text-heading";
+import { homeTopicHeadingClass } from "@/components/ui/text-heading";
 
 const mentors = [
   "E35.png",
@@ -50,14 +50,15 @@ export function Mentors() {
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
         <div className="w-full">
-          <TextHeading
-            as="h2"
+          <h2
             id="mentors-title"
-            className={heading}
-            text="Mentors of"
-            accent="KAMP ENGINEERING 6."
-            accentClassName="text-[#ad1425]"
-          />
+            className={`font-[Arial,Helvetica,sans-serif] ${heading}`}
+          >
+            Mentors of{" "}
+            <span className="text-[#ad1425] max-[1119px]:block">
+              KAMP ENGINEERING 6.
+            </span>
+          </h2>
         </div>
         <div
           aria-label="KAMP Engineering 6 mentors"
