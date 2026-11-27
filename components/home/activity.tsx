@@ -91,7 +91,7 @@ export function Activity() {
             >
               <div className="flex flex-col justify-center p-[35px] min-[900px]:flex-1 min-[900px]:p-8">
                 <TextHeading as="h3" className="mt-[26px] mb-[18px] text-[clamp(28px,4vw,56px)] leading-[1.05] font-bold tracking-[-.065em] min-[900px]:mt-0" text={activity.title} />
-                <p className="max-w-[410px] text-[clamp(14px,1.4vw,17px)] leading-[1.6] text-[#6d6263]">
+                <p className="text-[clamp(14px,1.4vw,17px)] leading-[1.6] text-[#6d6263]">
                   {activity.description}
                 </p>
               </div>
