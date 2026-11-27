@@ -56,7 +56,7 @@ const activities = [
 ] as const;
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
-const heading = `${homeTopicHeadingClass} max-w-[920px]`;
+const heading = `${homeTopicHeadingClass} max-w-none`;
 
 export function Activity() {
   const activityPhotos = {

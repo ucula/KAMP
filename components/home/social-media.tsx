@@ -25,7 +25,7 @@ const channels = [
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
 const section = "scroll-mt-[92px] py-12 min-[900px]:py-20";
-const heading = `${homeTopicHeadingClass} max-w-none min-[900px]:whitespace-nowrap`;
+const heading = `${homeTopicHeadingClass} max-w-none`;
 const headingRow =
   "grid grid-cols-1 gap-8";
 

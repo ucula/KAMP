@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { homeTopicHeadingClass } from "@/components/ui/text-heading";
+import { homeTopicHeadingClass, TextHeading } from "@/components/ui/text-heading";
 
 const mentors = [
   "E35.png",
@@ -42,23 +42,22 @@ const mentors = [
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
 const section = "scroll-mt-[92px] py-16 min-[900px]:py-20";
-const heading = `${homeTopicHeadingClass} w-full`;
+const heading = `${homeTopicHeadingClass} max-w-none`;
 
 export function Mentors() {
   return (
     <section id="mentors" aria-labelledby="mentors-title" className={section}>
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
-        <div className="w-full">
-          <h2
+        <div>
+          <TextHeading
+            as="h2"
             id="mentors-title"
-            className={`font-[Arial,Helvetica,sans-serif] ${heading}`}
-          >
-            Mentors of{" "}
-            <span className="text-[#ad1425] max-[1119px]:block">
-              KAMP ENGINEERING 6.
-            </span>
-          </h2>
+            className={heading}
+            text="Mentors of"
+            accent="KAMP ENGINEERING 6."
+            accentClassName="text-[#ad1425] max-[1119px]:block"
+          />
         </div>
         <div
           aria-label="KAMP Engineering 6 mentors"
