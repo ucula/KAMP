@@ -77,7 +77,7 @@ export function MentorCommitment() {
               key={number}
               href={`#activity-${target}`}
               aria-label={`Explore ${title} in Our Activities`}
-              className="group relative flex min-h-[140px] flex-col overflow-hidden rounded-[20px] border border-[#eadfdf] bg-gradient-to-br from-white to-[#fff9f9] p-4 text-inherit no-underline shadow-[0_12px_34px_#5a25250a] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#c77a82] hover:shadow-[0_20px_42px_#9d737322] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ad1425] motion-reduce:transition-none motion-reduce:hover:translate-y-0 min-[600px]:min-h-[150px] min-[900px]:p-5"
+              className="group relative flex min-h-[140px] flex-col overflow-hidden rounded-[20px] border border-[#eadfdf] bg-gradient-to-br from-white to-[#fff9f9] p-4 text-inherit no-underline shadow-[0_12px_34px_#5a25250a] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#c77a82] hover:shadow-[0_20px_42px_#9d737322] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ad1425] motion-reduce:transition-none motion-reduce:hover:translate-y-0 min-[600px]:min-h-[150px] min-[600px]:last:col-span-full min-[900px]:p-5 min-[1000px]:last:col-span-1"
             >
               <span
                 aria-hidden="true"
