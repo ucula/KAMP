@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { TextHeading } from "@/components/ui/text-heading";
 import { getCategoryPhotos } from "@/lib/kamp-activity-images";
 import { HeroCarousel } from "./hero-carousel";
 
@@ -35,18 +34,17 @@ export function Intro() {
             KASETSART ALUMNI MENTORSHIP PROGRAM <span className="mx-3">•</span>{" "}
             ENGINEERING 6
           </p> */}
-          <div className="grid gap-6 min-[900px]:mb-14">
-            <TextHeading
-              as="h1"
+          <div className="grid gap-5 min-[900px]:mb-14">
+            <h1
               id="hero-title"
-              ariaLabel="Where experience inspires potential"
-              className="page-title max-w-none leading-[.95] font-extrabold tracking-[-.07em] min-[900px]:whitespace-nowrap"
-              text="Where Experiences"
-              secondLine="Inspires"
-              accent="Potential"
-              accentClassName="text-[#ad1425]"
-            />
-            <p className="mb-[30px] text-xl leading-[1.55] text-[#605557] min-[900px]:text-xl">
+              className="page-title m-0 max-w-none leading-[.95] font-extrabold tracking-[-.07em]"
+            >
+              <span className="max-[1169px]:block">Where Experiences</span>{" "}
+              <span>
+                Inspires <span className="text-[#ad1425]">Potential</span>
+              </span>
+            </h1>
+            <p className="mt-0 pt-4 mb-[30px] text-[clamp(15px,2.2vw,30px)] leading-[1.55] text-[#605557]">
               A community where engineering experience meets emerging talent,
               empowering the next generation to learn, connect, and lead.
             </p>

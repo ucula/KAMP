@@ -32,7 +32,7 @@ export function InterviewIntro() {
         >
           Interview <span className="text-[#b5202e]">Process.</span>
         </h1>
-        <p className="text-xl leading-[1.6] text-[#5f5a5b]">
+        <p className="pt-4 text-xl leading-[1.6] text-[#5f5a5b]">
           A step-by-step guide for mentors — from reviewing candidate profiles
           to announcing the selected mentees.
         </p>

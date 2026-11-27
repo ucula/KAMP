@@ -32,7 +32,7 @@ body { margin: 0; }
   font-size: var(--text-base);
 }
 
-.page-title { font-size: clamp(36px, 7vw, 96px); }
+.page-title { font-size: clamp(32px, 7vw, 70px); }
 
 .values-ticker-track { animation: values-ticker-scroll 24s linear infinite; }
 
