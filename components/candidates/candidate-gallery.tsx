@@ -57,7 +57,9 @@ export function CandidateGallery({
   const [selectedPair, setSelectedPair] = useState("");
   const [view, setView] = useState<"code" | "slot">("slot");
   const [columns, setColumns] = useState<1 | 2 | 3>(3);
+  const [viewportColumns, setViewportColumns] = useState<1 | 2 | 3>(3);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const effectiveColumns = Math.min(columns, viewportColumns) as 1 | 2 | 3;
   const profiles = loadedCandidates ?? [];
   const query = search.trim().replace(/\s+/g, " ").toLocaleLowerCase();
   const years = ["1", "2", "3", "4"];
@@ -157,6 +159,16 @@ export function CandidateGallery({
   useEffect(() => {
     if (selected && !dialogRef.current?.open) dialogRef.current?.showModal();
   }, [selected]);
+
+  useEffect(() => {
+    const updateViewportColumns = () =>
+      setViewportColumns(
+        window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3,
+      );
+    updateViewportColumns();
+    window.addEventListener("resize", updateViewportColumns);
+    return () => window.removeEventListener("resize", updateViewportColumns);
+  }, []);
 
   const documents = selected
     ? [
@@ -286,12 +298,6 @@ export function CandidateGallery({
                   </option>
                 ))}
               </select>
-              <p
-                role="status"
-                className="mt-3 mb-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425]"
-              >
-                {statusMessage}
-              </p>
             </div>
           )}
           <div>
@@ -314,19 +320,17 @@ export function CandidateGallery({
             </select>
           </div>
         </div>
-        {!allPairs && (
+        <div className="col-span-full flex flex-col gap-3 min-[600px]:flex-row min-[600px]:items-center min-[600px]:justify-between">
           <p
             role="status"
-            className="m-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425] min-[600px]:col-span-2"
+            className="m-0 text-xs font-extrabold tracking-[.14em] text-[#ad1425]"
           >
             {statusMessage}
           </p>
-        )}
-        <div className="hidden min-[600px]:col-span-2 min-[600px]:flex min-[600px]:justify-end">
           <div
             role="group"
             aria-label="Candidate grid columns"
-            className="flex items-center gap-2"
+            className="hidden shrink-0 items-center gap-2 min-[600px]:flex"
           >
             <span className="mr-1 text-xs font-bold text-[#554b4c]">
               Columns
@@ -342,9 +346,9 @@ export function CandidateGallery({
                 key={count}
                 type="button"
                 aria-label={`${count} ${count === 1 ? "column" : "columns"}`}
-                aria-pressed={columns === count}
+                aria-pressed={effectiveColumns === count}
                 onClick={() => setColumns(count)}
-                className={`flex size-9 items-center justify-center rounded-lg border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] ${count === 3 ? "hidden min-[900px]:flex" : ""} ${columns === count ? "border-[#ad1425] bg-[#ad1425]" : "border-[#d8c6c8] bg-white hover:border-[#ad1425]"}`}
+                className={`flex size-9 items-center justify-center rounded-lg border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] ${count === 3 ? "hidden min-[900px]:flex" : ""} ${effectiveColumns === count ? "border-[#ad1425] bg-[#ad1425]" : "border-[#d8c6c8] bg-white hover:border-[#ad1425]"}`}
               >
                 <Image
                   src={icon}
@@ -352,7 +356,7 @@ export function CandidateGallery({
                   width={20}
                   height={20}
                   className={
-                    columns === count ? "brightness-0 invert" : "opacity-70"
+                    effectiveColumns === count ? "brightness-0 invert" : "opacity-70"
                   }
                 />
               </button>
@@ -381,7 +385,7 @@ export function CandidateGallery({
         </p>
       )}
       <div
-        className={`grid grid-cols-1 gap-4 ${columns === 1 ? "min-[600px]:grid-cols-1" : columns === 2 ? "min-[600px]:grid-cols-2" : "min-[600px]:grid-cols-2 min-[900px]:grid-cols-3"}`}
+        className={`grid grid-cols-1 gap-4 ${effectiveColumns === 1 ? "min-[600px]:grid-cols-1" : effectiveColumns === 2 ? "min-[600px]:grid-cols-2" : "min-[600px]:grid-cols-2 min-[900px]:grid-cols-3"}`}
       >
         {loadedCandidates &&
           displayRows.map(({ candidate, code, pair, slot }, index) => (
