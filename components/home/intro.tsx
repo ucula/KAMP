@@ -29,7 +29,7 @@ export function Intro() {
               "radial-gradient(circle, #e6a2a8 0, #f4d8d9 38%, transparent 70%)",
           }}
         />
-        <div className={cn(container, "relative pt-12 min-[900px]:pt-16")}>
+        <div className={cn(container, "relative pt-14 min-[900px]:pt-16")}>
           {/* <p className="text-[10px] leading-[1.7] font-extrabold tracking-[.23em] text-[#ad1425] min-[600px]:text-xs">
             KASETSART ALUMNI MENTORSHIP PROGRAM <span className="mx-3">•</span>{" "}
             ENGINEERING 6
@@ -37,14 +37,14 @@ export function Intro() {
           <div className="grid gap-5 min-[900px]:mb-14">
             <h1
               id="hero-title"
-              className="page-title m-0 max-w-none leading-[.95] font-extrabold tracking-[-.07em]"
+              className="page-title mt-10 mb-0 max-w-none leading-[.95] font-extrabold tracking-[-.07em]"
             >
               <span className="max-[1169px]:block">Where Experiences</span>{" "}
               <span>
                 Inspires <span className="text-[#ad1425]">Potential</span>
               </span>
             </h1>
-            <p className="mt-0 pt-4 mb-[30px] text-[clamp(15px,2.2vw,30px)] leading-[1.55] text-[#605557]">
+            <p className="mt-0 pt-4 mb-[30px] text-lg leading-[1.6] text-[#605557]">
               A community where engineering experience meets emerging talent,
               empowering the next generation to learn, connect, and lead.
             </p>
