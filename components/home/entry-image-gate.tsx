@@ -64,7 +64,7 @@ export function EntryImageGate({
   return (
     <>
       <div aria-hidden={!ready} inert={!ready}>{children}</div>
-      {!ready && <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-[#f9f6f4] text-[#605557]" role="status" aria-label="Loading"><span className="size-9 animate-spin rounded-full border-4 border-[#e7d7d7] border-t-[#ad1425]" /><span className="text-sm font-semibold">Loading</span></div>}
+      {!ready && <div className="fluid-type fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-[#f9f6f4] text-[#605557]" role="status" aria-label="Loading"><span className="size-9 animate-spin rounded-full border-4 border-[#e7d7d7] border-t-[#ad1425]" /><span className="text-sm font-semibold">Loading</span></div>}
     </>
   );
 }

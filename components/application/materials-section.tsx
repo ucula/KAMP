@@ -85,7 +85,7 @@ export function MaterialsSection() {
       <TextHeading
         as="h2"
         id="materials-title"
-        className="mb-[45px] max-w-none text-[clamp(36px,5vw,68px)] leading-[1.02] font-extrabold tracking-[-.065em] min-[900px]:whitespace-nowrap"
+        className="mb-[45px] max-w-none text-[clamp(28px,5vw,68px)] leading-[1.02] font-extrabold tracking-[-.065em] min-[900px]:whitespace-nowrap"
         text="Mentee's"
         accent="materials"
         accentClassName="text-[#ad1425]"
@@ -108,7 +108,7 @@ export function MaterialsSection() {
               className="self-start rounded-[18px] border-0 bg-[#ad1425] p-[35px] text-white"
             >
               <details className="group">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[26px] leading-tight font-bold tracking-[-.045em] text-white marker:content-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[clamp(18px,calc(15.71px_+_0.714vw),26px)] leading-tight font-bold tracking-[-.045em] text-white marker:content-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                   <span className="flex items-center gap-3">
                     <Icon
                       size={24}

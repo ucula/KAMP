@@ -23,7 +23,7 @@ export function Header({
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-white/15 text-white"
+      className="fluid-type sticky top-0 z-50 border-b border-white/15 text-white"
       style={{ background: "linear-gradient(90deg, #2c1215 0%, #211a1b 78%)" }}
     >
       <nav

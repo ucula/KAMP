@@ -23,7 +23,7 @@ export function Kamp() {
             accent="- Engineering"
             accentClassName="text-[#ad1425]"
           />
-          <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-[clamp(18px,2.2vw,30px)] leading-[1.35] font-bold tracking-[-.02em] text-[#211a1b]">
+          <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-[clamp(15px,2.2vw,30px)] leading-[1.35] font-bold tracking-[-.02em] text-[#211a1b]">
             <span className="text-[#a71422]">Platform</span> to connect the
             value with all stakeholders for creating a Well-Rounded
             Next-Generation KU Engineering

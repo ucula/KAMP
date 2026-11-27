@@ -49,7 +49,7 @@ export function Mission() {
             accentClassName="text-[#ffbfc5]"
           />
         </div>
-        <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-[clamp(18px,2.2vw,30px)] leading-[1.35] font-bold tracking-[-.02em] text-[#FFFFFF]">
+        <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-[clamp(15px,2.2vw,30px)] leading-[1.35] font-bold tracking-[-.02em] text-[#FFFFFF]">
           <span className="text-[#ffbfc5]">KAMP ENGINEERING</span> exists so you
           don&apos;t have to start from zero
         </p>
@@ -64,7 +64,7 @@ export function Mission() {
               </div>
               <TextHeading
                 as="h3"
-                className="mt-auto mb-3 text-[clamp(25px,2.6vw,34px)] leading-[1.12] font-bold tracking-[-.04em]"
+                className="mt-auto mb-3 text-[clamp(20px,2.6vw,34px)] leading-[1.12] font-bold tracking-[-.04em]"
                 text={title}
               />
             </Card>

@@ -9,7 +9,7 @@ import { HomeFooter } from "@/components/home/home-footer";
 
 export function HomeContent({ basePath = "" }: { basePath?: string }) {
   return (
-    <main className="bg-white font-[Arial,Helvetica,sans-serif] text-[#211a1b]">
+    <main className="fluid-type bg-white font-[Arial,Helvetica,sans-serif] text-[#211a1b]">
       <Intro />
       <Kamp />
       <Mission />

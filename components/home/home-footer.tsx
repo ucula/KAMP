@@ -16,13 +16,13 @@ export function HomeFooter({ basePath = "" }: { basePath?: string }) {
         </p>
         <TextHeading
           as="h2"
-          className="my-10 max-w-[920px] text-[clamp(22px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:text-[clamp(42px,5vw,72px)]"
+          className="my-10 max-w-[920px] text-[clamp(18px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:text-[clamp(42px,5vw,72px)]"
           text="Knowledge Shard Today."
           accent="Possibilities Created Tomorrow."
           accentClassName="text-[#ff606c]"
           breakBeforeAccent
         />
-        <p className="m-0 mb-10 max-w-[1200px] text-[clamp(18px,2.25vw,30px)] leading-[1.55] text-[#d3cacc]">
+        <p className="m-0 mb-10 max-w-[1200px] text-[clamp(15px,2.25vw,30px)] leading-[1.55] text-[#d3cacc]">
           Every experience shared, every connection made, and every opportunity
           created contributes to a stronger engineering community for
           generations to come.
@@ -50,7 +50,7 @@ export function HomeFooter({ basePath = "" }: { basePath?: string }) {
               className="absolute top-1/2 left-1/2 h-auto w-[140px] max-w-none -translate-x-1/2 -translate-y-1/2 max-[359px]:w-[120px] min-[600px]:w-[170px] min-[900px]:w-[190px]"
             />
           </Link>
-          <p className="text-[13px] text-[#c8bfc0]">
+          <p className="text-[clamp(11px,calc(10.43px_+_0.179vw),13px)] text-[#c8bfc0]">
             Where Wisdom Empowers Potential.
           </p>
         </div>

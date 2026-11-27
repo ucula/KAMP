@@ -15,6 +15,23 @@
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; }
 
+.fluid-type {
+  --text-xs: clamp(10px, calc(9.43px + 0.179vw), 12px);
+  --text-sm: clamp(12px, calc(11.43px + 0.179vw), 14px);
+  --text-base: clamp(14px, calc(13.43px + 0.179vw), 16px);
+  --text-lg: clamp(16px, calc(15.43px + 0.179vw), 18px);
+  --text-xl: clamp(18px, calc(17.43px + 0.179vw), 20px);
+  --text-2xl: clamp(20px, calc(18.86px + 0.357vw), 24px);
+  --text-3xl: clamp(24px, calc(22.29px + 0.536vw), 30px);
+  --text-4xl: clamp(28px, calc(25.71px + 0.714vw), 36px);
+  --text-5xl: clamp(36px, calc(32.57px + 1.071vw), 48px);
+  --text-6xl: clamp(40px, calc(34.29px + 1.786vw), 60px);
+  --text-7xl: clamp(48px, calc(41.14px + 2.143vw), 72px);
+  --text-8xl: clamp(56px, calc(44.57px + 3.571vw), 96px);
+  --text-9xl: clamp(64px, calc(45.71px + 5.714vw), 128px);
+  font-size: var(--text-base);
+}
+
 .values-ticker-track { animation: values-ticker-scroll 24s linear infinite; }
 
 .carousel-in-next { animation: carousel-in-next 520ms cubic-bezier(.22,.61,.36,1) both; }

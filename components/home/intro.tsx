@@ -40,7 +40,7 @@ export function Intro() {
               as="h1"
               id="hero-title"
               ariaLabel="Where experience inspires potential"
-              className="max-w-none text-[clamp(48px,7vw,96px)] leading-[.95] font-extrabold tracking-[-.07em] min-[900px]:whitespace-nowrap"
+              className="max-w-none text-[clamp(36px,7vw,96px)] leading-[.95] font-extrabold tracking-[-.07em] min-[900px]:whitespace-nowrap"
               text="Where Experiences"
               secondLine="Inspires"
               accent="Potential"
@@ -53,7 +53,7 @@ export function Intro() {
           </div>
           <div className="mt-10">
             <HeroCarousel slides={slides} />
-            <div className="flex justify-between gap-5 py-7 text-[9px] font-bold tracking-[.17em] text-[#8b7779] min-[600px]:text-[11px]">
+            <div className="flex justify-between gap-5 py-7 text-[clamp(9px,calc(8.43px_+_0.179vw),11px)] font-bold tracking-[.17em] text-[#8b7779]">
               <span>KAMP ENGINEERING 6</span>
               <span>SCROLL TO EXPLORE ↓</span>
             </div>
@@ -67,11 +67,11 @@ export function Intro() {
             <div
               key={copy}
               aria-hidden="true"
-              className="values-ticker-group flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 text-[11px] leading-[1.8] font-extrabold tracking-[.12em] min-[600px]:text-[13px]"
+              className="values-ticker-group flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 text-[clamp(9px,calc(7.86px_+_0.357vw),13px)] leading-[1.8] font-extrabold tracking-[.12em]"
             >
               {tickerItems.map((item) => (
                 <span key={item} className="inline-flex items-center gap-8">
-                  {item} <b className="text-[15px]">✦</b>
+                  {item} <b className="text-[clamp(12px,calc(11.14px_+_0.268vw),15px)]">✦</b>
                 </span>
               ))}
             </div>

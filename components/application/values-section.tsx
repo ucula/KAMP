@@ -42,7 +42,7 @@ export function ValuesSection() {
       <TextHeading
         as="h2"
         id="values-title"
-        className="mb-8 text-[clamp(34px,4.5vw,58px)] leading-[1.08] font-extrabold tracking-[-.06em]"
+        className="mb-8 text-[clamp(28px,4.5vw,58px)] leading-[1.08] font-extrabold tracking-[-.06em]"
         text="Who we are looking for."
       />
       <div className="grid gap-3 rounded-[22px] p-4 min-[600px]:grid-cols-2 min-[600px]:p-6">
@@ -59,11 +59,11 @@ export function ValuesSection() {
                 className="text-[#ad1425]"
               />
               <div className="w-full">
-                <TextHeading as="h3" className="text-[22px] leading-[1.1] font-bold tracking-[-.04em]" text={title} />
+                <TextHeading as="h3" className="text-[clamp(18px,calc(16.86px_+_0.357vw),22px)] leading-[1.1] font-bold tracking-[-.04em]" text={title} />
               </div>
             </CardHeader>
             <CardContent className="p-0 pt-3">
-              <CardDescription className="text-[15px] leading-[1.55] text-[#6d6263]">
+              <CardDescription className="text-[clamp(13px,calc(12.43px_+_0.179vw),15px)] leading-[1.55] text-[#6d6263]">
                 {body}
               </CardDescription>
             </CardContent>

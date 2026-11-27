@@ -9,7 +9,7 @@ export function ApplicationIntro() {
       <TextHeading
         as="h1"
         id="application-title"
-        className="mt-10 max-w-[1100px] text-[clamp(46px,7vw,96px)] leading-[.98] font-extrabold tracking-[-.075em]"
+        className="mt-10 max-w-[1100px] text-[clamp(34px,7vw,96px)] leading-[.98] font-extrabold tracking-[-.075em]"
         text="Application"
         accent="Guide"
         accentClassName="text-[#ad1425]"

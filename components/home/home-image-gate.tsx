@@ -71,7 +71,7 @@ export function HomeImageGate({ children }: { children: React.ReactNode }) {
       </div>
       {!ready && (
         <div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-[#f9f6f4] text-[#605557]"
+          className="fluid-type fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-[#f9f6f4] text-[#605557]"
           role="status"
           aria-label="Loading"
         >

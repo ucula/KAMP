@@ -10,7 +10,7 @@ export function InterviewNextStep({ basePath = "" }: { basePath?: string }) {
       <div>
         <TextHeading
           as="h2"
-          className="max-w-none text-[clamp(38px,4.5vw,62px)] leading-[1.12] tracking-[-.06em] min-[900px]:whitespace-nowrap"
+          className="max-w-none text-[clamp(28px,4.5vw,62px)] leading-[1.12] tracking-[-.06em] min-[900px]:whitespace-nowrap"
           text="Meet your CANDIDATES."
         />
       </div>
@@ -18,7 +18,7 @@ export function InterviewNextStep({ basePath = "" }: { basePath?: string }) {
         href={`${basePath}/candidates`}
         className={cn(
           buttonVariants(),
-          "min-w-max gap-[25px] px-[22px] py-4 text-xs font-extrabold tracking-[.08em] no-underline",
+          "min-w-max gap-[25px] px-[22px] py-4 text-[clamp(9px,1.2vw,12px)] font-extrabold tracking-[.08em] no-underline",
         )}
       >
         See my Candidates <ArrowUpRight size={20} aria-hidden="true" />

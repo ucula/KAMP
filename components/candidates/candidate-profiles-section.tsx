@@ -22,7 +22,7 @@ export function CandidateProfilesSection({
       <TextHeading
         as="h2"
         id="candidate-title"
-        className="relative mb-4 max-w-none text-[46px] leading-[1.12] font-extrabold tracking-[-.065em] min-[600px]:text-[clamp(44px,5vw,68px)] min-[900px]:whitespace-nowrap"
+        className="relative mb-4 max-w-none text-[clamp(34px,6vw,46px)] leading-[1.12] font-extrabold tracking-[-.065em] min-[600px]:text-[clamp(36px,6vw,68px)] min-[900px]:whitespace-nowrap"
         text="Meet your "
         accent="CANDIDATES"
         accentClassName="text-[#ad1425]"
