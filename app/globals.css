@@ -14,6 +14,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; }
+html { scroll-behavior: smooth; }
 
 .fluid-type {
   --text-xs: clamp(10px, calc(9.43px + 0.179vw), 12px);
@@ -62,6 +63,7 @@ body { margin: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .carousel-in-next, .carousel-out-next, .carousel-in-previous, .carousel-out-previous { animation-duration: 1ms; }
 }
 .values-ticker-group { min-width: max-content; }

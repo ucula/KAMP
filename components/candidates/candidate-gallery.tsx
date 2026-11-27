@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, Search, X } from "lucide-react";
+import { ArrowUpRight, Download, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Mentee } from "@/lib/mentees";
 import slotSchedule from "@/lib/candidate-slots.json";
@@ -14,6 +14,25 @@ const scheduledPairs = new Map<string, number[]>();
 for (const { code, pair } of slots) {
   if (code)
     scheduledPairs.set(code, [...(scheduledPairs.get(code) ?? []), pair]);
+}
+
+function getDownloadHref(href: string) {
+  try {
+    const source = new URL(href);
+    if (source.hostname !== "drive.google.com") return null;
+
+    const fileId =
+      source.pathname.match(/^\/file\/d\/([^/]+)/)?.[1] ??
+      source.searchParams.get("id");
+    if (!fileId || !/^[\w-]+$/.test(fileId)) return null;
+
+    const download = new URL("https://drive.google.com/uc");
+    download.searchParams.set("export", "download");
+    download.searchParams.set("id", fileId);
+    return download.toString();
+  } catch {
+    return null;
+  }
 }
 
 export function CandidateGallery({
@@ -428,7 +447,7 @@ export function CandidateGallery({
           if (event.target === event.currentTarget) event.currentTarget.close();
         }}
         aria-labelledby="candidate-dialog-title"
-        className="m-auto max-h-[calc(100svh-32px)] w-[calc(100%-32px)] max-w-[760px] overflow-auto rounded-[24px] border border-[#eadada] bg-[#faf6f5] p-0 text-[#211a1b] shadow-[0_25px_80px_#211a1b44] backdrop:bg-[#211a1b99]"
+        className="m-auto max-h-[calc(100svh-32px)] w-[calc(100%-32px)] max-w-[760px] overflow-auto rounded-[24px] border-0 bg-[#faf6f5] p-0 text-[#211a1b] shadow-[0_25px_80px_#211a1b44] backdrop:bg-[#211a1b99]"
       >
         <div className="relative overflow-hidden bg-gradient-to-br from-[#35191d] to-[#211a1b] p-6 text-white min-[600px]:p-9">
           <div
@@ -472,44 +491,56 @@ export function CandidateGallery({
           </div>
         </div>
         <div className="px-6 pt-8 pb-9 min-[600px]:px-9">
-          <div className="grid grid-cols-1 items-start gap-3 min-[600px]:grid-cols-2">
-            {documents.map(([label, href], index) => (
-              <div
-                key={label}
-                className={`rounded-2xl border p-4 shadow-[0_8px_24px_#5a252508] ${href?.trim() ? "border-[#eadfdf] bg-white" : "border-[#e8b5b9] bg-[#fff8f8]"}`}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-[clamp(9px,calc(8.43px_+_0.179vw),11px)] font-extrabold tracking-[.13em] text-[#ad1425]">
-                    <span className="mr-2 text-[#b99397]">0{index + 1}</span>
-                    {href?.trim() ? (
+          <div className="grid grid-cols-1 items-stretch gap-3 min-[600px]:grid-cols-2">
+            {documents.map(([label, href], index) => {
+              const sourceHref = href?.trim();
+              const downloadHref = sourceHref
+                ? getDownloadHref(sourceHref)
+                : null;
+
+              return (
+                <div
+                  key={label}
+                  className={`h-[72px] rounded-2xl border p-4 shadow-[0_8px_24px_#5a252508] ${sourceHref ? "border-[#eadfdf] bg-white" : "border-[#e8b5b9] bg-[#fff8f8]"}`}
+                >
+                  <div className="flex h-full items-center justify-between gap-3">
+                    <span className="text-[clamp(9px,calc(8.43px_+_0.179vw),11px)] font-extrabold tracking-[.13em] text-[#ad1425]">
+                      <span className="mr-2 text-[#b99397]">0{index + 1}</span>
+                      {sourceHref ? (
+                        <a
+                          href={sourceHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View ${label}`}
+                          className="text-inherit underline decoration-[#b88b90] underline-offset-2 hover:text-[#7f0e1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+                        >
+                          {label.toUpperCase()}
+                        </a>
+                      ) : (
+                        label.toUpperCase()
+                      )}
+                    </span>
+                    {downloadHref && (
                       <a
-                        href={href.trim()}
+                        href={downloadHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`View ${label}`}
-                        className="text-inherit underline decoration-[#b88b90] underline-offset-2 hover:text-[#7f0e1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
+                        aria-label={`Download ${label}`}
+                        title={`Download ${label}`}
+                        className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg text-[#ad1425] hover:bg-[#f8eeee] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
                       >
-                        {label.toUpperCase()}
+                        <Download size={14} aria-hidden="true" />
                       </a>
-                    ) : (
-                      label.toUpperCase()
                     )}
-                  </span>
-                  {href?.trim() && (
-                    <ArrowUp
-                      size={18}
-                      aria-hidden="true"
-                      className="shrink-0 text-[#ad1425]"
-                    />
-                  )}
+                    {!sourceHref && (
+                      <span className="shrink-0 text-xs font-semibold text-[#ad1425]">
+                        Missing
+                      </span>
+                    )}
+                  </div>
                 </div>
-                {!href?.trim() && (
-                  <p className="mt-3 text-sm font-semibold text-[#ad1425]">
-                    Missing
-                  </p>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </dialog>

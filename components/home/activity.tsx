@@ -8,6 +8,7 @@ const activities = [
   {
     number: "01",
     title: "Mentoring Sessions",
+    target: "mentoring-sessions",
     gallery: "mentoring",
     description:
       "Gain practical insights, professional guides and valuable perspecives from experienced engineering mentors",
@@ -15,6 +16,7 @@ const activities = [
   {
     number: "02",
     title: "Mentor Spotlight",
+    target: "mentor-spotlight",
     gallery: "spotlight",
     description:
       "Discover the experiences, achievements, and perspectives of engineering professionals who inspire the next generation.",
@@ -22,6 +24,7 @@ const activities = [
   {
     number: "03",
     title: "Wisdom on the Road",
+    target: "wisdom-on-the-road",
     gallery: "wisdom",
     description:
       "Step beyond the classroom to explore real-world engineering practices, industries, and professional experiences.",
@@ -29,13 +32,15 @@ const activities = [
   {
     number: "04",
     title: "KAMP Learning Space",
+    target: "kamp-learning-space",
     gallery: "kls",
     description:
       "A collaborative space to exchange ideas, explore new perspectives, and grow through shared learning.",
   },
   {
     number: "05",
-    title: "Workshops",
+    title: "Workshop",
+    target: "workshop",
     gallery: "workshops",
     description:
       "Transform knowledge into practice through interactive workshops, hands-on activities, and collaborative problem-solving.",
@@ -43,6 +48,7 @@ const activities = [
   {
     number: "06",
     title: "Outing",
+    target: "outing",
     gallery: "outing",
     description:
       "Build friendships and shared memories through outings and activities beyond the classroom.",
@@ -66,7 +72,7 @@ export function Activity() {
     <section
       id="activities"
       aria-labelledby="activities-title"
-      className="scroll-mt-[92px] bg-[#f9f6f4] py-14 min-[900px]:py-20"
+      className="scroll-mt-[92px] bg-[#f9f6f4] py-14 pt-4 min-[900px]:pt-6 min-[900px]:pb-20"
     >
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
@@ -77,8 +83,9 @@ export function Activity() {
           {activities.map((activity, index) => (
             <Card
               key={activity.number}
+              id={`activity-${activity.target}`}
               className={cn(
-                "flex min-h-[360px] flex-col-reverse overflow-hidden rounded-[22px] border-[#e9d9d9] min-[900px]:min-h-0 min-[900px]:flex-row",
+                "scroll-mt-[110px] flex min-h-[360px] flex-col-reverse overflow-hidden rounded-[22px] border-[#e9d9d9] min-[900px]:min-h-0 min-[900px]:flex-row",
                 index % 2 === 1 && "min-[900px]:flex-row-reverse",
               )}
             >
