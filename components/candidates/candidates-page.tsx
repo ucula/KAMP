@@ -13,7 +13,7 @@ export function CandidatesPage({
       <div className="mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]">
         <div className="mb-10 min-[900px]:mb-14">
           <h1 className="page-title m-0 leading-[.95] font-extrabold tracking-[-.055em]">
-            Your <span className="text-[#b5202e]">Candidates.</span>
+            Your <span className="text-[#b5202e]">Candidates</span>
           </h1>
           <p className="mt-5 pt-4 text-base leading-[1.6] text-[#605557] min-[600px]:text-lg min-[900px]:text-xl">
             Get to know the applicants before interview day by exploring their

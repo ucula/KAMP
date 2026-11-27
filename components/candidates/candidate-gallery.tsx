@@ -297,7 +297,7 @@ export function CandidateGallery({
           <div>
             <label
               htmlFor="candidate-view"
-                className="mb-1.5 block text-sm font-bold text-[#554b4c] min-[600px]:mb-2"
+              className="mb-1.5 block text-sm font-bold text-[#554b4c] min-[600px]:mb-2"
             >
               View by
             </label>
@@ -307,7 +307,7 @@ export function CandidateGallery({
               onChange={(event) =>
                 setView(event.target.value as "code" | "slot")
               }
-                className="w-full rounded-xl border border-[#d8c6c8] bg-white px-3 py-2.5 text-sm text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:px-4 min-[600px]:py-3 min-[600px]:text-base"
+              className="w-full rounded-xl border border-[#d8c6c8] bg-white px-3 py-2.5 text-sm text-[#211a1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425] min-[600px]:px-4 min-[600px]:py-3 min-[600px]:text-base"
             >
               <option value="code">Candidate code</option>
               <option value="slot">Interview slot</option>
@@ -400,45 +400,45 @@ export function CandidateGallery({
                     onClick={() => setSelected(candidate)}
                     className="relative flex min-h-[250px] min-w-0 w-full cursor-pointer flex-col items-start justify-between overflow-hidden rounded-[20px] border border-[#e9d9d9] bg-white px-5 py-5 text-left text-[#211a1b] shadow-[0_8px_24px_#5a25250a] transition-[transform,border-color,box-shadow] duration-200 group-hover:-translate-y-1 group-hover:border-[#c77a82] group-hover:shadow-[0_18px_35px_#9d737322] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ad1425]"
                   >
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-1 bg-[#ad1425]"
-                  />
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -top-16 -right-16 size-44 rounded-full border-[22px] border-[#ad1425]/5 transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <span className="relative flex w-full items-center justify-between gap-3">
-                    <span className="rounded-full border border-[#f0dddd] bg-[#fff7f7] px-3 py-1 text-[clamp(9px,calc(8.43px_+_0.179vw),11px)] font-extrabold tracking-[.08em] text-[#ad1425]">
-                      {candidate.code}
-                    </span>
-                    {slot > 0 && (
-                      <span className="text-xs font-extrabold text-[#ad1425]">
-                        Slot {slot}
-                      </span>
-                    )}
-                  </span>
-                  <span className="relative block w-full">
-                    <strong className="block text-[clamp(16px,calc(14.57px_+_0.446vw),21px)] leading-[1.2] tracking-[-.045em] break-words">
-                      {candidate.firstname} {candidate.surname}
-                    </strong>
-                    <span className="mt-2 block text-[clamp(11px,calc(10.43px_+_0.179vw),13px)] leading-[1.5] text-[#74696a] break-words">
-                      Year {candidate.year} · {candidate.major}
-                    </span>
-                    {candidate.program_type && (
-                      <span className="mt-3 inline-block max-w-full rounded-md bg-[#f8eeee] px-2.5 py-1 text-[clamp(9px,calc(8.43px_+_0.179vw),11px)] font-semibold text-[#805258] break-words">
-                        {formatProgramType(candidate.program_type)}
-                      </span>
-                    )}
-                  </span>
-                  <span className="relative flex w-full items-center justify-between border-t border-[#f0e4e4] pt-3 text-xs font-bold tracking-[.1em] text-[#ad1425]">
-                    VIEW PROFILE{" "}
-                    <ArrowUpRight
-                      size={18}
+                    <span
                       aria-hidden="true"
-                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      className="absolute inset-x-0 top-0 h-1 bg-[#ad1425]"
                     />
-                  </span>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -top-16 -right-16 size-44 rounded-full border-[22px] border-[#ad1425]/5 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <span className="relative flex w-full items-center justify-between gap-3">
+                      <span className="rounded-full border border-[#f0dddd] bg-[#fff7f7] px-3 py-1 text-[clamp(9px,calc(8.43px_+_0.179vw),11px)] font-extrabold tracking-[.08em] text-[#ad1425]">
+                        {candidate.code}
+                      </span>
+                      {slot > 0 && (
+                        <span className="text-xs font-extrabold text-[#ad1425]">
+                          Slot {slot}
+                        </span>
+                      )}
+                    </span>
+                    <span className="relative block w-full">
+                      <strong className="block text-[clamp(16px,calc(14.57px_+_0.446vw),21px)] leading-[1.2] tracking-[-.045em] break-words">
+                        {candidate.firstname} {candidate.surname}
+                      </strong>
+                      <span className="mt-2 block text-[clamp(11px,calc(10.43px_+_0.179vw),13px)] leading-[1.5] text-[#74696a] break-words">
+                        Year {candidate.year} · {candidate.major}
+                      </span>
+                      {candidate.program_type && (
+                        <span className="mt-3 inline-block max-w-full rounded-md bg-[#f8eeee] px-2.5 py-1 text-[clamp(9px,calc(8.43px_+_0.179vw),11px)] font-semibold text-[#805258] break-words">
+                          {formatProgramType(candidate.program_type)}
+                        </span>
+                      )}
+                    </span>
+                    <span className="relative flex w-full items-center justify-between border-t border-[#f0e4e4] pt-3 text-xs font-bold tracking-[.1em] text-[#ad1425]">
+                      VIEW PROFILE{" "}
+                      <ArrowUpRight
+                        size={18}
+                        aria-hidden="true"
+                        className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </span>
                   </button>
                 </div>
               ) : (

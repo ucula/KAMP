@@ -43,7 +43,7 @@ export function ValuesSection() {
         as="h2"
         id="values-title"
         className="mb-8 text-[clamp(28px,4.5vw,58px)] leading-[1.08] font-extrabold tracking-[-.06em]"
-        text="Who we are looking for."
+        text="Who we are looking for"
       />
       <div className="grid gap-3 rounded-[22px] p-4 min-[600px]:grid-cols-2 min-[600px]:p-6">
         {values.map(({ icon: Icon, title, body }) => (

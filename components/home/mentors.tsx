@@ -55,7 +55,7 @@ export function Mentors() {
             id="mentors-title"
             className={heading}
             text="Mentors of"
-            accent="KAMP ENGINEERING 6."
+            accent="KAMP ENGINEERING 6"
             accentClassName="text-[#ad1425] max-[1119px]:block"
           />
         </div>

@@ -30,7 +30,7 @@ export function InterviewIntro() {
           id="interview-title"
           className="page-title leading-[.95] font-extrabold tracking-[-.045em]"
         >
-          Interview <span className="text-[#b5202e]">Process.</span>
+          Interview <span className="text-[#b5202e]">Process</span>
         </h1>
         <p className="pt-4 text-lg leading-[1.6] text-[#5f5a5b]">
           A step-by-step guide for mentors — from reviewing candidate profiles
@@ -179,7 +179,9 @@ export function InterviewIntro() {
           </div>
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#4a3a3e] pt-7">
             <p className="text-base min-[600px]:text-lg">
-              <strong className="text-lg min-[600px]:text-2xl">10:00 — Next Candidate</strong>{" "}
+              <strong className="text-lg min-[600px]:text-2xl">
+                10:00 — Next Candidate
+              </strong>{" "}
               <span className="text-[#cfc5c7]">
                 The next candidate enters and the same rhythm starts again.
               </span>

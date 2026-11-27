@@ -17,8 +17,8 @@ export function HomeFooter({ basePath = "" }: { basePath?: string }) {
         <TextHeading
           as="h2"
           className={`my-10 max-w-none ${homeTopicHeadingClass}`}
-          text="Knowledge Shard Today."
-          accent="Possibilities Created Tomorrow."
+          text="Knowledge Shard Today"
+          accent="Possibilities Created Tomorrow"
           accentClassName="text-[#ff606c]"
           breakBeforeAccent
         />

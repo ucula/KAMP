@@ -2,14 +2,17 @@
 
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useEffect, useState, type SyntheticEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { HOME_IMAGE_LOAD_EVENT, HOME_IMAGES_READY_EVENT } from "./home-image-gate";
+import { preloadResponsiveImage } from "./preload-responsive-image";
 
 export function ActivityGallery({ photos, label }: { photos: { wide: string; fourThree: string }[]; label: string }) {
   const [active, setActive] = useState(0);
   const [previous, setPrevious] = useState<number | null>(null);
   const [direction, setDirection] = useState<"previous" | "next">("next");
   const [canRotate, setCanRotate] = useState(false);
+  const loadedVariants = useRef(new Set<string>());
+  const pendingLoads = useRef(new Map<string, Promise<boolean>>());
   const currentActive = active >= 0 && active < photos.length ? active : 0;
   const currentPrevious =
     previous !== null && previous >= 0 && previous < photos.length
@@ -21,27 +24,65 @@ export function ActivityGallery({ photos, label }: { photos: { wide: string; fou
     if (document.querySelector('[data-home-images-ready="true"]')) startCarousel();
     return () => window.removeEventListener(HOME_IMAGES_READY_EVENT, startCarousel);
   }, []);
-  useEffect(() => {
-    if (!photos.length || !canRotate) return;
-    const timer = window.setInterval(() => {
-      setPrevious(currentActive);
-      setDirection("next");
-      setActive((current) => {
-        const index = current >= 0 && current < photos.length ? current : 0;
-        return (index + 1) % photos.length;
+  const preloadPhoto = useCallback(
+    (index: number) => {
+      const photo = photos[index];
+      if (!photo) return Promise.resolve(false);
+
+      const wide = window.matchMedia("(min-width: 900px)").matches;
+      const variant = wide ? "wide" : "fourThree";
+      const key = `${index}:${variant}`;
+      if (loadedVariants.current.has(key)) return Promise.resolve(true);
+      const existing = pendingLoads.current.get(key);
+      if (existing) return existing;
+
+      const pending = preloadResponsiveImage(
+        photo[variant],
+        wide ? "(min-width: 900px) 50vw, 1px" : "(max-width: 899px) 100vw, 1px",
+      ).then((loaded) => {
+        if (loaded) loadedVariants.current.add(key);
+        pendingLoads.current.delete(key);
+        return loaded;
       });
-    }, 6000);
-    return () => window.clearInterval(timer);
-  }, [canRotate, currentActive, photos.length]);
+      pendingLoads.current.set(key, pending);
+      return pending;
+    },
+    [photos],
+  );
+
+  const showPhoto = useCallback(
+    (index: number, step: "previous" | "next") => {
+      if (index === currentActive) return;
+      void preloadPhoto(index).then((loaded) => {
+        if (!loaded) return;
+        setPrevious(currentActive);
+        setDirection(step);
+        setActive(index);
+      });
+    },
+    [currentActive, preloadPhoto],
+  );
+
+  useEffect(() => {
+    if (!photos.length || !canRotate || photos.length < 2) return;
+    let cancelled = false;
+    let timer: number | undefined;
+    const next = (currentActive + 1) % photos.length;
+    void preloadPhoto(next).then((loaded) => {
+      if (loaded && !cancelled) {
+        timer = window.setTimeout(() => showPhoto(next, "next"), 6000);
+      }
+    });
+    return () => {
+      cancelled = true;
+      if (timer !== undefined) window.clearTimeout(timer);
+    };
+  }, [canRotate, currentActive, photos.length, preloadPhoto, showPhoto]);
 
   const changePhoto = (step: -1 | 1) => {
     if (!photos.length) return;
-    setPrevious(currentActive);
-    setDirection(step === 1 ? "next" : "previous");
-    setActive((current) => {
-      const index = current >= 0 && current < photos.length ? current : 0;
-      return (index + step + photos.length) % photos.length;
-    });
+    const next = (currentActive + step + photos.length) % photos.length;
+    showPhoto(next, step === 1 ? "next" : "previous");
   };
   const renderPhoto = (index: number, animation: string, onAnimationEnd?: () => void) => {
     const photo = photos[index];
@@ -100,13 +141,7 @@ export function ActivityGallery({ photos, label }: { photos: { wide: string; fou
             type="button"
             aria-label={`Show ${label.toLowerCase()} photo ${index + 1} of ${photos.length}`}
             aria-pressed={index === currentActive}
-            onClick={() => {
-              if (index !== currentActive) {
-                setPrevious(currentActive);
-                setDirection(index > currentActive ? "next" : "previous");
-                setActive(index);
-              }
-            }}
+            onClick={() => showPhoto(index, index > currentActive ? "next" : "previous")}
             className="flex h-5 w-5 appearance-none items-center justify-center border-0 bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white min-[900px]:h-6 min-[900px]:w-6"
           >
             <span className={`block h-1.5 w-4 rounded-[2px] border border-white/50 transition-colors hover:bg-white/70 min-[900px]:h-2 min-[900px]:w-5 ${index === currentActive ? "bg-white/75" : "bg-white/30"}`} />

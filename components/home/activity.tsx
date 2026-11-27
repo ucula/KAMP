@@ -77,7 +77,7 @@ export function Activity() {
       <div className={container}>
         <p className="border-b border-[#ded5d5] pb-[25px] text-xs font-extrabold tracking-[.22em] text-[#ad1425]" />
         <div className="grid grid-cols-1 gap-8  min-[900px]:grid-cols-[1.2fr_.8fr] min-[900px]:gap-[70px]">
-          <TextHeading as="h2" id="activities-title" className={heading} text="Our" accent="Activities." accentClassName="text-[#ad1425]" />
+          <TextHeading as="h2" id="activities-title" className={heading} text="Our" accent="Activities" accentClassName="text-[#ad1425]" />
         </div>
         <div className="grid gap-[18px]">
           {activities.map((activity, index) => (

@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useEffect, useState, type SyntheticEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { HOME_IMAGE_LOAD_EVENT, HOME_IMAGES_READY_EVENT } from "./home-image-gate";
+import { preloadResponsiveImage } from "./preload-responsive-image";
 
 type HeroSlide = { name: string; wide: string; fourThree: string };
 
@@ -13,6 +14,8 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   const [previous, setPrevious] = useState<number | null>(null);
   const [direction, setDirection] = useState<"previous" | "next">("next");
   const [canRotate, setCanRotate] = useState(false);
+  const loadedVariants = useRef(new Set<string>());
+  const pendingLoads = useRef(new Map<string, Promise<boolean>>());
 
   useEffect(() => {
     const startCarousel = () => setCanRotate(true);
@@ -21,27 +24,70 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
     return () => window.removeEventListener(HOME_IMAGES_READY_EVENT, startCarousel);
   }, []);
 
+  const preloadSlide = useCallback(
+    (index: number) => {
+      const wide = window.matchMedia("(min-width: 900px)").matches;
+      const variant = wide ? "wide" : "fourThree";
+      const key = `${index}:${variant}`;
+      if (loadedVariants.current.has(key)) return Promise.resolve(true);
+      const existing = pendingLoads.current.get(key);
+      if (existing) return existing;
+
+      const photo = slides[index];
+      if (!photo) return Promise.resolve(false);
+      const pending = preloadResponsiveImage(
+        photo[variant],
+        wide
+          ? "(min-width: 1316px) 1220px, (min-width: 900px) calc(100vw - 96px), 1px"
+          : "(max-width: 899px) calc(100vw - 48px), 1px",
+      ).then((loaded) => {
+        if (loaded) loadedVariants.current.add(key);
+        pendingLoads.current.delete(key);
+        return loaded;
+      });
+      pendingLoads.current.set(key, pending);
+      return pending;
+    },
+    [slides],
+  );
+
+  const showSlide = useCallback(
+    (index: number, step: "previous" | "next") => {
+      if (index === active) return;
+      void preloadSlide(index).then((loaded) => {
+        if (!loaded) return;
+        setPrevious(active);
+        setDirection(step);
+        setActive(index);
+      });
+    },
+    [active, preloadSlide],
+  );
+
   useEffect(() => {
-    if (!canRotate) return;
-    const timer = window.setInterval(() => {
-      setPrevious(active);
-      setDirection("next");
-      setActive((current) => (current + 1) % slides.length);
-    }, 6000);
-    return () => window.clearInterval(timer);
-  }, [active, canRotate, slides.length]);
+    if (!canRotate || slides.length < 2) return;
+    let cancelled = false;
+    let timer: number | undefined;
+    const next = (active + 1) % slides.length;
+    void preloadSlide(next).then((loaded) => {
+      if (loaded && !cancelled) {
+        timer = window.setTimeout(() => showSlide(next, "next"), 6000);
+      }
+    });
+    return () => {
+      cancelled = true;
+      if (timer !== undefined) window.clearTimeout(timer);
+    };
+  }, [active, canRotate, preloadSlide, showSlide, slides.length]);
 
   const moveSlide = (step: -1 | 1) => {
-    setPrevious(active);
-    setDirection(step === 1 ? "next" : "previous");
-    setActive((current) => (current + step + slides.length) % slides.length);
+    showSlide(
+      (active + step + slides.length) % slides.length,
+      step === 1 ? "next" : "previous",
+    );
   };
   const selectSlide = (index: number) => {
-    if (index !== active) {
-      setPrevious(active);
-      setDirection(index > active ? "next" : "previous");
-      setActive(index);
-    }
+    showSlide(index, index > active ? "next" : "previous");
   };
   const renderSlide = (
     index: number,
@@ -49,6 +95,15 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
     onAnimationEnd?: () => void,
   ) => {
     const reportImageReady = (event: SyntheticEvent<HTMLImageElement>) => {
+      if (
+        event.type === "load" &&
+        event.currentTarget.getClientRects().length > 0
+      ) {
+        const variant = window.matchMedia("(min-width: 900px)").matches
+          ? "wide"
+          : "fourThree";
+        loadedVariants.current.add(`${index}:${variant}`);
+      }
       if (index === 0 && event.currentTarget.getClientRects().length > 0) {
         window.dispatchEvent(new Event(HOME_IMAGE_LOAD_EVENT));
       }

@@ -3,6 +3,8 @@ import { CandidatesPage } from "@/components/candidates/candidates-page";
 import { groupForToken } from "@/lib/group-links";
 import { getMentees } from "@/lib/mentees";
 
+export const dynamic = "force-dynamic";
+
 export default async function GroupCandidatesPage({
   params,
 }: {

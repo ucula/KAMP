@@ -45,7 +45,7 @@ export function Mission() {
             id="mission-title"
             className={heading}
             text="Our"
-            accent="Missions."
+            accent="Missions"
             accentClassName="text-[#ffbfc5]"
           />
         </div>

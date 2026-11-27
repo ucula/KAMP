@@ -11,7 +11,7 @@ export function InterviewNextStep({ basePath = "" }: { basePath?: string }) {
         <TextHeading
           as="h2"
           className="max-w-none text-[clamp(28px,4.5vw,62px)] leading-[1.12] tracking-[-.06em] min-[900px]:whitespace-nowrap"
-          text="Meet your CANDIDATES."
+          text="Meet your CANDIDATES"
         />
       </div>
       <Link

@@ -28,7 +28,7 @@ export function MentorCommitment() {
             id="mentor-commitment-title"
             className={`${homeTopicHeadingClass} max-w-none`}
             text="Mentor"
-            accent="Commitment."
+            accent="Commitment"
             accentClassName="text-[#ad1425]"
           />
           <p className="mt-4 max-w-[760px] text-base leading-[1.6] text-[#6d6263] min-[600px]:text-lg">
@@ -46,7 +46,7 @@ export function MentorCommitment() {
             5
           </strong>
           <h3 className="relative m-0 text-[clamp(26px,4vw,38px)] leading-[1.02] font-extrabold tracking-[-.055em] min-[900px]:translate-x-8">
-            Mentoring Sessions.
+            Mentoring Sessions
           </h3>
           <div className="relative col-span-2 flex flex-col items-start gap-2 min-[600px]:col-span-1">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[#b5202e] px-3 py-1 text-[10px] font-extrabold tracking-[.14em] text-white">

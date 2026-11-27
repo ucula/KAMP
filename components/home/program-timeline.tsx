@@ -57,7 +57,7 @@ export function ProgramTimeline() {
             id="program-timeline-title"
             className={`${homeTopicHeadingClass} max-w-none`}
             text="Program"
-            accent="Timeline."
+            accent="Timeline"
             accentClassName="text-[#ad1425]"
           />
           <p className="mt-4 max-w-none text-[clamp(14px,1.4vw,18px)] leading-[1.6] text-[#6d6263]">
