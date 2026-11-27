@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { TextHeading } from "@/components/ui/text-heading";
+import { TextHeading, homeTopicHeadingClass } from "@/components/ui/text-heading";
 
 const container =
   "mx-auto w-[calc(100%-48px)] max-w-[1220px] min-[900px]:w-[calc(100%-96px)]";
@@ -16,7 +16,7 @@ export function HomeFooter({ basePath = "" }: { basePath?: string }) {
         </p>
         <TextHeading
           as="h2"
-          className="my-10 max-w-[920px] text-[clamp(18px,6vw,45px)] leading-[1.2] font-extrabold min-[900px]:text-[clamp(42px,5vw,72px)]"
+          className={`my-10 max-w-none ${homeTopicHeadingClass}`}
           text="Knowledge Shard Today."
           accent="Possibilities Created Tomorrow."
           accentClassName="text-[#ff606c]"
